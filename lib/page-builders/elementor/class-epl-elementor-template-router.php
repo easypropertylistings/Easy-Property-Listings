@@ -64,6 +64,14 @@ class EPL_Elementor_Template_Router {
 	private static $card_override_stack = array();
 
 	/**
+	 * The epl_loop_template_listing callback, hooked only while a card override is active.
+	 *
+	 * @since 3.6.0
+	 * @var callable|null
+	 */
+	private static $card_listener = null;
+
+	/**
 	 * Archive page currently routed for this request, for the wrapper
 	 * template to read.
 	 *
@@ -121,17 +129,25 @@ class EPL_Elementor_Template_Router {
 	 *                             type override, e.g.
 	 *                             `array( 'rural' => 123, '_default' => 456 )`.
 	 * @since 3.6.0 New: Elementor templates for free Elementor (beta).
+	 * @since 3.6.0 Fix: hooks the card listener only while a widget's card is active.
 	 */
 	public static function begin_card_override( $override ) {
+		if ( empty( self::$card_override_stack ) && self::$card_listener ) {
+			add_action( 'epl_loop_template_listing', self::$card_listener, 10, 1 );
+		}
 		self::$card_override_stack[] = is_array( $override ) ? $override : absint( $override );
 	}
 
 	/**
 	 * End a previously begun card override.
 	 * @since 3.6.0 New: Elementor templates for free Elementor (beta).
+	 * @since 3.6.0 Fix: unhooks the card listener when no card is active.
 	 */
 	public static function end_card_override() {
 		array_pop( self::$card_override_stack );
+		if ( empty( self::$card_override_stack ) && self::$card_listener ) {
+			remove_action( 'epl_loop_template_listing', self::$card_listener, 10 );
+		}
 	}
 
 	/**
@@ -210,6 +226,7 @@ class EPL_Elementor_Template_Router {
 	 * @param string $post_type EPL post type.
 	 * @return int Template (post) ID, or 0 if none.
 	 * @since 3.6.0 New: Elementor templates for free Elementor (beta).
+	 * @since 3.6.0 Security: only templates by users who can edit theme options (administrators) are used.
 	 */
 	private function get_single_template_id( $post_type ) {
 		if ( isset( $this->single_template_cache[ $post_type ] ) ) {
@@ -241,6 +258,11 @@ class EPL_Elementor_Template_Router {
 
 		$fallback = 0;
 		foreach ( $candidates as $candidate_id ) {
+			// Only a template made by someone who manages the site's design can replace every listing page.
+			if ( ! user_can( (int) get_post_field( 'post_author', $candidate_id ), 'edit_theme_options' ) ) {
+				continue;
+			}
+
 			$applies_to = (array) get_post_meta( $candidate_id, '_epl_apply_post_types', true );
 
 			if ( in_array( $post_type, $applies_to, true ) ) {
@@ -329,9 +351,12 @@ class EPL_Elementor_Template_Router {
 	 * this defers straight back to EPL's normal PHP template, identical to
 	 * the hook not being attached at all.
 	 * @since 3.6.0 New: Elementor templates for free Elementor (beta).
+	 * @since 3.6.0 Fix: no longer hooks epl_loop_template_listing on every request, which stopped epl_loop_template callbacks from themes and add-ons on Elementor sites.
 	 */
 	public function hook_card_override_listener() {
-		add_action( 'epl_loop_template_listing', array( $this, 'render_card_override' ), 10, 1 );
+		// Hooked only while a widget renders with its own card (begin_card_override()), so themes
+		// and add-ons using epl_loop_template keep working everywhere else.
+		self::$card_listener = array( $this, 'render_card_override' );
 	}
 
 	/**
@@ -471,6 +496,7 @@ class EPL_Elementor_Template_Router {
 	 *
 	 * @return int Page ID, or 0 if the archive page feature does not apply.
 	 * @since 3.6.0 New: Elementor templates for free Elementor (beta).
+	 * @since 3.6.0 Security: a password protected page isn't used as the archive.
 	 */
 	private function resolve_archive_page_id() {
 		if ( 'yes' !== epl_get_option( 'epl_archive_page_enabled', 'no' ) ) {
@@ -504,7 +530,7 @@ class EPL_Elementor_Template_Router {
 		}
 
 		$page = get_post( $page_id );
-		if ( ! $page || 'page' !== $page->post_type || 'publish' !== $page->post_status ) {
+		if ( ! $page || 'page' !== $page->post_type || 'publish' !== $page->post_status || post_password_required( $page ) ) {
 			return 0;
 		}
 

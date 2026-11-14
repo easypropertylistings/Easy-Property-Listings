@@ -94,6 +94,7 @@ class EPL_Elementor_Template_Seeder {
 	 *
 	 * @return void
 	 * @since 3.6.0 New: Elementor templates for free Elementor (beta).
+	 * @since 3.6.0 Fix: returns early when the bundled templates are current, and seeds one request at a time.
 	 */
 	public function maybe_seed() {
 		if ( ! did_action( 'elementor/loaded' ) ) {
@@ -107,6 +108,26 @@ class EPL_Elementor_Template_Seeder {
 		$state   = (array) get_option( self::STATE_OPTION, array() );
 		$changed = false;
 
+		// Nothing to do when every bundled template is recorded at its current version.
+		$current = true;
+		foreach ( self::get_bundled_templates() as $slug => $template ) {
+			if ( ! isset( $state[ $slug ]['version'] ) || $state[ $slug ]['version'] !== $template['version'] ) {
+				$current = false;
+				break;
+			}
+		}
+		if ( $current ) {
+			return;
+		}
+
+		// One request at a time, so two admin requests can't both create the template.
+		if ( ! add_option( 'epl_elementor_seeding', time(), '', false ) ) {
+			if ( (int) get_option( 'epl_elementor_seeding' ) > time() - 60 ) {
+				return;
+			}
+			update_option( 'epl_elementor_seeding', time(), false ); // A stale lock from a failed request.
+		}
+
 		foreach ( self::get_bundled_templates() as $slug => $template ) {
 			$result = $this->seed_template( $slug, $template, $state );
 
@@ -119,6 +140,8 @@ class EPL_Elementor_Template_Seeder {
 		if ( $changed ) {
 			update_option( self::STATE_OPTION, $state );
 		}
+
+		delete_option( 'epl_elementor_seeding' );
 	}
 
 	/**

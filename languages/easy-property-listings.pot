@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.6\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2026-11-14 12:58:39+00:00\n"
+"POT-Creation-Date: 2026-11-14 13:22:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -543,7 +543,7 @@ msgstr ""
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:70
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:233
 #: lib/includes/class-epl-author.php:312 lib/includes/class-epl-author.php:363
-#: lib/includes/functions.php:2519 lib/includes/template-functions.php:2150
+#: lib/includes/functions.php:2611 lib/includes/template-functions.php:2150
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-contact.php:39
 #: lib/post-types/post-type-contact.php:38
 #: lib/post-types/post-type-contact.php:39
@@ -2478,7 +2478,7 @@ msgstr ""
 msgid "Start month"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:347 lib/includes/functions.php:2951
+#: lib/includes/admin/reports/graphing.php:347 lib/includes/functions.php:3043
 msgid "Day"
 msgstr ""
 
@@ -2521,7 +2521,7 @@ msgid "Report Type"
 msgstr ""
 
 #: lib/includes/admin/reports/reports.php:139
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:202
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:243
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:136
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:133
 msgid "Show"
@@ -2780,8 +2780,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:1108
 #: lib/includes/class-epl-property-meta.php:1176
 #: lib/includes/class-epl-property-meta.php:1218
-#: lib/includes/functions.php:2770 lib/includes/functions.php:2808
-#: lib/includes/functions.php:2875 lib/includes/template-functions.php:2497
+#: lib/includes/functions.php:2862 lib/includes/functions.php:2900
+#: lib/includes/functions.php:2967 lib/includes/template-functions.php:2497
 #: lib/widgets/widget-admin-dashboard.php:184
 #: lib/widgets/widget-admin-dashboard.php:238
 msgid "Auction"
@@ -2824,7 +2824,7 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:1235
 #: lib/includes/class-epl-property-meta.php:1237
 #: lib/includes/class-epl-property-meta.php:1436
-#: lib/includes/functions.php:2807 lib/includes/functions.php:2874
+#: lib/includes/functions.php:2899 lib/includes/functions.php:2966
 #: lib/includes/template-functions.php:3951
 #: lib/includes/template-functions.php:3983
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:88
@@ -3145,7 +3145,7 @@ msgid "City"
 msgstr ""
 
 #: lib/includes/functions.php:764 lib/includes/functions.php:1271
-#: lib/includes/functions.php:1880 lib/includes/install.php:50
+#: lib/includes/functions.php:1972 lib/includes/install.php:50
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:93
 #: lib/updates/epl-2.1.php:19 lib/widgets/widget-admin-dashboard.php:189
 #: lib/widgets/widget-admin-dashboard.php:243
@@ -3372,6 +3372,8 @@ msgstr ""
 #: lib/includes/functions.php:1749 lib/includes/functions.php:1760
 #: lib/includes/functions.php:1771 lib/includes/functions.php:1782
 #: lib/includes/functions.php:1793 lib/includes/functions.php:1826
+#: lib/includes/functions.php:1879 lib/includes/functions.php:1909
+#: lib/includes/functions.php:1920
 msgid "Enable"
 msgstr ""
 
@@ -3382,6 +3384,8 @@ msgstr ""
 #: lib/includes/functions.php:1568 lib/includes/functions.php:1578
 #: lib/includes/functions.php:1594 lib/includes/functions.php:1604
 #: lib/includes/functions.php:1794 lib/includes/functions.php:1827
+#: lib/includes/functions.php:1880 lib/includes/functions.php:1910
+#: lib/includes/functions.php:1921
 msgid "Disable"
 msgstr ""
 
@@ -3431,7 +3435,7 @@ msgstr ""
 msgid "New/Just Listed Label"
 msgstr ""
 
-#: lib/includes/functions.php:1242 lib/includes/functions.php:2522
+#: lib/includes/functions.php:1242 lib/includes/functions.php:2614
 #: lib/includes/install.php:49 lib/updates/epl-1.3.1.php:28
 msgid "New"
 msgstr ""
@@ -3484,10 +3488,10 @@ msgstr ""
 msgid "Sold Label"
 msgstr ""
 
-#: lib/includes/functions.php:1290 lib/includes/functions.php:1867
-#: lib/includes/functions.php:2696 lib/includes/functions.php:2869
+#: lib/includes/functions.php:1290 lib/includes/functions.php:1959
+#: lib/includes/functions.php:2788 lib/includes/functions.php:2961
 #: lib/includes/install.php:53
-#: lib/page-builders/elementor/class-epl-elementor.php:461
+#: lib/page-builders/elementor/class-epl-elementor.php:620
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:94
 #: lib/updates/epl-2.1.11.php:18
 msgid "Sold"
@@ -3497,10 +3501,10 @@ msgstr ""
 msgid "Leased Label"
 msgstr ""
 
-#: lib/includes/functions.php:1297 lib/includes/functions.php:1893
-#: lib/includes/functions.php:2700 lib/includes/functions.php:2870
+#: lib/includes/functions.php:1297 lib/includes/functions.php:1985
+#: lib/includes/functions.php:2792 lib/includes/functions.php:2962
 #: lib/includes/install.php:52
-#: lib/page-builders/elementor/class-epl-elementor.php:462
+#: lib/page-builders/elementor/class-epl-elementor.php:621
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:95
 #: lib/updates/epl-2.1.php:18
 msgid "Leased"
@@ -3588,7 +3592,7 @@ msgstr ""
 #: lib/includes/functions.php:1383 lib/includes/template-functions.php:1894
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:236
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:304
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:213
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:254
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:221
 msgid "Grid"
 msgstr ""
@@ -3617,7 +3621,7 @@ msgstr ""
 
 #: lib/includes/functions.php:1409 lib/includes/functions.php:1411
 #: lib/includes/install.php:54
-#: lib/page-builders/elementor/class-epl-elementor.php:459
+#: lib/page-builders/elementor/class-epl-elementor.php:618
 #: lib/updates/epl-3.3.php:20 lib/widgets/widget-functions.php:29
 msgid "All"
 msgstr ""
@@ -3851,7 +3855,10 @@ msgstr ""
 #: lib/meta-boxes/meta-box-init.php:1130 lib/meta-boxes/meta-box-init.php:1139
 #: lib/meta-boxes/meta-box-init.php:1303 lib/meta-boxes/meta-box-init.php:1321
 #: lib/meta-boxes/meta-box-init.php:1409
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:570
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:577
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:122
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:135
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:147
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-search.php:179
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:119
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:152
@@ -3964,15 +3971,101 @@ msgid ""
 "when the plugin is deleted."
 msgstr ""
 
-#: lib/includes/functions.php:1839
-msgid "Beta Versions"
-msgstr ""
-
-#: lib/includes/functions.php:1845
-msgid "Enable Beta Versions"
+#: lib/includes/functions.php:1842
+msgid "Use Default"
 msgstr ""
 
 #: lib/includes/functions.php:1848
+#. translators: %s: listing type label, e.g. Residential.
+msgid "%s Archive Page"
+msgstr ""
+
+#: lib/includes/functions.php:1856
+msgid "Elementor Templates"
+msgstr ""
+
+#: lib/includes/functions.php:1859
+msgid ""
+"For Elementor users only. These settings let you design your listings "
+"archive, single listing pages and listing cards visually in Elementor "
+"instead of using EPL's built-in PHP templates. If your theme (or "
+"Gutenberg's own Site Editor) already handles your archive pages the way you "
+"want, you can ignore this whole section — nothing here changes anything "
+"unless you explicitly turn it on below."
+msgstr ""
+
+#: lib/includes/functions.php:1866
+msgid ""
+"Listing Card templates are picked per-widget — add the EPL Archive Results "
+"or EPL Listing Advanced widget to a page and choose your card from its own "
+"\"Listing Card\" dropdown."
+msgstr ""
+
+#: lib/includes/functions.php:1868
+msgid "View Single Listing Templates"
+msgstr ""
+
+#: lib/includes/functions.php:1870
+msgid "View Listing Card Templates"
+msgstr ""
+
+#: lib/includes/functions.php:1876
+msgid "Use An Elementor Page As The Archive"
+msgstr ""
+
+#: lib/includes/functions.php:1883
+msgid ""
+"Turn this on only if you've built (or plan to build) your own archive page "
+"in Elementor and want EPL to show it instead of its default archive "
+"template. Leave it disabled if you're using your theme or Gutenberg's Site "
+"Editor to design archive pages — those already work without this setting, "
+"and everything below is ignored while this is off."
+msgstr ""
+
+#: lib/includes/functions.php:1888
+msgid "Listings Archive Page"
+msgstr ""
+
+#: lib/includes/functions.php:1892
+msgid ""
+"The page you designed in Elementor to act as the listings archive. It must "
+"contain an EPL Archive Results widget somewhere on it (add EPL Listing "
+"Search above it for a search bar, and EPL Pagination below it for page "
+"numbers) — otherwise visitors will just see an empty page. EPL shows this "
+"page, inside your normal theme header/footer, everywhere it would normally "
+"show its own archive template; the real query, pagination and page URL are "
+"always kept intact."
+msgstr ""
+
+#: lib/includes/functions.php:1898
+msgid "Per Listing Type Archive Pages"
+msgstr ""
+
+#: lib/includes/functions.php:1899
+msgid ""
+"Optional. The page above is used for every listing type by default. Set a "
+"different page here for any listing type that needs its own archive design "
+"— for example a different layout for Rural than for Residential. Leave a "
+"listing type on \"Use Default\" to keep using the page above."
+msgstr ""
+
+#: lib/includes/functions.php:1906
+msgid "Apply To Search Results"
+msgstr ""
+
+#: lib/includes/functions.php:1917
+msgid "Apply To Location/Feature Archives"
+msgstr ""
+
+#: lib/includes/functions.php:1931
+msgid "Beta Versions"
+msgstr ""
+
+#: lib/includes/functions.php:1937
+msgid "Enable Beta Versions"
+msgstr ""
+
+#: lib/includes/functions.php:1940
 msgid ""
 "Checking any of the checkboxes will opt you in to receive pre-release "
 "update notifications. You can opt-out at any time. Pre-release updates do "
@@ -3980,183 +4073,183 @@ msgid ""
 "update notifications."
 msgstr ""
 
-#: lib/includes/functions.php:2517
+#: lib/includes/functions.php:2609
 msgid "Appraisal"
 msgstr ""
 
-#: lib/includes/functions.php:2518
+#: lib/includes/functions.php:2610
 msgid "Buyer"
 msgstr ""
 
-#: lib/includes/functions.php:2520
+#: lib/includes/functions.php:2612
 msgid "Lead"
 msgstr ""
 
-#: lib/includes/functions.php:2521
+#: lib/includes/functions.php:2613
 msgid "Landlord"
 msgstr ""
 
-#: lib/includes/functions.php:2523
+#: lib/includes/functions.php:2615
 msgid "Past Customer"
 msgstr ""
 
-#: lib/includes/functions.php:2524
+#: lib/includes/functions.php:2616
 msgid "Seller"
 msgstr ""
 
-#: lib/includes/functions.php:2525
+#: lib/includes/functions.php:2617
 msgid "Tenant"
 msgstr ""
 
-#: lib/includes/functions.php:2526
+#: lib/includes/functions.php:2618
 msgid "Widget Lead"
 msgstr ""
 
-#: lib/includes/functions.php:2527
+#: lib/includes/functions.php:2619
 msgid "Under Contract"
 msgstr ""
 
-#: lib/includes/functions.php:2694
-#: lib/page-builders/elementor/class-epl-elementor.php:460
+#: lib/includes/functions.php:2786
+#: lib/page-builders/elementor/class-epl-elementor.php:619
 msgid "Current"
 msgstr ""
 
-#: lib/includes/functions.php:2703
-#: lib/page-builders/elementor/class-epl-elementor.php:463
+#: lib/includes/functions.php:2795
+#: lib/page-builders/elementor/class-epl-elementor.php:622
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:96
 msgid "Withdrawn"
 msgstr ""
 
-#: lib/includes/functions.php:2704
-#: lib/page-builders/elementor/class-epl-elementor.php:464
+#: lib/includes/functions.php:2796
+#: lib/page-builders/elementor/class-epl-elementor.php:623
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:97
 msgid "Off Market"
 msgstr ""
 
-#: lib/includes/functions.php:2705
+#: lib/includes/functions.php:2797
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:98
 msgid "Deleted"
 msgstr ""
 
-#: lib/includes/functions.php:2769 lib/includes/functions.php:2790
+#: lib/includes/functions.php:2861 lib/includes/functions.php:2882
 msgid "Exclusive"
 msgstr ""
 
-#: lib/includes/functions.php:2771
+#: lib/includes/functions.php:2863
 msgid "Multilist"
 msgstr ""
 
-#: lib/includes/functions.php:2772
+#: lib/includes/functions.php:2864
 msgid "Conjunctional"
 msgstr ""
 
-#: lib/includes/functions.php:2773 lib/includes/functions.php:2791
+#: lib/includes/functions.php:2865 lib/includes/functions.php:2883
 msgid "Open"
 msgstr ""
 
-#: lib/includes/functions.php:2774 lib/includes/functions.php:2811
-#: lib/includes/functions.php:2971
+#: lib/includes/functions.php:2866 lib/includes/functions.php:2903
+#: lib/includes/functions.php:3063
 msgid "Sale"
 msgstr ""
 
-#: lib/includes/functions.php:2775
+#: lib/includes/functions.php:2867
 msgid "Set Sale"
 msgstr ""
 
-#: lib/includes/functions.php:2809
+#: lib/includes/functions.php:2901
 msgid "EOI"
 msgstr ""
 
-#: lib/includes/functions.php:2810
+#: lib/includes/functions.php:2902
 msgid "Offers"
 msgstr ""
 
-#: lib/includes/functions.php:2812
+#: lib/includes/functions.php:2904
 msgid "Tender"
 msgstr ""
 
-#: lib/includes/functions.php:2877
+#: lib/includes/functions.php:2969
 msgid "For Rent"
 msgstr ""
 
-#: lib/includes/functions.php:2879 lib/includes/install.php:55
+#: lib/includes/functions.php:2971 lib/includes/install.php:55
 msgid "Buy"
 msgstr ""
 
-#: lib/includes/functions.php:2880 lib/includes/functions.php:2972
+#: lib/includes/functions.php:2972 lib/includes/functions.php:3064
 msgid "Lease"
 msgstr ""
 
-#: lib/includes/functions.php:2881
+#: lib/includes/functions.php:2973
 msgid "Buy or Lease"
 msgstr ""
 
-#: lib/includes/functions.php:2932 lib/widgets/widget-functions.php:760
+#: lib/includes/functions.php:3024 lib/widgets/widget-functions.php:760
 #: lib/widgets/widget-functions.php:815
 msgid "Square"
 msgstr ""
 
-#: lib/includes/functions.php:2933 lib/widgets/widget-functions.php:761
+#: lib/includes/functions.php:3025 lib/widgets/widget-functions.php:761
 #: lib/widgets/widget-functions.php:816
 msgid "Square Meter"
 msgstr ""
 
-#: lib/includes/functions.php:2934 lib/widgets/widget-functions.php:762
+#: lib/includes/functions.php:3026 lib/widgets/widget-functions.php:762
 #: lib/widgets/widget-functions.php:817
 msgid "Acre"
 msgstr ""
 
-#: lib/includes/functions.php:2935 lib/widgets/widget-functions.php:763
+#: lib/includes/functions.php:3027 lib/widgets/widget-functions.php:763
 #: lib/widgets/widget-functions.php:818
 msgid "Hectare"
 msgstr ""
 
-#: lib/includes/functions.php:2936 lib/widgets/widget-functions.php:764
+#: lib/includes/functions.php:3028 lib/widgets/widget-functions.php:764
 #: lib/widgets/widget-functions.php:819
 msgid "Square Feet"
 msgstr ""
 
-#: lib/includes/functions.php:2952
+#: lib/includes/functions.php:3044
 msgid "Daily"
 msgstr ""
 
-#: lib/includes/functions.php:2953
+#: lib/includes/functions.php:3045
 msgid "Week"
 msgstr ""
 
-#: lib/includes/functions.php:2954
+#: lib/includes/functions.php:3046
 msgid "Weekly"
 msgstr ""
 
-#: lib/includes/functions.php:2955
+#: lib/includes/functions.php:3047
 msgid "Month"
 msgstr ""
 
-#: lib/includes/functions.php:2956
+#: lib/includes/functions.php:3048
 msgid "Monthly"
 msgstr ""
 
-#: lib/includes/functions.php:2973
+#: lib/includes/functions.php:3065
 msgid "Both"
 msgstr ""
 
-#: lib/includes/functions.php:2988
+#: lib/includes/functions.php:3080
 msgid "Unknown"
 msgstr ""
 
-#: lib/includes/functions.php:2989
+#: lib/includes/functions.php:3081
 msgid "Vacant"
 msgstr ""
 
-#: lib/includes/functions.php:2990
+#: lib/includes/functions.php:3082
 msgid "Tenanted"
 msgstr ""
 
-#: lib/includes/functions.php:3005
+#: lib/includes/functions.php:3097
 msgid "Whole"
 msgstr ""
 
-#: lib/includes/functions.php:3006
+#: lib/includes/functions.php:3098
 msgid "Part"
 msgstr ""
 
@@ -4199,7 +4292,7 @@ msgstr ""
 #: lib/includes/pagination.php:248
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:258
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:309
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:200
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:241
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:33
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:69
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:92
@@ -4999,56 +5092,118 @@ msgstr ""
 msgid "EPL Agent Templates"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:168
+#: lib/page-builders/elementor/class-epl-elementor-listing-document.php:47
+msgid "EPL Template Settings"
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-listing-document.php:55
+msgid "Preview Listing ID"
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-listing-document.php:58
+msgid ""
+"Optional. Show a specific listing on the editor canvas instead of an "
+"automatically selected one."
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-loop-card-document.php:58
+msgid "EPL Listing Card"
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-loop-card-document.php:68
+msgid "EPL Listing Cards"
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-loop-card-document.php:81
+msgid "EPL Card Settings"
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-loop-card-document.php:89
+msgid "Editing Preview Width (px)"
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-loop-card-document.php:95
+msgid ""
+"A card is normally seen sitting narrow inside a grid, not stretched across "
+"the whole screen. This just narrows the editing canvas to roughly that "
+"width so it's easier to design — it has no effect on the front end, where "
+"the card always fills whatever grid column it's placed in."
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-single-document.php:55
+msgid "EPL Single Listing"
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-single-document.php:65
+msgid "EPL Single Listings"
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-single-document.php:83
+msgid "Listing Types"
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-single-document.php:91
+msgid "Apply To Listing Types"
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-single-document.php:97
+msgid "Leave empty to apply this template to every EPL listing type."
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor-template-seeder.php:82
+msgid "EPL Card"
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor.php:183
 #. translators: 1: Plugin name 2: Elementor 3: Version
 msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:169
+#: lib/page-builders/elementor/class-epl-elementor.php:184
 msgid "Easy Property Listings - Elementor"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:191
+#: lib/page-builders/elementor/class-epl-elementor.php:206
 msgid "EPL Elements (Beta)"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:199
+#: lib/page-builders/elementor/class-epl-elementor.php:214
 msgid "EPL Archive (Beta)"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:207
+#: lib/page-builders/elementor/class-epl-elementor.php:222
 msgid "EPL Author (Beta)"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:215
+#: lib/page-builders/elementor/class-epl-elementor.php:230
 msgid "EPL Staff Directory (Beta)"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:943
+#: lib/page-builders/elementor/class-epl-elementor.php:1102
 msgid "Pagination Renderer"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:947
+#: lib/page-builders/elementor/class-epl-elementor.php:1106
 msgid "Elementor"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:948
+#: lib/page-builders/elementor/class-epl-elementor.php:1107
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:263
 msgid "EPL"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:958
+#: lib/page-builders/elementor/class-epl-elementor.php:1117
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:270
 msgid "EPL Pagination Type"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:962
+#: lib/page-builders/elementor/class-epl-elementor.php:1121
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:274
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:77
 msgid "Fancy"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:963
+#: lib/page-builders/elementor/class-epl-elementor.php:1122
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:275
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:78
 msgid "WordPress Default"
@@ -5278,48 +5433,50 @@ msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:202
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:211
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:173
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:177
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:186
 msgid "EPL Template"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:205
-msgid "Elementor Loop Template"
+msgid "Elementor Loop / EPL Card Template"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:207
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:173
 msgid "Renderer"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:212
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:177
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:190
 #: lib/widgets/class-epl-widget-recent-property.php:408
 #: lib/widgets/widget-functions.php:56
 msgid "Default"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:212
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:178
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:191
 msgid "Card"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:212
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:179
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:192
 #: lib/widgets/widget-functions.php:58
 msgid "Slim"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:212
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:180
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:193
 msgid "Table"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:212
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:181
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:194
 msgid "Table with Inspection"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:216
-msgid "Loop Template"
+msgid "Loop / Card Template"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:220
@@ -5369,12 +5526,12 @@ msgid "Columns used while the archive is in List view."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:305
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:220
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:261
 msgid "Column Gap"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:306
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:230
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:271
 msgid "Row Gap"
 msgstr ""
 
@@ -5462,7 +5619,10 @@ msgstr ""
 msgid "No listings found."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:570
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:577
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:123
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:136
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:148
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-search.php:180
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:120
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:153
@@ -5493,6 +5653,117 @@ msgstr ""
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-title.php:113
 #: lib/post-types/post-types.php:485
 msgid "No"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:50
+msgid "Listings Results"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:91
+msgid "Listing Results"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:100
+msgid ""
+"Shows whatever listings the visitor is actually looking at — the archive, a "
+"search, or a location/feature page — with real pagination. Pair it with the "
+"EPL Listing Search widget above it for a working search bar, and EPL "
+"Pagination below it for page numbers. Only use this on a page assigned as "
+"the \"Listings Archive Page\" in EPL settings; elsewhere there is no real "
+"listings query for it to show."
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:108
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:203
+msgid "Listing Card"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:113
+msgid ""
+"Pick which card design listings use on this page. \"EPL Card\" is the "
+"ready-made design that ships with the plugin — edit it under Elementor > "
+"Templates > Saved Templates, or duplicate it to build your own. Choose "
+"\"EPL Built-in Card\" to fall back to the plugin's original PHP design "
+"instead. To use a different card for a different listing type, assign a "
+"separate archive page per listing type in EPL Settings > Elementor "
+"Templates."
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:120
+msgid "Show Tools Above Results"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:126
+msgid "Sorter and grid/list view toggle."
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:133
+msgid "Show Tools Below Results"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:145
+msgid "Show Pagination"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:159
+msgid "Grid Layout"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:167
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:166
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:85
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:93
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-contact.php:143
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:184
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:218
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:85
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:93
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:87
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-staff-listings.php:80
+msgid "Layout"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:171
+msgid "Fixed Columns"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:172
+msgid "Auto-Fit by Card Width"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:184
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:229
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:234
+msgid "Columns"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:207
+msgid "Minimum Card Width"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:230
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:258
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:493
+msgid "Gap"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:257
+msgid "EPL Built-in Card"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:277
+#. translators: %s: template name.
+msgid "%s (Default)"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:320
+msgid ""
+"Preview only — shows the real archive, search or taxonomy results on the "
+"front end."
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-results.php:331
+msgid "No published listings found to preview."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-search.php:40
@@ -5566,32 +5837,35 @@ msgstr ""
 msgid "Order"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:166
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:85
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:93
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-contact.php:143
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:184
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:218
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:85
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:93
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:87
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-staff-listings.php:80
-msgid "Layout"
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:178
+msgid "EPL Card Template"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:188
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:234
-msgid "Columns"
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:207
+msgid "Only EPL Listing Card templates can be used here."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:203
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:218
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:167
+msgid "No template?"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:220
+msgid "Create an EPL Listing Card"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:244
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:137
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:134
 msgid "Hide"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:251
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:292
 msgid "No listings found for this query."
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:337
+msgid "— Select Listing Card —"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:73
@@ -5947,10 +6221,6 @@ msgstr ""
 msgid "Only dedicated EPL Agent Templates can be used here."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:167
-msgid "No template?"
-msgstr ""
-
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:169
 msgid "Create an EPL Agent Template"
 msgstr ""
@@ -5970,11 +6240,6 @@ msgstr ""
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:208
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-staff-listings.php:86
 msgid "Tabbed"
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:258
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:493
-msgid "Gap"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:285
