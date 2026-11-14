@@ -98,10 +98,41 @@ class EPL_Admin_Messages {
 	}
 
 	/**
+	 * Is the EPL WP All Import add-on active?
+	 *
+	 * @return bool
+	 * @since 3.6
+	 */
+	private static function has_importer() {
+		return self::is_plugin_file_active( 'epl-wp-all-import.php' );
+	}
+
+	/**
+	 * Is the legacy EPL FeedSync Connector add-on active? It takes realtime updates from a
+	 * self-hosted legacy FeedSync, which retires on 5 December 2026.
+	 *
+	 * @return bool
+	 * @since 3.6
+	 */
+	private static function has_connector() {
+		return self::is_plugin_file_active( 'epl-feedsync-connector.php' );
+	}
+
+	/**
+	 * Is the FeedSync Service companion plugin active (the site is on FeedSync)?
+	 *
+	 * @return bool
+	 * @since 3.6
+	 */
+	private static function has_companion() {
+		return self::is_plugin_file_active( 'feedsync-companion.php' );
+	}
+
+	/**
 	 * Should the banners show on this site?
 	 *
-	 * Yes when the EPL WP All Import add-on is active and the FeedSync Service companion
-	 * plugin isn't.
+	 * Yes when the EPL WP All Import add-on or the legacy EPL FeedSync Connector add-on is
+	 * active and the FeedSync Service companion plugin isn't.
 	 *
 	 * @return bool
 	 * @since 3.6
@@ -111,14 +142,14 @@ class EPL_Admin_Messages {
 			return self::$show;
 		}
 
-		$show = self::is_plugin_file_active( 'epl-wp-all-import.php' ) && ! self::is_plugin_file_active( 'feedsync-companion.php' );
+		$show = ( self::has_importer() || self::has_connector() ) && ! self::has_companion();
 
 		/**
 		 * Filters whether an admin message shows.
 		 *
 		 * @since 3.6
 		 *
-		 * @param bool   $show    True when the EPL WP All Import add-on is active and the FeedSync companion isn't.
+		 * @param bool   $show    True when the EPL WP All Import or EPL FeedSync Connector add-on is active and the FeedSync companion isn't.
 		 * @param string $message Which message: feedsync.
 		 */
 		self::$show = (bool) apply_filters( 'epl_admin_messages_show', $show, 'feedsync' );
@@ -187,18 +218,15 @@ class EPL_Admin_Messages {
 	/**
 	 * FeedSync Service row on the Add Ons page
 	 *
-	 * Creative C as a listing of the service: shown to every site except those already
-	 * using the FeedSync companion, and it can't be dismissed. The "detected" chip and
-	 * the WP All Import wording only appear when the EPL WP All Import add-on is active.
+	 * Creative C as a listing of the service, on every site, and it can't be dismissed.
+	 * Sites already on FeedSync (companion active) see that it's active instead of the
+	 * pitch. The "detected" chip and the WP All Import wording only appear when the EPL
+	 * WP All Import add-on is active.
 	 *
 	 * @return void
 	 * @since 3.6
 	 */
 	public static function render_addons_row() {
-		if ( self::is_plugin_file_active( 'feedsync-companion.php' ) ) {
-			return;
-		}
-
 		echo '<div class="epl-msg-addons-row">';
 		self::render_creative_c( false );
 		echo '</div>';
@@ -240,16 +268,23 @@ class EPL_Admin_Messages {
 	}
 
 	/**
-	 * Output the "detected" chip naming the EPL import add-on.
+	 * Output the "detected" chip naming the EPL import add-on, or the FeedSync Connector
+	 * when that's the one active.
 	 *
 	 * @param bool $on_this_site Add "on this site".
 	 * @return void
 	 * @since 3.6
 	 */
 	private static function render_detected( $on_this_site = true ) {
-		$text = $on_this_site
-			? __( 'Easy Property Listings Import add-on detected on this site', 'easy-property-listings' )
-			: __( 'Easy Property Listings Import add-on detected', 'easy-property-listings' );
+		if ( ! self::has_importer() && self::has_connector() ) {
+			$text = $on_this_site
+				? __( 'Easy Property Listings FeedSync Connector detected on this site', 'easy-property-listings' )
+				: __( 'Easy Property Listings FeedSync Connector detected', 'easy-property-listings' );
+		} else {
+			$text = $on_this_site
+				? __( 'Easy Property Listings Import add-on detected on this site', 'easy-property-listings' )
+				: __( 'Easy Property Listings Import add-on detected', 'easy-property-listings' );
+		}
 
 		printf( '<span class="epl-msg__detected"><span></span>%s</span>', esc_html( $text ) );
 	}
@@ -443,8 +478,20 @@ class EPL_Admin_Messages {
 	 * @since 3.6
 	 */
 	private static function render_creative_c( $dismissible = true ) {
-		$importer = self::is_plugin_file_active( 'epl-wp-all-import.php' );
-		$source   = $importer ? self::get_product_label() : __( 'Scheduled imports', 'easy-property-listings' );
+		if ( self::has_companion() ) {
+			self::render_creative_c_active();
+			return;
+		}
+
+		$importer = self::has_importer();
+		$legacy   = ! $importer && self::has_connector();
+		if ( $importer ) {
+			$source = self::get_product_label();
+		} elseif ( $legacy ) {
+			$source = __( 'Legacy FeedSync', 'easy-property-listings' );
+		} else {
+			$source = __( 'Scheduled imports', 'easy-property-listings' );
+		}
 		?>
 		<div class="epl-msg-wrap">
 			<div class="epl-msg epl-msg--c">
@@ -452,7 +499,7 @@ class EPL_Admin_Messages {
 					<div>
 						<?php self::render_from(); ?>
 						<?php
-						if ( $importer ) {
+						if ( $importer || $legacy ) {
 							self::render_detected( false );
 						}
 						?>
@@ -461,6 +508,8 @@ class EPL_Admin_Messages {
 						<?php
 						if ( $importer ) {
 							echo esc_html( self::get_product_label() ) . ' ' . esc_html__( 'only updates your website when its next import runs. FeedSync updates it the second your CRM changes something.', 'easy-property-listings' );
+						} elseif ( $legacy ) {
+							esc_html_e( 'The FeedSync Service replaces legacy FeedSync and updates your website the second your CRM changes something. Nothing to host or maintain.', 'easy-property-listings' );
 						} else {
 							esc_html_e( 'Scheduled imports only update your website when the next one runs. FeedSync updates it the second your CRM changes something.', 'easy-property-listings' );
 						}
@@ -474,7 +523,7 @@ class EPL_Admin_Messages {
 					<div class="epl-msg__lane">
 						<div class="epl-msg__who"><strong><?php esc_html_e( 'Your site now', 'easy-property-listings' ); ?></strong><span><?php echo esc_html( $source ); ?></span></div>
 						<div class="epl-msg__track"><i class="epl-msg__batch"></i></div>
-						<div class="epl-msg__end"><?php esc_html_e( 'updates every few hours', 'easy-property-listings' ); ?></div>
+						<div class="epl-msg__end"><?php echo $legacy ? esc_html__( 'being retired', 'easy-property-listings' ) : esc_html__( 'updates every few hours', 'easy-property-listings' ); ?></div>
 					</div>
 					<div class="epl-msg__lane">
 						<div class="epl-msg__who"><strong><?php esc_html_e( 'Your site on FeedSync', 'easy-property-listings' ); ?></strong><span><?php esc_html_e( 'direct from your CRM', 'easy-property-listings' ); ?></span></div>
@@ -487,6 +536,37 @@ class EPL_Admin_Messages {
 					self::render_dismiss( 'c' );
 				}
 				?>
+			</div>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Render creative C for a site already on FeedSync (Add Ons page only).
+	 *
+	 * @return void
+	 * @since 3.6
+	 */
+	private static function render_creative_c_active() {
+		?>
+		<div class="epl-msg-wrap">
+			<div class="epl-msg epl-msg--c epl-msg--active">
+				<div class="epl-msg__top">
+					<div>
+						<?php self::render_from(); ?>
+						<span class="epl-msg__detected"><span></span><?php esc_html_e( 'Active on this site', 'easy-property-listings' ); ?></span>
+						<h2><?php esc_html_e( 'Sold this morning.', 'easy-property-listings' ); ?> <em><?php esc_html_e( 'Gone from your site this second.', 'easy-property-listings' ); ?></em></h2>
+						<p><?php esc_html_e( "This site is on FeedSync: your CRM's changes reach your website the moment they're made.", 'easy-property-listings' ); ?></p>
+					</div>
+					<a class="epl-msg__button" href="<?php echo esc_url( self::FEEDSYNC_URL ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Open FeedSync →', 'easy-property-listings' ); ?></a>
+				</div>
+				<div class="epl-msg__lanes" aria-hidden="true">
+					<div class="epl-msg__lane">
+						<div class="epl-msg__who"><strong><?php esc_html_e( 'Your site on FeedSync', 'easy-property-listings' ); ?></strong><span><?php esc_html_e( 'direct from your CRM', 'easy-property-listings' ); ?></span></div>
+						<div class="epl-msg__track"><i class="epl-msg__stream"></i><i class="epl-msg__stream"></i><i class="epl-msg__stream"></i><i class="epl-msg__stream"></i><i class="epl-msg__stream"></i></div>
+						<div class="epl-msg__end"><?php esc_html_e( 'updates instantly', 'easy-property-listings' ); ?></div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<?php
