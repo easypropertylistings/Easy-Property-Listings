@@ -484,6 +484,7 @@ function epl_the_address( $before = '', $after = '', $country = false, $echo_out
  * @return string
  * @since 3.3
  * @since 3.4.27 Added support for prefix.
+ * @since 3.6 Uses the listing's show_street_address() and show_suburb() rules. Fix: the suburb of a commercial, commercial land or business listing is left out when Display Street Address and Display Suburb are both unticked, as epl_property_the_address() and the REST API already do.
  */
 function epl_get_the_address( $address_args = array(), $sep = array(), $country = false, $prefix = array() ) {
 
@@ -523,11 +524,17 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 		$address_args = array_keys( $address_defaults );
 	}
 
+	global $property;
+
 	foreach ( $address_args as $arg ) {
 
 		if ( isset( $address_defaults[ $arg ] ) ) {
 
-			if ( 'yes' !== get_property_meta( 'property_address_display' ) && in_array( $arg, array( 'sub_number', 'lot_number', 'street_number', 'street' ), true ) ) {
+			if ( ! $property->show_street_address() && in_array( $arg, array( 'sub_number', 'lot_number', 'street_number', 'street' ), true ) ) {
+				continue;
+			}
+
+			if ( 'suburb' === $arg && ! $property->show_suburb() ) {
 				continue;
 			}
 

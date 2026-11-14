@@ -765,6 +765,7 @@ function epl_property_get_the_full_address() {
  * @since 3.4.8 Corrected separator location to appear AFTER the street name and options to control display.
  * @since 3.4.9 Added option allowing passing of $full parameter as false to restrict output to street items only.
  * @since 3.5.14 Corrected escaping function to esc_html.
+ * @since 3.6 Uses the listing's address rules (show_street_address(), show_suburb(), show_address_city(), show_address_country()). Fix: commercial land listings now hide the suburb when Display Street Address and Display Suburb are both unticked, as commercial and business listings do.
  */
 function epl_property_the_address( $full = true, $street_separator = true, $separator_symbol = ',' ) {
 
@@ -779,7 +780,7 @@ function epl_property_the_address( $full = true, $street_separator = true, $sepa
 	$epl_property_address_separator_city   = apply_filters( 'epl_property_address_separator_city', false );
 
 	?>
-	<?php if ( 'yes' === $property->get_property_meta( 'property_address_display' ) ) { ?>
+	<?php if ( $property->show_street_address() ) { ?>
 		<span class="item-street"><?php echo wp_kses_post( $property->get_formatted_property_address( $street_separator, $separator_symbol ) ); ?></span>
 	<?php } ?>
 
@@ -788,16 +789,7 @@ function epl_property_the_address( $full = true, $street_separator = true, $sepa
 		?>
 		<span class="entry-title-sub">
 			<?php
-			if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
-				if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) || 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
-					?>
-					<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
-					<?php
-					if ( true === $epl_property_address_separator_suburb && strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
-						echo '<span class="item-separator">' . esc_html( $epl_property_address_separator ) . '</span>';
-					}
-				}
-			} else {
+			if ( $property->show_suburb() ) {
 				?>
 				<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
 				<?php
@@ -808,7 +800,7 @@ function epl_property_the_address( $full = true, $street_separator = true, $sepa
 			?>
 
 			<?php
-			if ( 'yes' === $property->get_epl_settings( 'epl_enable_city_field' ) ) {
+			if ( $property->show_address_city() ) {
 				?>
 				<span class="item-city"><?php echo esc_html( $property->get_property_meta( 'property_address_city' ) ); ?></span>
 				<?php
@@ -820,7 +812,7 @@ function epl_property_the_address( $full = true, $street_separator = true, $sepa
 			<span class="item-state"><?php echo esc_html( $property->get_property_meta( 'property_address_state' ) ); ?></span>
 			<span class="item-pcode"><?php echo esc_html( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
 			<?php
-			if ( 'yes' === $property->get_epl_settings( 'epl_enable_country_field' ) ) {
+			if ( $property->show_address_country() ) {
 				?>
 				<span class="item-country"><?php echo esc_html( $property->get_property_meta( 'property_address_country' ) ); ?></span>
 				<?php
@@ -837,20 +829,26 @@ add_action( 'epl_property_address', 'epl_property_the_address', 10, 3 );
 /**
  * Suburb Name Kept for listing templates extensions which use this function
  *
+ * Shows the suburb, or the city, state and postcode when the listing hides its suburb.
+ *
  * @since 1.3
  * @since 3.1.18 Revised.
  * @since 3.5.14 Corrected escaping function to esc_html.
+ * @since 3.6 Uses the listing's show_suburb() rule. Fix: a commercial or business listing showing its street address now shows its suburb even when Display Suburb is unticked, and commercial land listings follow Display Suburb, the same as epl_property_the_address().
  */
 function epl_property_suburb() {
 	global $property;
-	// Commercial and Business Address.
-	if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
+
+	if ( $property->show_suburb() ) {
+		?>
+		<span class="entry-title-sub">
+			<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+		</span>
+		<?php
+	} else {
 		?>
 
 		<span class="entry-title-sub">
-			<?php if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) ) { ?>
-				<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
-			<?php } else { ?>
 				<?php $prop_addr_city = $property->get_property_meta( 'property_address_city' ); ?>
 				<?php if ( ! empty( $prop_addr_city ) ) { ?>
 					<span class="item-city"><?php echo esc_html( $property->get_property_meta( 'property_address_city' ) ) . ' '; ?></span>
@@ -858,15 +856,8 @@ function epl_property_suburb() {
 
 				<span class="item-state"><?php echo esc_html( $property->get_property_meta( 'property_address_state' ) ) . ' '; ?></span>
 				<span class="item-pcode"><?php echo esc_html( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
-			<?php } ?>
 		</span>
 
-		<?php
-	} else {
-		?>
-		<span class="entry-title-sub">
-			<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
-		</span>
 		<?php
 	}
 }
@@ -1664,65 +1655,27 @@ function epl_get_property_price() {
  * @param      string $d_suburb  The d suburb.
  * @param      string $d_street  The d street.
  * @since 3.5.29 Fix PHP 8.1 deprecation when the meta value is empty.
+ * @since 3.6 Uses the listing's show_suburb() and show_street_address() rules. Fix: a commercial or business listing showing its street address now shows its suburb even when Display Suburb is unticked, and commercial land listings follow Display Suburb, the same as epl_property_the_address().
  */
 function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
 	global $property;
-	if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
-		// Address Display not Commercial or Business type.
-		if ( 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
-			?>
-			<?php
-			// Suburb.
-			if ( 'on' === $d_suburb && 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) ) {
-				?>
-				<div class="property-meta suburb-name"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
-			<?php } ?>
 
-			<?php
-			// Street.
-			if ( 'on' === $d_street ) {
-				?>
-				<div class="property-meta street-name"><?php echo wp_kses_post( $property->get_formatted_property_address() ); ?></div>
-			<?php } ?>
-		<?php } else { ?>
-			<?php
-			// Suburb.
-			if ( 'on' === $d_suburb && 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) ) {
-				?>
-				<div class="property-meta suburb-name"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
-			<?php } ?>
-			<?php
+	// Suburb.
+	if ( 'on' === $d_suburb && $property->show_suburb() ) {
+		$suburb = $property->get_property_meta( 'property_address_suburb' );
+		if ( null === $suburb ) {
+			$suburb = '';
 		}
-	} else {
-		// Address Display not Commercial or Business type.
-		if ( 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
-			?>
-			<?php
-			// Suburb.
-			if ( 'on' === $d_suburb ) {
-				?>
-				<div class="property-meta suburb-name"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
-			<?php } ?>
+		?>
+		<div class="property-meta suburb-name"><?php echo esc_html( $suburb ); ?></div>
+		<?php
+	}
 
-			<?php
-			// Street.
-			if ( 'on' === $d_street ) {
-				?>
-				<div class="property-meta street-name"><?php echo wp_kses_post( $property->get_formatted_property_address() ); ?></div>
-			<?php } ?>
-		<?php } else { ?>
-			<?php
-			// Suburb.
-			if ( 'on' === $d_suburb ) {
-				$suburb = $property->get_property_meta( 'property_address_suburb' );
-				if ( null === $suburb ) {
-					$suburb = '';
-				}
-				?>
-				<div class="property-meta suburb-name"><?php echo wp_kses_post( $suburb ); ?></div>
-			<?php } ?>
-			<?php
-		}
+	// Street.
+	if ( 'on' === $d_street && $property->show_street_address() ) {
+		?>
+		<div class="property-meta street-name"><?php echo wp_kses_post( $property->get_formatted_property_address() ); ?></div>
+		<?php
 	}
 }
 

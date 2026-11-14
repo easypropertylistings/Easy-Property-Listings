@@ -717,6 +717,85 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		}
 
 		/**
+		 * Show the street address?
+		 *
+		 * True when the listing's Display Street Address box is ticked. The street address is
+		 * the lot, unit, street number and street name.
+		 *
+		 * @since 3.6 New: one rule for every address function.
+		 *
+		 * @return bool
+		 */
+		public function show_street_address() {
+			$show = 'yes' === $this->get_property_meta( 'property_address_display' );
+
+			/**
+			 * Filters whether the listing shows its street address.
+			 *
+			 * @since 3.6
+			 *
+			 * @param bool              $show     True to show the street address.
+			 * @param EPL_Property_Meta $property The listing.
+			 */
+			return (bool) apply_filters( 'epl_listing_show_street_address', $show, $this );
+		}
+
+		/**
+		 * Show the suburb?
+		 *
+		 * Always for residential listings. Commercial, commercial land and business listings
+		 * have a Display Suburb box: their suburb shows when it's ticked or when the street
+		 * address shows. The same rule as the REST API.
+		 *
+		 * @since 3.6 New: one rule for every address function.
+		 *
+		 * @return bool
+		 */
+		public function show_suburb() {
+			$show = true;
+
+			if ( in_array( $this->post_type, array( 'commercial', 'commercial_land', 'business' ), true ) ) {
+				$show = $this->show_street_address() || 'yes' === $this->get_property_meta( 'property_com_display_suburb' );
+			}
+
+			/**
+			 * Filters whether the listing shows its suburb.
+			 *
+			 * @since 3.6
+			 *
+			 * @param bool              $show     True to show the suburb.
+			 * @param EPL_Property_Meta $property The listing.
+			 */
+			return (bool) apply_filters( 'epl_listing_show_suburb', $show, $this );
+		}
+
+		/**
+		 * Show the city in the address?
+		 *
+		 * True when Settings > Address > Additional Address Field (the city) is enabled.
+		 *
+		 * @since 3.6 New: one rule for every address function.
+		 *
+		 * @return bool
+		 */
+		public function show_address_city() {
+			return (bool) apply_filters( 'epl_listing_show_address_city', 'yes' === $this->get_epl_settings( 'epl_enable_city_field' ), $this );
+		}
+
+		/**
+		 * Show the country in the address?
+		 *
+		 * True when Settings > Address > Display Country is enabled.
+		 *
+		 * @since 3.6 New: one rule for every address function.
+		 *
+		 * @return bool
+		 */
+		public function show_address_country() {
+			return (bool) apply_filters( 'epl_listing_show_address_country', 'yes' === $this->get_epl_settings( 'epl_enable_country_field' ), $this );
+		}
+
+		/**
 		 * Listing Category
 		 *
 		 * @since 2.0

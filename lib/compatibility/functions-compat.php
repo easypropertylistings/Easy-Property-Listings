@@ -51,12 +51,30 @@ function epl_the_property_address( $post_ID = '' ) {
  *
  * @return string The address
  * @since 1.0
+ * @since 3.6 Fix: the street number and street are left out when the listing hides its street address, and the suburb follows the listing's show_suburb() rule, as in epl_get_the_address().
  */
 function epl_get_property_address( $post_ID = '' ) {
 	if ( empty( $post_ID ) ) {
 		$post_ID = get_the_ID();
 	}
-	$property_meta = epl_get_property_meta( $post_ID );
+	$property_meta = (array) epl_get_property_meta( $post_ID );
+	$post          = get_post( $post_ID );
+	$hidden        = array();
+
+	if ( $post ) {
+		$listing = new EPL_Property_Meta( $post );
+
+		if ( ! $listing->show_street_address() ) {
+			$hidden[] = 'property_address_street_number';
+			$hidden[] = 'property_address_street';
+		}
+
+		if ( ! $listing->show_suburb() ) {
+			$hidden[] = 'property_address_suburb';
+		}
+	}
+
+	$property_meta = array_diff_key( $property_meta, array_flip( $hidden ) );
 
 	$address = '';
 
