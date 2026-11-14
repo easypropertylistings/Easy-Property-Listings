@@ -1,6 +1,6 @@
 <?php
 /**
- * Contextual FeedSync advertisements for WP All Import installations.
+ * FeedSync Service banners for sites importing listings with the EPL WP All Import add-on.
  *
  * @package     EPL
  * @subpackage  Admin
@@ -13,7 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Display FeedSync migration advertisements when WP All Import is installed.
+ * FeedSync Service banners
+ *
+ * Shown to users who can edit posts when the Easy Property Listings Import CSV, XML WP All
+ * Import add-on is active (the legacy FeedSync setup) and the FeedSync Service companion
+ * plugin isn't (the site hasn't moved yet). Filter epl_feedsync_ads_show to turn them off.
  *
  * Only one creative is displayed per screen:
  * - A on EPL settings and extension screens.
@@ -48,18 +52,11 @@ class EPL_Admin_Feedsync_Ads {
 	const LEGACY_RETIRES = '2026-12-05';
 
 	/**
-	 * Whether a supported WP All Import plugin is installed.
+	 * Whether the banners show on this site (cached for the request).
 	 *
 	 * @var bool|null
 	 */
-	private static $wp_all_import_installed = null;
-
-	/**
-	 * Installed WP All Import edition label.
-	 *
-	 * @var string|null
-	 */
-	private static $wp_all_import_label = null;
+	private static $show = null;
 
 	/**
 	 * Register hooks.
@@ -73,67 +70,57 @@ class EPL_Admin_Feedsync_Ads {
 	}
 
 	/**
-	 * Check the installed plugin list for WP All Import or WP All Import Pro.
+	 * Is a plugin with this main file name active?
 	 *
-	 * This intentionally checks installation rather than activation: the migration
-	 * message remains relevant when an import plugin has been temporarily disabled.
+	 * Matches on the file name only, so a renamed plugin folder still counts. Includes
+	 * network-activated plugins on multisite.
+	 *
+	 * @param string $basename Plugin main file name, for example epl-wp-all-import.php.
+	 * @return bool
+	 * @since 3.6
+	 */
+	private static function is_plugin_file_active( $basename ) {
+		$active = (array) get_option( 'active_plugins', array() );
+
+		if ( is_multisite() ) {
+			$active = array_merge( $active, array_keys( (array) get_site_option( 'active_sitewide_plugins', array() ) ) );
+		}
+
+		foreach ( $active as $plugin_file ) {
+			if ( basename( (string) $plugin_file ) === $basename ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Should the banners show on this site?
+	 *
+	 * Yes when the EPL WP All Import add-on is active and the FeedSync Service companion
+	 * plugin isn't.
 	 *
 	 * @return bool
 	 * @since 3.6
 	 */
-	public static function is_wp_all_import_installed() {
-		if ( null !== self::$wp_all_import_installed ) {
-			return self::$wp_all_import_installed;
+	public static function should_show() {
+		if ( null !== self::$show ) {
+			return self::$show;
 		}
 
-		if ( ! function_exists( 'get_plugins' ) ) {
-			require_once ABSPATH . 'wp-admin/includes/plugin.php';
-		}
+		$show = self::is_plugin_file_active( 'epl-wp-all-import.php' ) && ! self::is_plugin_file_active( 'feedsync-companion.php' );
 
-		$plugins      = get_plugins();
-		$plugin_files = array_keys( $plugins );
-		$pro_files    = array(
-			'wp-all-import-pro/wp-all-import-pro.php',
-			'wp-all-import-pro/wp-all-import.php',
-		);
-		$free_files   = array(
-			'wp-all-import/wp-all-import.php',
-			'wp-all-import/plugin.php',
-		);
+		/**
+		 * Filters whether the FeedSync Service banners show.
+		 *
+		 * @since 3.6
+		 *
+		 * @param bool $show True when the EPL WP All Import add-on is active and the FeedSync companion isn't.
+		 */
+		self::$show = (bool) apply_filters( 'epl_feedsync_ads_show', $show );
 
-		foreach ( $pro_files as $plugin_file ) {
-			if ( in_array( $plugin_file, $plugin_files, true ) ) {
-				self::$wp_all_import_installed = true;
-				self::$wp_all_import_label     = __( 'WP All Import Pro', 'easy-property-listings' );
-				return true;
-			}
-		}
-
-		foreach ( $free_files as $plugin_file ) {
-			if ( in_array( $plugin_file, $plugin_files, true ) ) {
-				self::$wp_all_import_installed = true;
-				self::$wp_all_import_label     = __( 'WP All Import', 'easy-property-listings' );
-				return true;
-			}
-		}
-
-		// Accommodate renamed plugin directories while still requiring the real plugin metadata.
-		foreach ( $plugins as $plugin ) {
-			$name = isset( $plugin['Name'] ) ? $plugin['Name'] : '';
-			if ( false !== stripos( $name, 'WP All Import Pro' ) ) {
-				self::$wp_all_import_installed = true;
-				self::$wp_all_import_label     = __( 'WP All Import Pro', 'easy-property-listings' );
-				return true;
-			}
-			if ( 'WP All Import' === trim( $name ) ) {
-				self::$wp_all_import_installed = true;
-				self::$wp_all_import_label     = __( 'WP All Import', 'easy-property-listings' );
-				return true;
-			}
-		}
-
-		self::$wp_all_import_installed = false;
-		return false;
+		return self::$show;
 	}
 
 	/**
@@ -143,7 +130,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * @since 3.6
 	 */
 	public static function enqueue_styles() {
-		if ( ! current_user_can( 'edit_posts' ) || ! self::is_wp_all_import_installed() ) {
+		if ( ! current_user_can( 'edit_posts' ) || ! self::should_show() ) {
 			return;
 		}
 
@@ -162,7 +149,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * @since 3.6
 	 */
 	public static function render_ad() {
-		if ( ! current_user_can( 'edit_posts' ) || ! self::is_wp_all_import_installed() ) {
+		if ( ! current_user_can( 'edit_posts' ) || ! self::should_show() ) {
 			return;
 		}
 
@@ -210,13 +197,38 @@ class EPL_Admin_Feedsync_Ads {
 	}
 
 	/**
-	 * Get the detected product label.
+	 * Name of the active WP All Import edition, for the banner copy.
 	 *
 	 * @return string
 	 * @since 3.6
 	 */
 	private static function get_product_label() {
-		return self::$wp_all_import_label ? self::$wp_all_import_label : __( 'WP All Import', 'easy-property-listings' );
+		return self::is_plugin_file_active( 'wp-all-import-pro.php' ) ? __( 'WP All Import Pro', 'easy-property-listings' ) : __( 'WP All Import', 'easy-property-listings' );
+	}
+
+	/**
+	 * Output the "detected" chip naming the EPL import add-on.
+	 *
+	 * @param bool $on_this_site Add "on this site".
+	 * @return void
+	 * @since 3.6
+	 */
+	private static function render_detected( $on_this_site = true ) {
+		$text = $on_this_site
+			? __( 'Easy Property Listings Import add-on detected on this site', 'easy-property-listings' )
+			: __( 'Easy Property Listings Import add-on detected', 'easy-property-listings' );
+
+		printf( '<span class="epl-fs-ad__detected"><span></span>%s</span>', esc_html( $text ) );
+	}
+
+	/**
+	 * Output the label saying which plugin shows the banner.
+	 *
+	 * @return void
+	 * @since 3.6
+	 */
+	private static function render_from() {
+		printf( '<span class="epl-fs-ad__from">%s</span>', esc_html__( 'Easy Property Listings', 'easy-property-listings' ) );
 	}
 
 	/**
@@ -354,7 +366,8 @@ class EPL_Admin_Feedsync_Ads {
 					<strong>FeedSync</strong>
 				</div>
 				<div class="epl-fs-ad__copy">
-					<span class="epl-fs-ad__detected"><span></span><?php echo esc_html( self::get_product_label() ); ?> <?php esc_html_e( 'detected on this site', 'easy-property-listings' ); ?></span>
+					<?php self::render_from(); ?>
+					<?php self::render_detected(); ?>
 					<h2><?php esc_html_e( 'Listings taking hours to show up?', 'easy-property-listings' ); ?></h2>
 					<p><?php esc_html_e( 'Move to FeedSync. Your listings go live the second your CRM sends them — no imports, no schedule, nothing to manage.', 'easy-property-listings' ); ?></p>
 					<?php self::render_deadline(); ?>
@@ -381,7 +394,7 @@ class EPL_Admin_Feedsync_Ads {
 			<div class="epl-fs-ad epl-fs-ad--b">
 				<?php self::render_wire( 3 ); ?>
 				<span class="epl-fs-ad__badge"><?php esc_html_e( 'Slow site?', 'easy-property-listings' ); ?></span>
-				<div class="epl-fs-ad__text"><strong><?php esc_html_e( 'Website slow when your imports run?', 'easy-property-listings' ); ?></strong> <?php esc_html_e( 'Move to FeedSync — your CRM syncs straight to your site. No imports at all.', 'easy-property-listings' ); ?><?php self::render_deadline(); ?></div>
+				<div class="epl-fs-ad__text"><?php self::render_from(); ?><strong><?php esc_html_e( 'Website slow when your imports run?', 'easy-property-listings' ); ?></strong> <?php esc_html_e( 'Move to FeedSync — your CRM syncs straight to your site. No imports at all.', 'easy-property-listings' ); ?><?php self::render_deadline(); ?></div>
 				<a class="epl-fs-ad__button" href="<?php echo esc_url( self::FEEDSYNC_URL ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Move to FeedSync', 'easy-property-listings' ); ?></a>
 				<?php self::render_dismiss( 'b' ); ?>
 			</div>
@@ -401,7 +414,8 @@ class EPL_Admin_Feedsync_Ads {
 			<div class="epl-fs-ad epl-fs-ad--c">
 				<div class="epl-fs-ad__top">
 					<div>
-						<span class="epl-fs-ad__detected"><span></span><?php echo esc_html( self::get_product_label() ); ?> <?php esc_html_e( 'detected', 'easy-property-listings' ); ?></span>
+						<?php self::render_from(); ?>
+						<?php self::render_detected( false ); ?>
 						<h2><?php esc_html_e( 'Sold this morning.', 'easy-property-listings' ); ?> <em><?php esc_html_e( 'Still on your site tonight?', 'easy-property-listings' ); ?></em></h2>
 						<p><?php echo esc_html( self::get_product_label() ); ?> <?php esc_html_e( 'only updates your website when its next import runs. FeedSync updates it the second your CRM changes something.', 'easy-property-listings' ); ?></p>
 						<?php self::render_deadline(); ?>
