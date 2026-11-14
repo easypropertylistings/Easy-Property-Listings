@@ -1893,10 +1893,14 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  *
  * For queries whose results only change when listings change, such as the values in the
  * search dropdowns. The result is remembered for the rest of the page load and saved as a
- * transient for 12 hours (filter epl_listing_query_cache_expiration). Saving, deleting or
- * changing any listing clears every cached result (epl_flush_listing_query_cache()).
+ * transient for 12 hours (filter epl_listing_query_cache_expiration).
  *
- * @param string $sql    A prepared SQL query.
+ * When listings change, visitors keep getting the cached results while a background job
+ * (WP-Cron) rebuilds every query visitors have used, then the site switches to the new
+ * results, so no visitor waits for the rebuild. If the rebuild hasn't run within 10 minutes
+ * (filter epl_listing_query_cache_stale_limit), the next page load rebuilds as it goes.
+ *
+ * @param string $sql         A prepared SQL query.
  * @param string $return_type col for $wpdb->get_col(), results for $wpdb->get_results().
  *
  * @return array
@@ -1904,9 +1908,8 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  * @since 3.6
  */
 function epl_listing_query_cache( $sql, $return_type = 'col' ) {
-	global $wpdb;
-
-	static $memory = array();
+	static $memory  = array();
+	static $checked = false;
 
 	$key = md5( $return_type . '|' . $sql );
 
@@ -1923,24 +1926,36 @@ function epl_listing_query_cache( $sql, $return_type = 'col' ) {
 	 */
 	$enabled = (bool) apply_filters( 'epl_listing_query_cache_enabled', true );
 
-	$transient = 'epl_lqc_' . md5( (int) get_option( 'epl_listing_query_cache_version', 1 ) . '|' . $key );
+	if ( ! $enabled ) {
+		$memory[ $key ] = epl_listing_query_run( $sql, $return_type );
+		return $memory[ $key ];
+	}
 
-	$result = $enabled ? get_transient( $transient ) : false;
+	// Listings changed and the background rebuild hasn't run in time: stop serving old results.
+	if ( ! $checked ) {
+		$checked = true;
+		$stale   = (int) get_option( 'epl_listing_query_cache_stale', 0 );
+
+		/**
+		 * Filters how long old results may be served after listings change, in seconds,
+		 * while waiting for the background rebuild.
+		 *
+		 * @since 3.6
+		 *
+		 * @param int $limit Default 10 minutes.
+		 */
+		if ( $stale && time() - $stale > (int) apply_filters( 'epl_listing_query_cache_stale_limit', 10 * MINUTE_IN_SECONDS ) ) {
+			epl_flush_listing_query_cache( true );
+		}
+	}
+
+	$transient = epl_listing_query_cache_transient( $key );
+	$result    = get_transient( $transient );
 
 	if ( ! is_array( $result ) ) {
-		$result = 'results' === $return_type ? $wpdb->get_results( $sql ) : $wpdb->get_col( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
-		$result = is_array( $result ) ? $result : array();
-
-		if ( $enabled ) {
-			/**
-			 * Filters how long listing query results are cached, in seconds.
-			 *
-			 * @since 3.6
-			 *
-			 * @param int $expiration Default 12 hours.
-			 */
-			set_transient( $transient, $result, (int) apply_filters( 'epl_listing_query_cache_expiration', 12 * HOUR_IN_SECONDS ) );
-		}
+		$result = epl_listing_query_run( $sql, $return_type );
+		set_transient( $transient, $result, epl_listing_query_cache_expiration() );
+		epl_listing_query_cache_remember( $key, $sql, $return_type );
 	}
 
 	$memory[ $key ] = $result;
@@ -1949,25 +1964,180 @@ function epl_listing_query_cache( $sql, $return_type = 'col' ) {
 }
 
 /**
- * Clear every cached listing query result
+ * Run a listing query without the cache
  *
- * Moves the cache to a new version, so old results are no longer read; they expire on
- * their own. Call it after changing listings directly in the database.
+ * @param string $sql         A prepared SQL query.
+ * @param string $return_type col or results.
+ *
+ * @return array
+ *
+ * @since 3.6
+ */
+function epl_listing_query_run( $sql, $return_type = 'col' ) {
+	global $wpdb;
+
+	$result = 'results' === $return_type ? $wpdb->get_results( $sql ) : $wpdb->get_col( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
+
+	return is_array( $result ) ? $result : array();
+}
+
+/**
+ * Transient name for a cached listing query
+ *
+ * @param string   $key     Query key (md5 of the return type and SQL).
+ * @param int|null $version Cache version, the current one by default.
+ *
+ * @return string
+ *
+ * @since 3.6
+ */
+function epl_listing_query_cache_transient( $key, $version = null ) {
+	if ( null === $version ) {
+		$version = (int) get_option( 'epl_listing_query_cache_version', 1 );
+	}
+	return 'epl_lqc_' . md5( $version . '|' . $key );
+}
+
+/**
+ * How long listing query results are cached, in seconds
+ *
+ * @return int
+ *
+ * @since 3.6
+ */
+function epl_listing_query_cache_expiration() {
+	/**
+	 * Filters how long listing query results are cached, in seconds.
+	 *
+	 * @since 3.6
+	 *
+	 * @param int $expiration Default 12 hours.
+	 */
+	return (int) apply_filters( 'epl_listing_query_cache_expiration', 12 * HOUR_IN_SECONDS );
+}
+
+/**
+ * Remember a query visitors use, so the background rebuild can refresh it
+ *
+ * Keeps up to 300 queries; ones unused for 14 days are dropped by the rebuild.
+ *
+ * @param string $key         Query key.
+ * @param string $sql         A prepared SQL query.
+ * @param string $return_type col or results.
  *
  * @return void
  *
  * @since 3.6
  */
-function epl_flush_listing_query_cache() {
-	update_option( 'epl_listing_query_cache_version', (int) get_option( 'epl_listing_query_cache_version', 1 ) + 1, true );
+function epl_listing_query_cache_remember( $key, $sql, $return_type ) {
+	$queries = get_option( 'epl_listing_query_cache_queries', array() );
+	$queries = is_array( $queries ) ? $queries : array();
+
+	// Write at most once a day per query.
+	if ( isset( $queries[ $key ] ) && $queries[ $key ]['used'] > time() - DAY_IN_SECONDS ) {
+		return;
+	}
+
+	$queries[ $key ] = array(
+		'sql'    => $sql,
+		'return' => $return_type,
+		'used'   => time(),
+	);
+
+	if ( count( $queries ) > 300 ) {
+		uasort(
+			$queries,
+			function ( $a, $b ) {
+				return $b['used'] - $a['used'];
+			}
+		);
+		$queries = array_slice( $queries, 0, 300, true );
+	}
+
+	update_option( 'epl_listing_query_cache_queries', $queries, false );
 }
 
 /**
- * Mark the listing query cache to be cleared when this request ends
+ * Refresh the cached listing query results
+ *
+ * By default this marks the cache as out of date and starts the background rebuild:
+ * visitors keep getting the current results until it finishes. With $now true, the
+ * cache is cleared straight away and the next page load rebuilds as it goes. Call it
+ * after changing listings directly in the database.
+ *
+ * @param bool $now Clear now instead of rebuilding in the background.
+ *
+ * @return void
+ *
+ * @since 3.6
+ */
+function epl_flush_listing_query_cache( $now = false ) {
+	if ( $now ) {
+		update_option( 'epl_listing_query_cache_version', (int) get_option( 'epl_listing_query_cache_version', 1 ) + 1, true );
+		delete_option( 'epl_listing_query_cache_stale' );
+		return;
+	}
+
+	if ( ! get_option( 'epl_listing_query_cache_stale' ) ) {
+		update_option( 'epl_listing_query_cache_stale', time(), true );
+	}
+
+	if ( ! wp_next_scheduled( 'epl_listing_query_cache_rebuild' ) ) {
+		wp_schedule_single_event( time(), 'epl_listing_query_cache_rebuild' );
+	}
+
+	// Start the rebuild now, without waiting for the next visitor (a background request).
+	if ( ! wp_doing_cron() && function_exists( 'spawn_cron' ) ) {
+		spawn_cron();
+	}
+}
+
+/**
+ * Background rebuild of the listing query cache (WP-Cron)
+ *
+ * Runs every query visitors have used into a new cache version, then switches the site
+ * to it. If listings changed again while it ran, it schedules another rebuild.
+ *
+ * @return void
+ *
+ * @since 3.6
+ */
+function epl_rebuild_listing_query_cache() {
+	$started = time();
+	$version = (int) get_option( 'epl_listing_query_cache_version', 1 ) + 1;
+	$queries = get_option( 'epl_listing_query_cache_queries', array() );
+	$queries = is_array( $queries ) ? $queries : array();
+
+	if ( function_exists( 'set_time_limit' ) ) {
+		set_time_limit( 600 ); // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
+	}
+
+	foreach ( $queries as $key => $query ) {
+		if ( $query['used'] < $started - 14 * DAY_IN_SECONDS ) {
+			unset( $queries[ $key ] );
+			continue;
+		}
+		set_transient( epl_listing_query_cache_transient( $key, $version ), epl_listing_query_run( $query['sql'], $query['return'] ), epl_listing_query_cache_expiration() );
+	}
+
+	update_option( 'epl_listing_query_cache_queries', $queries, false );
+	update_option( 'epl_listing_query_cache_version', $version, true );
+
+	// Listings changed again while rebuilding: go again.
+	if ( (int) get_option( 'epl_listing_query_cache_stale', 0 ) >= $started ) {
+		wp_schedule_single_event( time(), 'epl_listing_query_cache_rebuild' );
+	} else {
+		delete_option( 'epl_listing_query_cache_stale' );
+	}
+}
+add_action( 'epl_listing_query_cache_rebuild', 'epl_rebuild_listing_query_cache' );
+
+/**
+ * Mark the listing query cache to be refreshed when this request ends
  *
  * Hooked to listing saves, deletes, status, meta and term changes. An import can change
- * hundreds of meta values per listing, so the cache is cleared once, at the end of the
- * request, which also clears anything cached while the import was running.
+ * hundreds of meta values per listing, so the refresh starts once, at the end of the
+ * request.
  *
  * @param mixed $arg1 Hook argument: a post ID, post object, meta ID or new status, by hook.
  * @param mixed $arg2 Hook argument: the object ID or old status, by hook.
@@ -1992,8 +2162,7 @@ function epl_listing_query_cache_changed( $arg1 = null, $arg2 = null, $arg3 = nu
 		case 'added_post_meta':
 		case 'updated_post_meta':
 		case 'deleted_post_meta':
-		case 'set_object_terms':
-			$post_id = 'set_object_terms' === current_filter() ? (int) $arg1 : (int) $arg2;
+			$post_id = (int) $arg2;
 			break;
 		default:
 			$post_id = (int) $arg1;
