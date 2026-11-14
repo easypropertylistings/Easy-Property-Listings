@@ -323,8 +323,14 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 	 * Render elementor template.
 	 *
 	 * @since 3.6.0 New: Elementor widgets (beta).
+	 * @since 3.6.0 Security: only renders a published Loop Item template.
 	 */
 	private function render_elementor_template( $shortcode, $template_id ) {
+		// Only a published Loop Item template, so a draft or private page can't be rendered here.
+		if ( 'publish' !== get_post_status( $template_id ) || 'loop-item' !== get_post_meta( $template_id, '_elementor_template_type', true ) ) {
+			return;
+		}
+
 		$query = $shortcode->query_open;
 		if ( ! $query->have_posts() ) {
 			if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
@@ -409,10 +415,11 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 	 * Get author options.
 	 *
 	 * @since 3.6.0 New: Elementor widgets (beta).
+	 * @since 3.6.0 Security: lists only users who can write posts (agents), not every user login.
 	 */
 	private function get_author_options() {
 		$options = array();
-		foreach ( get_users( array( 'fields' => array( 'user_login', 'display_name' ) ) ) as $user ) {
+		foreach ( get_users( array( 'fields' => array( 'user_login', 'display_name' ), 'capability' => array( 'edit_posts' ) ) ) as $user ) {
 			$options[ $user->user_login ] = $user->display_name;
 		}
 		return $options;

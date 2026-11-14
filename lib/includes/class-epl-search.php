@@ -338,19 +338,46 @@ class EPL_SEARCH {
 	}
 
 	/**
+	 * The requested listing statuses, keeping only real ones (Current, Sold, Leased...).
+	 *
+	 * @since 3.6 New: used for the search form fields, whose queries are cached.
+	 *
+	 * @return string Comma separated statuses, or ''.
+	 */
+	protected function get_field_status() {
+		$requested = $this->get_data['property_status'];
+		$requested = is_array( $requested ) ? $requested : explode( ',', (string) $requested );
+		$known     = array_keys( epl_get_property_status_opts() );
+		$statuses  = array();
+
+		foreach ( $requested as $status ) {
+			$status = trim( (string) $status );
+			if ( in_array( $status, $known, true ) ) {
+				$statuses[] = $status;
+			}
+		}
+
+		return implode( ',', $statuses );
+	}
+
+	/**
 	 * Prepare the query
+	 *
+	 * @since 3.6 Security: the form fields get only real listing statuses, so ?property_status=<anything> can't fill the listing query cache with junk entries. The search itself still uses the value as before.
 	 */
 	protected function prepare_query() {
 
+		$field_status = $this->get_field_status();
+
 		if ( 'commercial' === $this->get_data['post_type'] || 'commercial_land' === $this->get_data['post_type'] ) {
 			if ( function_exists( 'epl_listing_search_commercial_widget_fields_frontend' ) ) {
-				$this->form_fields = epl_listing_search_commercial_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
+				$this->form_fields = epl_listing_search_commercial_widget_fields_frontend( $this->get_data['post_type'], $field_status, $this->transaction_type );
 
 			} else {
-				$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
+				$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $field_status, $this->transaction_type );
 			}
 		} else {
-			$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
+			$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $field_status, $this->transaction_type );
 		}
 
 		foreach ( $this->get_data as $key => $data ) {

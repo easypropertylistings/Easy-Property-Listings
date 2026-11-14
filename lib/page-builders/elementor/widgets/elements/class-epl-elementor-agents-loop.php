@@ -442,6 +442,7 @@ class EPL_Elementor_Listing_Agents extends \Elementor\Widget_Base {
 	 * @param int    $template_id The template post ID.
 	 * @param string $render_type The render type (default/template).
 	 * @since 3.6.0 New: Elementor widgets (beta).
+	 * @since 3.6.0 Security: only renders a published Agent Template.
 	 */
 	private function render_agent_item( $template_id, $render_type ) {
 		global $epl_current_agent;
@@ -458,7 +459,7 @@ class EPL_Elementor_Listing_Agents extends \Elementor\Widget_Base {
 				return;
 			}
 
-			if ( EPL_Elementor_Agent_Document::TYPE !== get_post_meta( $template_id, '_elementor_template_type', true ) ) {
+			if ( 'publish' !== get_post_status( $template_id ) || EPL_Elementor_Agent_Document::TYPE !== get_post_meta( $template_id, '_elementor_template_type', true ) ) {
 				if ( EPL_Elementor::is_editor() ) {
 					echo '<div class="epl-elementor-placeholder">' . esc_html__( 'The selected template is not an EPL Agent Template.', 'easy-property-listings' ) . '</div>';
 				}

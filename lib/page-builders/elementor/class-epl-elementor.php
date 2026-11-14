@@ -525,6 +525,7 @@ class EPL_Elementor {
 	 *
 	 * @return bool
 	 * @since 3.6.0 New: Elementor widgets (beta).
+	 * @since 3.6.0 Security: a preview URL or Elementor AJAX request needs a user who can edit posts.
 	 */
 	public static function is_editor() {
 		$is_edit_mode       = isset( \Elementor\Plugin::$instance->editor ) && \Elementor\Plugin::$instance->editor->is_edit_mode();
@@ -532,6 +533,12 @@ class EPL_Elementor {
 		$is_preview_request = isset( $_GET['elementor-preview'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only preview detection.
 		$ajax_action       = isset( $_REQUEST['action'] ) ? sanitize_key( wp_unslash( $_REQUEST['action'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only editor request detection.
 		$is_elementor_ajax = wp_doing_ajax() && 0 === strpos( $ajax_action, 'elementor' );
+
+		// A preview URL or Elementor AJAX request only counts for someone who can edit (anyone can add ?elementor-preview to a URL).
+		if ( ( $is_preview_request || $is_elementor_ajax ) && ! current_user_can( 'edit_posts' ) ) {
+			$is_preview_request = false;
+			$is_elementor_ajax  = false;
+		}
 
 		return $is_edit_mode || $is_preview || $is_preview_request || $is_elementor_ajax;
 	}
@@ -1243,6 +1250,7 @@ class EPL_Elementor {
 	 *
 	 * @return EPL_Property_Meta|false The property object or false if none found.
 	 * @since 3.6.0
+	 * @since 3.6.0 Security: ?epl_elementor_preview_id only shows published listings, or listings the user may edit.
 	 */
 	public static function get_preview_property() {
 		static $preview_property = null;
@@ -1256,7 +1264,8 @@ class EPL_Elementor {
 		$requested_id = absint( apply_filters( 'epl_elementor_preview_listing_id', $requested_id ) );
 		if ( $requested_id ) {
 			$requested_post = get_post( $requested_id );
-			if ( $requested_post && is_epl_post( $requested_post->post_type ) ) {
+			// Only a published listing, or one the visitor may edit, so drafts and private listings can't be read from the URL.
+			if ( $requested_post && is_epl_post( $requested_post->post_type ) && ( 'publish' === $requested_post->post_status || current_user_can( 'edit_post', $requested_id ) ) ) {
 				$preview_property = new EPL_Property_Meta( $requested_post );
 				return $preview_property;
 			}

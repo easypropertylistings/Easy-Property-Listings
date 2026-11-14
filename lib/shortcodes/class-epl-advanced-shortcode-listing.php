@@ -249,12 +249,27 @@ class EPL_Advanced_Shortcode_Listing {
 	 * Set the post type
 	 *
 	 * @since 3.3
+	 * @since 3.6 Security: post types visitors can't view (contacts) are left out, so post_type="epl_contact" finds nothing.
 	 */
 	public function set_post_type() {
 		if ( ! is_array( $this->attributes['post_type'] ) ) {
 			$this->attributes['post_type'] =
 			array_map( 'trim', explode( ',', $this->attributes['post_type'] ) );
 		}
+
+		// Leave out registered post types visitors can't view, such as contacts. Unregistered
+		// types stay, so a switched off listing type still finds nothing, as before.
+		$post_types = array();
+		foreach ( $this->attributes['post_type'] as $post_type ) {
+			if ( ! is_string( $post_type ) || ( post_type_exists( $post_type ) && ! epl_search_can_show_post_type( $post_type ) ) ) {
+				continue;
+			}
+			$post_types[] = $post_type;
+		}
+		if ( empty( $post_types ) ) {
+			$post_types = array( 'epl_no_post_type' ); // Not registered: the query finds nothing.
+		}
+		$this->attributes['post_type'] = $post_types;
 	}
 
 	/**
@@ -632,12 +647,13 @@ class EPL_Advanced_Shortcode_Listing {
 	 * Get the template
 	 *
 	 * @since 3.3
+	 * @since 3.6 Security: wrap_template is limited to letters, numbers, - and _ (it could reach other files with ../). Underscores now become dashes, as intended.
 	 */
 	public function get_wrap_template() {
 
-		$attributes['wrap_template'] = str_replace( '_', '-', $this->attributes['wrap_template'] );
+		$wrap = str_replace( '_', '-', sanitize_key( (string) $this->attributes['wrap_template'] ) );
 
-		$wrap_template = empty( $this->attributes['wrap_template'] ) ? 'shortcode-listing.php' : 'shortcode-listing-' . $this->attributes['wrap_template'] . '.php';
+		$wrap_template = '' === $wrap ? 'shortcode-listing.php' : 'shortcode-listing-' . $wrap . '.php';
 
 		return $wrap_template;
 	}
@@ -672,6 +688,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 * Render the shortcode
 	 *
 	 * @since 3.3
+	 * @since 3.6 Fix: a wrap_template that doesn't exist falls back to shortcode-listing.php instead of PHP warnings and no listings.
 	 */
 	public function render() {
 		$wrap_template = $this->get_wrap_template();
@@ -681,7 +698,8 @@ class EPL_Advanced_Shortcode_Listing {
 			array(
 				'attributes' => $this->attributes,
 				'query_open' => $this->query_open,
-			)
+			),
+			'shortcode-listing.php'
 		);
 
 		return ob_get_clean();

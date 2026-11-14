@@ -323,8 +323,14 @@ function epl_get_fallback_content_path() {
  * @since 3.4.41 Fix: Only the default template was loading.
  * @since 3.5.3  Hook to filter find array as well as final template.
  * @since 3.5.11 Pass the original template in the filter.
+ * @since 3.6 Security: refuses template names with ".." or a drive letter, so a shortcode attribute (wrap_template, template) can't include files outside the template folders.
  */
 function epl_get_template_part( $template, $arguments = array(), $default_template = false ) {
+
+	// Template names are relative file names. Refuse "../" and drive paths.
+	if ( 0 !== validate_file( (string) $template ) || ( $default_template && 0 !== validate_file( (string) $default_template ) ) ) {
+		return;
+	}
 
 	$original_template = $template;
 	$base_path         = epl_get_content_path();

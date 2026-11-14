@@ -280,6 +280,7 @@ class EPL_Elementor_Agent_Social extends \Elementor\Widget_Base {
 	/**
 	 * Render widget output.
 	 * @since 3.6.0 New: Elementor widgets (beta).
+	 * @since 3.6.0 Security: only the listed social networks.
 	 */
 	protected function render() {
 		$author_loader = $this->get_current_agent();
@@ -303,8 +304,12 @@ class EPL_Elementor_Agent_Social extends \Elementor\Widget_Base {
 		echo '<div class="epl-agent-social">';
 
 		foreach ( $settings['social_icon_list'] as $index => $item ) {
-			$network = $item['social_network'];
-			$method  = 'get_' . $network;
+			$network = isset( $item['social_network'] ) ? $item['social_network'] : '';
+			// Only the networks the control offers, so the setting can't call other get_ methods.
+			if ( ! in_array( $network, array( 'facebook', 'twitter', 'instagram', 'linkedin', 'youtube', 'pinterest', 'website' ), true ) ) {
+				continue;
+			}
+			$method = 'get_' . $network;
 
 			// Check if URL exists for this agent.
 			if ( method_exists( $author, $method ) ) {

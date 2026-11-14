@@ -181,6 +181,7 @@ class EPL_Elementor_Property_Meta extends \Elementor\Widget_Base {
 	 * Render the widget output.
 	 *
 	 * @since 3.6.0 New: Elementor widgets (beta).
+	 * @since 3.6.0 Security: won't show a hidden street address or price, or private meta.
 	 */
 	protected function render() {
 		$property = EPL_Elementor::setup_listing_context();
@@ -194,7 +195,29 @@ class EPL_Elementor_Property_Meta extends \Elementor\Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 		$key      = sanitize_key( $settings['meta_key'] );
-		$value    = $key ? $property->get_property_meta( $key ) : '';
+
+		// Never show a street address or price the listing hides, or private (_ prefixed) meta.
+		$blocked = array();
+		if ( ! $property->show_street_address() ) {
+			$blocked = array( 'property_address_street', 'property_address_street_number', 'property_address_sub_number', 'property_address_lot_number', 'property_address_coordinates' );
+		}
+		if ( 'yes' !== $property->get_property_meta( 'property_price_display' ) ) {
+			$blocked = array_merge( $blocked, array( 'property_price', 'property_price_view', 'property_sold_price', 'property_rent', 'property_rent_view', 'property_com_rent' ) );
+		}
+		/**
+		 * Filters the meta keys the Elementor Property Meta widget won't show for this listing.
+		 *
+		 * @since 3.6.0
+		 *
+		 * @param array             $blocked  Meta keys.
+		 * @param EPL_Property_Meta $property The listing.
+		 */
+		$blocked = (array) apply_filters( 'epl_elementor_meta_blocked_keys', $blocked, $property );
+		if ( '' === $key || is_protected_meta( $key, 'post' ) || in_array( $key, $blocked, true ) ) {
+			$key = '';
+		}
+
+		$value = $key ? $property->get_property_meta( $key ) : '';
 		if ( is_array( $value ) ) {
 			$value = implode( ', ', array_map( 'sanitize_text_field', $value ) );
 		}
