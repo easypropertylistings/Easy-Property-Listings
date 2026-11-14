@@ -975,6 +975,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @since 2.0.0
 		 * @since 3.4.38 Using label_poa for no rental price. Added epl_price_rent_period filter. Added filter epl_pa_price for P.A label.
 		 * @since 3.5.22 Applying string to lower case on the yes values.
+		 * @since 3.6 Under offer listings keep the advertised price next to the Under Offer label unless hidden in the settings. Uses is_under_offer(), get_poa_label() and get_under_offer_price().
 		 *
 		 * @return string
 		 */
@@ -1075,6 +1076,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @since 3.4.27 Fixed rent period translation.
 		 * @since 3.4.28 Using label_poa for no rental price. Added epl_price_rent_period filter. Added filter epl_pa_price for P.A label.
 		 * @since 3.4.38 Commercial listing type "both" now shows sale & lease prices.
+		 * @since 3.6 Under offer listings keep the advertised price next to the Under Offer label unless hidden in the settings. Uses is_under_offer(), get_poa_label() and get_under_offer_price().
 		 * @return string
 		 */
 		public function get_price() {
@@ -1224,6 +1226,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @since 2.0
 		 * @since 3.5 Added fix for trim when string string is null.
 		 * @since 3.5.14 Added missing new status sticker for commercial listings.
+		 * @since 3.6 Uses is_under_offer(). Sticker output unchanged.
 		 */
 		public function get_price_sticker() {
 			$price_sticker = '';
@@ -1313,6 +1316,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 2.0.0
 		 * @since 3.4.38 Added epl_price_rent_period filter.  Added filter epl_pa_price for P.A label.
+		 * @since 3.6 Under offer listings keep the advertised price next to the Under Offer label unless hidden in the settings. Uses is_under_offer(), get_poa_label() and get_under_offer_price(). Fixed the undefined $price_plain_value warning when the No Price label setting is missing.
 		 */
 		public function get_l_price() {
 			$price_display = $this->get_property_price_display();

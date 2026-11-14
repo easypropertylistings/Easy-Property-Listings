@@ -1079,6 +1079,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
  *
  * @since 2.1
  * @since 3.5.3 Updated to return local timestamp.
+ * @since 3.6 Added the Under Offer Price Display setting (display_price_under_offer).
  */
 function epl_get_admin_option_fields() {
 	global $epl_settings;

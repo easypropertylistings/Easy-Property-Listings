@@ -19,6 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return array
  * @since 3.3.5
+ * @since 3.6 Added the display_price_under_offer default.
  */
 function epl_get_default_settings() {
 

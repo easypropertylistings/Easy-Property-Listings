@@ -104,6 +104,7 @@ add_action( 'epl_edit-contact', 'epl_edit_contact', 10, 1 );
  *
  * @return void Wether it was a successful deletion
  * @since  3.0
+ * @since  3.6 Without the confirm box ticked, redirects to admin.php?page=epl-contacts, not edit.php (which returned a 403).
  */
 function epl_contact_delete( $args ) {
 
@@ -177,6 +178,7 @@ add_action( 'epl_delete-contact', 'epl_contact_delete', 10, 1 );
  * Save a customer note being added
  *
  * @since  3.0
+ * @since  3.6 An empty note no longer calls epl_set_error() without arguments (a fatal error).
  * @param  array $args The $_POST array being passeed.
  * @return bool|string|void         the comment object
  */

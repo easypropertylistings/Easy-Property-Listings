@@ -388,6 +388,7 @@ class EPL_Session {
 	 * or if the EPL_USE_PHP_SESSIONS constant is defined
 	 *
 	 * @since 3.4.15
+	 * @since 3.6 Detecting PHP session support no longer writes to the session, so it no longer starts one on every request.
 	 * @author Daniel J Griffiths
 	 * @author Daniel J Griffiths
 	 * @return boolean $ret True if we are using PHP sessions, false otherwise.
