@@ -1169,10 +1169,12 @@ add_action( 'epl_property_category', 'epl_property_category', 10, 2 );
  * @return string
  *
  * @since 3.3.0
+ * @since 3.6 Fix: PHP 8.1+ deprecation notice when the listing has no video URL (null).
  */
 function epl_get_video_host( $url ) {
 
 	$host = 'unknown';
+	$url  = (string) $url;
 
 	if ( strpos( $url, 'youtu' ) > 0 ) {
 		$host = 'youtube';
