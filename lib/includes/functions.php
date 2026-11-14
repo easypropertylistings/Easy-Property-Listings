@@ -44,6 +44,66 @@ function epl_get_option( $key = '', $default_val = false ) {
 }
 
 /**
+ * Get a saved option, keeping saved empty values
+ *
+ * Unlike epl_get_option(), a saved empty value such as '' or an empty array is returned as
+ * saved, so a cleared text field or a checkbox list with nothing ticked stays empty. The
+ * default is returned only when the setting has never been saved. Runs the same
+ * epl_get_option and epl_get_option_{$key} filters as epl_get_option().
+ *
+ * @param string $key         Setting key.
+ * @param mixed  $default_val Returned when the setting has never been saved.
+ *
+ * @return mixed
+ *
+ * @since 3.6
+ */
+function epl_get_saved_option( $key = '', $default_val = false ) {
+
+	$epl_settings = epl_get_settings();
+
+	if ( is_array( $epl_settings ) && isset( $epl_settings[ $key ] ) ) {
+		$value = $epl_settings[ $key ];
+	} else {
+		$value = $default_val;
+	}
+
+	$value = apply_filters( 'epl_get_option', $value, $key, $default_val );
+	return apply_filters( 'epl_get_option_' . $key, $value, $key, $default_val );
+}
+
+/**
+ * Keep the global settings in step with the saved option
+ *
+ * The global $epl_settings is loaded once per request, so without this epl_get_option()
+ * and epl_get_saved_option() return the old values for the rest of the request after
+ * the epl_settings option is saved.
+ *
+ * @param mixed $old_value Previous value (unused).
+ * @param mixed $value     Saved value.
+ *
+ * @since 3.6
+ */
+function epl_refresh_settings_global( $old_value, $value ) {
+	global $epl_settings;
+	$epl_settings = $value;
+}
+add_action( 'update_option_epl_settings', 'epl_refresh_settings_global', 10, 2 );
+
+/**
+ * Keep the global settings in step when the epl_settings option is first added
+ *
+ * @param string $option Option name (unused).
+ * @param mixed  $value  Saved value.
+ *
+ * @since 3.6
+ */
+function epl_refresh_settings_global_on_add( $option, $value ) {
+	epl_refresh_settings_global( null, $value );
+}
+add_action( 'add_option_epl_settings', 'epl_refresh_settings_global_on_add', 10, 2 );
+
+/**
  * Determine if Divi framework is loaded
  *
  * @since 3.1

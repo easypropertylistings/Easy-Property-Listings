@@ -902,14 +902,14 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 3.6
 		 *
-		 * @param string|null $fallback Returned when the label setting is missing.
+		 * Reads the setting with epl_get_saved_option(), so a label saved empty stays empty and
+		 * the epl_get_option_label_poa filter applies.
+		 *
+		 * @param string|null $fallback Returned when the label setting has never been saved.
 		 * @return string|null
 		 */
 		public function get_poa_label( $fallback = null ) {
-			if ( ! empty( $this->epl_settings ) && isset( $this->epl_settings['label_poa'] ) ) {
-				return $this->epl_settings['label_poa'];
-			}
-			return $fallback;
+			return epl_get_saved_option( 'label_poa', $fallback );
 		}
 
 		/**
