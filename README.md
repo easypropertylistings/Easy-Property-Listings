@@ -47,6 +47,8 @@ There are various ways you can contribute:
 -   Fix: PHP warning in `get_l_price()` when the No Price label setting is missing.
 -   Tweak: The session now starts only when something is stored in it (a contact error or a favourite listing), so pages no longer send the `epl_wp_session` or `PHPSESSID` cookie to every visitor and full-page caches such as SiteGround Dynamic Cache can cache them. Visitors who already have a session keep it. Add `add_filter( 'epl_lazy_session', '__return_false' );` to start a session on every request as before.
 -   New: Filter `epl_lazy_session`.
+-   Fix: Deleting a contact without ticking the confirm box redirected to a page that returned an error (403) instead of showing "Please confirm you want to delete this contact".
+-   Fix: Saving an empty contact note caused a PHP fatal error.
 
 = 3.5.29 November 10, 2026 =
 

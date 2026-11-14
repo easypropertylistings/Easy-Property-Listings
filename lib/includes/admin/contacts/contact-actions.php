@@ -128,7 +128,7 @@ function epl_contact_delete( $args ) {
 	}
 
 	if ( epl_get_errors() ) {
-		wp_safe_redirect( admin_url( 'edit.php?page=epl-contacts&view=overview&id=' . $contact_id ) );
+		wp_safe_redirect( admin_url( 'admin.php?page=epl-contacts&view=overview&id=' . $contact_id ) );
 		exit;
 	}
 
@@ -206,7 +206,6 @@ function epl_contact_save_note( $args ) {
 	}
 
 	if ( epl_get_errors() ) {
-		epl_set_error();
 		return;
 	}
 
