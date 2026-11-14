@@ -57,6 +57,8 @@ There are various ways you can contribute:
 -   New: `epl-status-auction` listing class for listings with an auction authority.
 -   New: Gravity Forms fields can be filled with `author_email_secondary`, `primary_agent_email`, `primary_agent_name`, `property_unique_id` and `property_office_id`, as well as `author_email`.
 -   New: Filters `epl_shortcode_results_message_text` (a line under the "Nothing found" message) and `epl_shortcode_results_message_html` (the whole message). The message title filters now receive the shortcode name.
+-   Fix: Sorting listings with the sort dropdown (by status, location, price, date or title) had no tiebreaker, so listings with the same value came back in an undefined order and could show on two pages or on none. Ties are now ordered newest first, then by ID (date sorts by ID in the same direction). Applies to archives and shortcodes, and to custom sorters added with `epl_sorting_options`.
+-   New: Function `epl_get_sorter_query_args( $sorter )` and filter `epl_sorter_orderby` for the sort order and its tiebreakers.
 
 = 3.5.29 November 10, 2026 =
 

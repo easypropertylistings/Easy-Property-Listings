@@ -2075,11 +2075,67 @@ function epl_add_or_update_params( $url, $key, $value ) {
 }
 
 /**
+ * Query arguments for a sorter from epl_sorting_options()
+ *
+ * Adds tiebreakers so listings with the same value (the same status, suburb, price or post
+ * date) come back in a fixed order. Without them MySQL returns ties in any order, so a
+ * listing can show on two pages, or on none, when paging through sorted results. Meta and
+ * title sorts break ties by newest first, then ID. Date sorts break ties by ID in the same
+ * direction. A random sort, or a sorter whose orderby already lists several keys, is used
+ * as is.
+ *
+ * @param array $sorter A sorter: type (meta or post), key, order and, for meta, orderby.
+ *
+ * @return array WP_Query arguments: orderby, order and, for meta sorters, meta_key.
+ *
+ * @since 3.6
+ */
+function epl_get_sorter_query_args( $sorter ) {
+	$order   = isset( $sorter['order'] ) && 'ASC' === strtoupper( $sorter['order'] ) ? 'ASC' : 'DESC';
+	$is_meta = isset( $sorter['type'] ) && 'meta' === $sorter['type'];
+	$key     = isset( $sorter['key'] ) ? $sorter['key'] : '';
+	$primary = $is_meta ? ( isset( $sorter['orderby'] ) ? $sorter['orderby'] : 'meta_value' ) : $key;
+
+	$args = array( 'order' => $order );
+
+	if ( $is_meta ) {
+		$args['meta_key'] = $key; //phpcs:ignore
+	}
+
+	if ( ! is_string( $primary ) || '' === $primary || false !== strpos( trim( $primary ), ' ' ) || in_array( $primary, array( 'rand', 'none' ), true ) || 0 === strpos( $primary, 'RAND(' ) ) {
+		$args['orderby'] = $primary;
+		return $args;
+	}
+
+	$orderby = array( $primary => $order );
+
+	if ( in_array( $primary, array( 'date', 'post_date' ), true ) ) {
+		$orderby['ID'] = $order;
+	} elseif ( 'ID' !== $primary ) {
+		$orderby['date'] = 'DESC';
+		$orderby['ID']   = 'DESC';
+	}
+
+	/**
+	 * Filters the orderby array, primary sort first, then the tiebreakers.
+	 *
+	 * @since 3.6
+	 *
+	 * @param array $orderby Orderby => order pairs.
+	 * @param array $sorter  The sorter.
+	 */
+	$args['orderby'] = apply_filters( 'epl_sorter_orderby', $orderby, $sorter );
+
+	return $args;
+}
+
+/**
  * Archive Sorting
  *
  * @param  WP_Query $query  The query.
  *
  * @since  2.0
+ * @since  3.6 Sorting has tiebreakers (epl_get_sorter_query_args()), so listings with the same value don't repeat or go missing across pages.
  */
 function epl_archive_sorting( $query ) {
 	$post_types_sold   = array( 'property', 'land', 'commercial', 'business', 'commercial_land', 'location_profile', 'rural' );
@@ -2100,13 +2156,9 @@ function epl_archive_sorting( $query ) {
 
 				if ( $orderby === $sorter['id'] ) {
 
-					if ( 'meta' === $sorter['type'] ) {
-						$query->set( 'orderby', $sorter['orderby'] );
-						$query->set( 'meta_key', $sorter['key'] );
-					} else {
-						$query->set( 'orderby', $sorter['key'] );
+					foreach ( epl_get_sorter_query_args( $sorter ) as $arg => $value ) {
+						$query->set( $arg, $value );
 					}
-					$query->set( 'order', $sorter['order'] );
 					break;
 				}
 			}
@@ -3357,6 +3409,7 @@ add_action( 'epl_the_archive_title', 'epl_archive_title_callback' );
  *
  * @since      3.0
  * @since      3.4.44 Option sortby based on instance_id now.
+ * @since      3.6 Sorting has tiebreakers (epl_get_sorter_query_args()), so listings with the same value don't repeat or go missing across pages.
  */
 function epl_add_orderby_args( $args, $type = '', $name = '' ) {
 
@@ -3384,13 +3437,7 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
 
 			if ( $orderby === $sorter['id'] ) {
 
-				if ( 'meta' === $sorter['type'] ) {
-					$args['orderby']  = $sorter['orderby'];
-					$args['meta_key'] = $sorter['key']; //phpcs:ignore
-				} else {
-					$args['orderby'] = $sorter['key'];
-				}
-				$args['order'] = $sorter['order'];
+				$args = array_merge( $args, epl_get_sorter_query_args( $sorter ) );
 				break;
 			}
 		}
