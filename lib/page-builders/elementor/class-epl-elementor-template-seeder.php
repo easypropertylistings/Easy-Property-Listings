@@ -244,6 +244,7 @@ class EPL_Elementor_Template_Seeder {
 	 * @param string $slug Bundled template slug.
 	 * @return int Post ID, or 0 when none exists.
 	 * @since 3.6.0 New: Elementor templates for free Elementor (beta).
+	 * @since 3.6.0 Removed suppress_filters (get_posts() already suppresses filters; Plugin Check flags it).
 	 */
 	private function find_seeded_post( $slug ) {
 		$found = get_posts(
@@ -255,7 +256,6 @@ class EPL_Elementor_Template_Seeder {
 				'order'            => 'ASC',
 				'fields'           => 'ids',
 				'no_found_rows'    => true,
-				'suppress_filters' => true,
 				'meta_query'       => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Runs once per install/upgrade.
 					array(
 						'key'   => self::SLUG_META,
