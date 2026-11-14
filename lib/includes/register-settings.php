@@ -35,19 +35,16 @@ function epl_get_settings() {
  * EPL Settings Function for returning all or by settings meta_key
  *
  * @param string $meta_key Meta key name.
- * @return array All the settings in array
+ * @return mixed All the settings in array, or the value of $meta_key ('' when not set).
  * @since 1.0
+ * @since 3.6 Returns the $meta_key value once the settings are loaded, not the whole array. No warning for a missing key.
  */
 function epl_settings( $meta_key = '' ) {
-	global $epl_settings;
-	if ( ! empty( $epl_settings ) ) {
+	$epl_settings = epl_get_settings();
+
+	if ( empty( $meta_key ) ) {
 		return $epl_settings;
 	}
 
-	$epl_settings = get_option( 'epl_settings' );
-	if ( ! empty( $meta_key ) ) {
-		return $epl_settings[ $meta_key ];
-	} else {
-		return $epl_settings;
-	}
+	return ( is_array( $epl_settings ) && isset( $epl_settings[ $meta_key ] ) ) ? $epl_settings[ $meta_key ] : '';
 }
