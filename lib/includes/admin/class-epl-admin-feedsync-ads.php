@@ -369,7 +369,7 @@ class EPL_Admin_Feedsync_Ads {
 					<?php self::render_from(); ?>
 					<?php self::render_detected(); ?>
 					<h2><?php esc_html_e( 'Listings taking hours to show up?', 'easy-property-listings' ); ?></h2>
-					<p><?php esc_html_e( 'Move to FeedSync. Your listings go live the second your CRM sends them — no imports, no schedule, nothing to manage.', 'easy-property-listings' ); ?></p>
+					<p><?php esc_html_e( 'Move to FeedSync. Your listings go live the second your CRM sends them. No imports, no schedule, nothing to manage.', 'easy-property-listings' ); ?></p>
 					<?php self::render_deadline(); ?>
 				</div>
 				<div class="epl-fs-ad__cta">
@@ -394,7 +394,7 @@ class EPL_Admin_Feedsync_Ads {
 			<div class="epl-fs-ad epl-fs-ad--b">
 				<?php self::render_wire( 3 ); ?>
 				<span class="epl-fs-ad__badge"><?php esc_html_e( 'Slow site?', 'easy-property-listings' ); ?></span>
-				<div class="epl-fs-ad__text"><?php self::render_from(); ?><strong><?php esc_html_e( 'Website slow when your imports run?', 'easy-property-listings' ); ?></strong> <?php esc_html_e( 'Move to FeedSync — your CRM syncs straight to your site. No imports at all.', 'easy-property-listings' ); ?><?php self::render_deadline(); ?></div>
+				<div class="epl-fs-ad__text"><?php self::render_from(); ?><strong><?php esc_html_e( 'Website slow when your imports run?', 'easy-property-listings' ); ?></strong> <?php esc_html_e( 'Move to FeedSync and your CRM syncs straight to your site. No imports at all.', 'easy-property-listings' ); ?><?php self::render_deadline(); ?></div>
 				<a class="epl-fs-ad__button" href="<?php echo esc_url( self::FEEDSYNC_URL ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Move to FeedSync', 'easy-property-listings' ); ?></a>
 				<?php self::render_dismiss( 'b' ); ?>
 			</div>
