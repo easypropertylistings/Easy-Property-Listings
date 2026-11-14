@@ -389,6 +389,7 @@
 	background: var(--epl-fs-stale);
 	opacity: 0.9;
 	animation: epl-fs-batch 5.2s cubic-bezier(0.7, 0, 0.9, 0.3) infinite;
+	animation-delay: -4.2s; /* Paused, this frame shows the batch mid-track. */
 }
 
 @keyframes epl-fs-batch {
@@ -410,27 +411,28 @@
 	border-radius: 3px;
 	background: linear-gradient(90deg, transparent, var(--epl-fs-blue-bright));
 	animation: epl-fs-flow 1.9s linear infinite;
+	animation-delay: -0.2s;
 }
 
 .epl-fs-ad__stream:nth-child(2) {
 	width: 18px;
 	opacity: 0.7;
-	animation-delay: 0.38s;
+	animation-delay: -0.58s;
 }
 .epl-fs-ad__stream:nth-child(3) {
 	width: 42px;
 	opacity: 0.85;
-	animation-delay: 0.76s;
+	animation-delay: -0.96s;
 }
 .epl-fs-ad__stream:nth-child(4) {
 	width: 14px;
 	opacity: 0.5;
-	animation-delay: 1.14s;
+	animation-delay: -1.34s;
 }
 .epl-fs-ad__stream:nth-child(5) {
 	width: 34px;
 	opacity: 0.75;
-	animation-delay: 1.52s;
+	animation-delay: -1.72s;
 }
 
 @media (max-width: 900px) {
@@ -479,6 +481,19 @@
 	.epl-fs-ad__text {
 		flex-basis: 100%;
 	}
+}
+
+/* Creative C is still until hovered (or focused): negative delays spread the pieces along the tracks. */
+.epl-fs-ad--c .epl-fs-ad__batch,
+.epl-fs-ad--c .epl-fs-ad__stream {
+	animation-play-state: paused;
+}
+
+.epl-fs-ad--c:hover .epl-fs-ad__batch,
+.epl-fs-ad--c:hover .epl-fs-ad__stream,
+.epl-fs-ad--c:focus-within .epl-fs-ad__batch,
+.epl-fs-ad--c:focus-within .epl-fs-ad__stream {
+	animation-play-state: running;
 }
 
 @media (prefers-reduced-motion: reduce) {
