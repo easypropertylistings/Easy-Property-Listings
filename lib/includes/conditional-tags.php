@@ -230,3 +230,137 @@ function epl_listing_has_primary_agent() {
 	}
 	return $exists;
 }
+
+/**
+ * Check if the current listing has a value in any of the meta keys
+ *
+ * A file field saved as an array counts when its image_url_or_path is set. With $respect_show,
+ * a key whose epl_show_{$key} filter returns false is skipped, as the listing buttons do.
+ *
+ * @param array $keys         Meta keys.
+ * @param bool  $respect_show Skip keys hidden with the epl_show_{$key} filter.
+ *
+ * @return bool
+ *
+ * @since 3.6
+ */
+function epl_listing_has_any_meta( $keys = array(), $respect_show = false ) {
+	global $property;
+
+	if ( ! $property instanceof EPL_Property_Meta ) {
+		return false;
+	}
+
+	foreach ( (array) $keys as $key ) {
+		if ( $respect_show && ! apply_filters( 'epl_show_' . $key, true ) ) {
+			continue;
+		}
+
+		$value = $property->get_property_meta( $key );
+
+		if ( is_array( $value ) ) {
+			$value = isset( $value['image_url_or_path'] ) ? $value['image_url_or_path'] : '';
+		}
+
+		if ( is_string( $value ) ) {
+			$value = trim( $value );
+		}
+
+		if ( ! empty( $value ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Check if the listing has a floor plan
+ *
+ * Uses the same keys as the Floor Plan button (epl_floorplan_keys filter).
+ *
+ * @return bool
+ *
+ * @since 3.6
+ */
+function epl_listing_has_floor_plans() {
+	$keys = apply_filters( 'epl_floorplan_keys', array( 'property_floorplan', 'property_floorplan_2' ) );
+
+	return (bool) apply_filters( 'epl_listing_has_floor_plans', epl_listing_has_any_meta( $keys ) );
+}
+
+/**
+ * Check if the listing has a video URL
+ *
+ * @return bool
+ *
+ * @since 3.6
+ */
+function epl_property_has_video() {
+	return (bool) apply_filters( 'epl_property_has_video', epl_listing_has_any_meta( array( 'property_video_url' ) ) );
+}
+
+/**
+ * Check if the listing has upcoming inspection times
+ *
+ * Past times and sold or leased listings don't count, as in get_property_inspection_times().
+ *
+ * @return bool
+ *
+ * @since 3.6
+ */
+function epl_listing_has_inspection_times() {
+	global $property;
+
+	$has = false;
+
+	if ( $property instanceof EPL_Property_Meta ) {
+		$times = $property->get_property_inspection_times();
+		$has   = is_string( $times ) && '' !== trim( wp_strip_all_tags( $times ) );
+	}
+
+	return (bool) apply_filters( 'epl_listing_has_inspection_times', $has );
+}
+
+/**
+ * Check if the listing has an auction date
+ *
+ * @return bool
+ *
+ * @since 3.6
+ */
+function epl_listing_has_auction_date() {
+	global $property;
+
+	$has = false;
+
+	if ( $property instanceof EPL_Property_Meta ) {
+		$auction = $property->get_property_auction();
+		$has     = is_string( $auction ) && '' !== trim( $auction );
+	}
+
+	return (bool) apply_filters( 'epl_listing_has_auction_date', $has );
+}
+
+/**
+ * Check if the listing has any button link
+ *
+ * External links, floor plans, mini web, energy certificate (the keys and epl_show_{$key}
+ * filters the single listing buttons use) and the video URL. Use it to skip an empty
+ * buttons wrapper in a template.
+ *
+ * @return bool
+ *
+ * @since 3.6
+ */
+function epl_listing_has_links() {
+	$keys = array_merge(
+		(array) apply_filters( 'epl_external_link_keys', array( 'property_external_link', 'property_external_link_2', 'property_external_link_3' ) ),
+		(array) apply_filters( 'epl_floorplan_keys', array( 'property_floorplan', 'property_floorplan_2' ) ),
+		(array) apply_filters( 'epl_mini_web_keys', array( 'property_com_mini_web', 'property_com_mini_web_2', 'property_com_mini_web_3' ) ),
+		(array) apply_filters( 'epl_energy_certificate_keys', array( 'property_energy_certificate' ) ),
+		array( 'property_video_url' )
+	);
+
+	return (bool) apply_filters( 'epl_listing_has_links', epl_listing_has_any_meta( $keys, true ) );
+}

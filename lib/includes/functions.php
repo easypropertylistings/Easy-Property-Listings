@@ -2502,6 +2502,111 @@ function epl_get_property_com_authority_opts() {
 }
 
 /**
+ * Commercial Authority label for a saved value
+ *
+ * @param string $key Saved property_com_authority value, for example eoi.
+ *
+ * @return string Label, for example EOI, or '' when the value isn't an option.
+ *
+ * @since 3.6
+ */
+function epl_get_property_com_authority_label( $key ) {
+	$opts = epl_get_property_com_authority_opts();
+
+	return ( is_scalar( $key ) && isset( $opts[ $key ] ) ) ? (string) $opts[ $key ] : '';
+}
+
+/**
+ * Status of the current listing
+ *
+ * @return string Saved property_status value (current, sold, leased, withdrawn, offmarket), or '' outside a listing.
+ *
+ * @since 3.6
+ */
+function epl_get_listing_status() {
+	global $property;
+
+	$status = $property instanceof EPL_Property_Meta ? (string) $property->get_property_meta( 'property_status' ) : '';
+
+	return apply_filters( 'epl_get_listing_status', $status );
+}
+
+/**
+ * Status label of the current listing, for cards and headings
+ *
+ * Sales listings: For Sale, Auction (current with auction authority) or Sold. Rentals: For Rent
+ * or Leased. Commercial: Buy, Lease or Buy or Lease from the listing type, then Sold or Leased.
+ * Sold and Leased use the Sold and Leased label settings. Other statuses return ''.
+ *
+ * @param array $labels Labels to override, keyed label_for_sale, label_auction, label_sold,
+ *                      label_for_lease, label_leased, label_commercial_sale, label_commercial_lease,
+ *                      label_commercial_both, label_commercial_sold, label_commercial_leased.
+ *
+ * @return string
+ *
+ * @since 3.6
+ */
+function epl_get_listing_status_label( $labels = array() ) {
+	global $property;
+
+	if ( ! $property instanceof EPL_Property_Meta ) {
+		return '';
+	}
+
+	$label_sold   = epl_get_option( 'label_sold', __( 'Sold', 'easy-property-listings' ) );
+	$label_leased = epl_get_option( 'label_leased', __( 'Leased', 'easy-property-listings' ) );
+
+	$labels = array_merge(
+		array(
+			'label_for_sale'          => __( 'For Sale', 'easy-property-listings' ),
+			'label_auction'           => __( 'Auction', 'easy-property-listings' ),
+			'label_sold'              => $label_sold,
+			'label_for_lease'         => __( 'For Rent', 'easy-property-listings' ),
+			'label_leased'            => $label_leased,
+			'label_commercial_sale'   => __( 'Buy', 'easy-property-listings' ),
+			'label_commercial_lease'  => __( 'Lease', 'easy-property-listings' ),
+			'label_commercial_both'   => __( 'Buy or Lease', 'easy-property-listings' ),
+			'label_commercial_sold'   => $label_sold,
+			'label_commercial_leased' => $label_leased,
+		),
+		(array) $labels
+	);
+
+	$post_type = $property->post_type;
+	$status    = epl_get_listing_status();
+	$label     = '';
+
+	if ( 'rental' === $post_type ) {
+		if ( 'current' === $status ) {
+			$label = $labels['label_for_lease'];
+		} elseif ( 'leased' === $status ) {
+			$label = $labels['label_leased'];
+		}
+	} elseif ( 'commercial' === $post_type ) {
+		if ( 'sold' === $status ) {
+			$label = $labels['label_commercial_sold'];
+		} elseif ( 'leased' === $status ) {
+			$label = $labels['label_commercial_leased'];
+		} elseif ( 'current' === $status ) {
+			$type = $property->get_property_meta( 'property_com_listing_type' );
+			if ( 'sale' === $type ) {
+				$label = $labels['label_commercial_sale'];
+			} elseif ( 'lease' === $type ) {
+				$label = $labels['label_commercial_lease'];
+			} else {
+				$label = $labels['label_commercial_both'];
+			}
+		}
+	} elseif ( 'current' === $status ) {
+		$label = 'auction' === $property->get_property_meta( 'property_authority' ) ? $labels['label_auction'] : $labels['label_for_sale'];
+	} elseif ( 'sold' === $status ) {
+		$label = $labels['label_sold'];
+	}
+
+	return apply_filters( 'epl_get_listing_status_label', $label, $status, $post_type, $labels );
+}
+
+/**
  * Returns array containing area unit options
  *
  * @since 3.2

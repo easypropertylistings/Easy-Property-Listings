@@ -140,3 +140,96 @@ function epl_populate_post_author_email( $value ) {
 	return '';
 }
 add_filter( 'gform_field_value_author_email', 'epl_populate_post_author_email' );
+
+/**
+ * Gravity Forms: populate a field with the listing's second agent email
+ *
+ * Add a hidden field, tick "Allow field to be populated dynamically" on its Advanced tab and
+ * use the Parameter Name author_email_secondary. Empty when the listing has no second agent.
+ *
+ * @param string $value Field value.
+ *
+ * @return string
+ * @since 3.6
+ */
+function epl_populate_secondary_author_email( $value ) {
+	global $property;
+
+	if ( ! $property instanceof EPL_Property_Meta ) {
+		return '';
+	}
+
+	$agent_id = epl_listing_has_secondary_agent();
+
+	return $agent_id ? (string) get_the_author_meta( 'user_email', $agent_id ) : '';
+}
+add_filter( 'gform_field_value_author_email_secondary', 'epl_populate_secondary_author_email' );
+
+/**
+ * Gravity Forms: populate a field with the primary agent email
+ *
+ * Parameter Name primary_agent_email. Uses the current EPL author, so it follows the Staff
+ * Directory agent on staff pages.
+ *
+ * @param string $value Field value.
+ *
+ * @return string
+ * @since 3.6
+ */
+function epl_populate_primary_agent_email( $value ) {
+	global $epl_author;
+
+	return ( is_object( $epl_author ) && ! empty( $epl_author->email ) ) ? (string) $epl_author->email : '';
+}
+add_filter( 'gform_field_value_primary_agent_email', 'epl_populate_primary_agent_email' );
+
+/**
+ * Gravity Forms: populate a field with the primary agent name
+ *
+ * Parameter Name primary_agent_name.
+ *
+ * @param string $value Field value.
+ *
+ * @return string
+ * @since 3.6
+ */
+function epl_populate_primary_agent_name( $value ) {
+	global $epl_author;
+
+	return ( is_object( $epl_author ) && ! empty( $epl_author->name ) ) ? (string) $epl_author->name : '';
+}
+add_filter( 'gform_field_value_primary_agent_name', 'epl_populate_primary_agent_name' );
+
+/**
+ * Gravity Forms: populate a field with the listing unique ID
+ *
+ * Parameter Name property_unique_id.
+ *
+ * @param string $value Field value.
+ *
+ * @return string
+ * @since 3.6
+ */
+function epl_populate_property_unique_id( $value ) {
+	global $property;
+
+	return $property instanceof EPL_Property_Meta ? (string) $property->get_property_meta( 'property_unique_id' ) : '';
+}
+add_filter( 'gform_field_value_property_unique_id', 'epl_populate_property_unique_id' );
+
+/**
+ * Gravity Forms: populate a field with the listing office ID
+ *
+ * Parameter Name property_office_id.
+ *
+ * @param string $value Field value.
+ *
+ * @return string
+ * @since 3.6
+ */
+function epl_populate_property_office_id( $value ) {
+	global $property;
+
+	return $property instanceof EPL_Property_Meta ? (string) $property->get_property_meta( 'property_office_id' ) : '';
+}
+add_filter( 'gform_field_value_property_office_id', 'epl_populate_property_office_id' );

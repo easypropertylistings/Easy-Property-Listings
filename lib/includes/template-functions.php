@@ -3406,16 +3406,25 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
  * @since 3.1.5
  * @since 3.4.48 Added new class for the message removed incorrect class name.
  * @since 3.5 Tweak: Shortcode results message allow basic html.
+ * @since 3.6 The title filters receive the shortcode. New epl_shortcode_results_message_text filter adds a line under the title (empty by default, so output is unchanged) and epl_shortcode_results_message_html filters the whole message.
  */
 function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 
-	$title = apply_filters( 'epl_shortcode_results_message_title', __( 'Nothing found, please check back later.', 'easy-property-listings' ) );
+	$title = apply_filters( 'epl_shortcode_results_message_title', __( 'Nothing found, please check back later.', 'easy-property-listings' ), $shortcode );
 
 	if ( 'open' === $shortcode ) {
-		$title = apply_filters( 'epl_shortcode_results_message_title_open', __( 'Nothing currently scheduled for inspection, please check back later.', 'easy-property-listings' ) );
+		$title = apply_filters( 'epl_shortcode_results_message_title_open', __( 'Nothing currently scheduled for inspection, please check back later.', 'easy-property-listings' ), $shortcode );
 	}
 
-	echo '<h3 class="epl-alert epl-shortcode-results-message epl-shortcode-results-message-' . esc_attr( $shortcode ) . '">' . wp_kses_post( $title ) . '</h3>';
+	$text = apply_filters( 'epl_shortcode_results_message_text', '', $shortcode );
+
+	$html = '<h3 class="epl-alert epl-shortcode-results-message epl-shortcode-results-message-' . esc_attr( $shortcode ) . '">' . wp_kses_post( $title ) . '</h3>';
+
+	if ( '' !== (string) $text ) {
+		$html .= '<p class="epl-shortcode-results-message-text epl-shortcode-results-message-text-' . esc_attr( $shortcode ) . '">' . wp_kses_post( $text ) . '</p>';
+	}
+
+	echo wp_kses_post( apply_filters( 'epl_shortcode_results_message_html', $html, $shortcode, $title, $text ) );
 }
 add_action( 'epl_shortcode_results_message', 'epl_shortcode_results_message_callback' );
 
@@ -3455,6 +3464,7 @@ add_action( 'epl_property_search_not_found', 'epl_property_search_not_found_call
  *
  * @since 3.1.16
  * @since 3.4.23 Added compatibility class.
+ * @since 3.6 Added epl-status-auction for listings with an auction authority (commercial uses the commercial authority).
  */
 function epl_property_post_class_listing_status_callback( $classes ) {
 
@@ -3463,6 +3473,7 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 		$property_status      = get_property_meta( 'property_status' );
 		$property_under_offer = get_property_meta( 'property_under_offer' );
 		$commercial_type      = get_property_meta( 'property_com_listing_type' );
+		$authority            = 'commercial' === get_post_type() ? get_property_meta( 'property_com_authority' ) : get_property_meta( 'property_authority' );
 		$class_prefix         = 'epl-status-';
 
 		if ( ! empty( $property_status ) ) {
@@ -3470,6 +3481,9 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 		}
 		if ( 'yes' === $property_under_offer && 'sold' !== $property_status ) {
 			$classes[] = $class_prefix . 'under-offer';
+		}
+		if ( 'auction' === $authority ) {
+			$classes[] = $class_prefix . 'auction';
 		}
 		if ( ! empty( $commercial_type ) ) {
 			$class_prefix = 'epl-commercial-type-';
