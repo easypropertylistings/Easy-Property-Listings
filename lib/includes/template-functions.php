@@ -3217,6 +3217,7 @@ function epl_esc_attr( $value ) {
  *
  * @since      2.2.0
  * @since      3.4.38 PHP 8.0 fix.
+ * @since      3.6 Fix: Slow query. The second agent meta is only joined when counting an author's listings, on the property_second_agent key, instead of every meta row of every listing.
  */
 function epl_get_post_count( $type, $meta_key, $meta_value, $author_id = '' ) {
 	global $wpdb;
@@ -3244,9 +3245,8 @@ function epl_get_post_count( $type, $meta_key, $meta_value, $author_id = '' ) {
 		$user_info  = get_userdata( $author_id );
 		$user_login = $user_info ? $user_info->user_login : '';
 
-		$where[]        = '( p.post_author = %d OR ( pm2.meta_key = %s AND pm2.meta_value = %s ) )';
+		$where[]        = '( p.post_author = %d OR pm2.meta_value = %s )';
 		$prepare_args[] = $author_id;
-		$prepare_args[] = 'property_second_agent';
 		$prepare_args[] = $user_login;
 	}
 
@@ -3256,11 +3256,15 @@ function epl_get_post_count( $type, $meta_key, $meta_value, $author_id = '' ) {
 	$where[]        = 'pm.meta_value = %s';
 	$prepare_args[] = $meta_value;
 
+	// The second agent is only joined when counting an author's listings, on its own key.
+	// Joining every meta row of every listing made this count slow.
+	$second_agent_join = empty( $author_id ) ? '' : "LEFT JOIN {$wpdb->postmeta} pm2 ON ( p.ID = pm2.post_id AND pm2.meta_key = 'property_second_agent' )";
+
 	$sql = "
 		SELECT count( Distinct p.ID ) AS count
 		FROM {$wpdb->posts} AS p
 		INNER JOIN {$wpdb->postmeta} pm  ON (p.ID = pm.post_id)
-		INNER JOIN {$wpdb->postmeta} pm2  ON (p.ID = pm2.post_id)
+		{$second_agent_join}
 		WHERE " . implode( ' AND ', $where );
 
 	$count = $wpdb->get_row( $wpdb->prepare( $sql, $prepare_args ) ); //phpcs:ignore

@@ -94,6 +94,7 @@ add_filter( 'epl_contact_tabs', 'epl_register_delete_contact_tab', PHP_INT_MAX, 
  *
  * @return string|void
  * @since  3.0
+ * @since  3.6 Fix: Linked to the newest contact instead of the next one (sorted highest ID first). Selects only the ID.
  */
 function epl_get_next_contact_link( $contact_id ) {
 	if ( absint( $contact_id ) < 1 ) {
@@ -110,10 +111,10 @@ function epl_get_next_contact_link( $contact_id ) {
 	$where = apply_filters( 'epl_get_next_contact_link_query', $where );
 
 	$query = "
-		SELECT *
+		SELECT `ID`
 		FROM {$wpdb->prefix}posts
 		WHERE " . $where . '
-		ORDER BY `ID` DESC
+		ORDER BY `ID` ASC
 		LIMIT 1
 	';
 	// phpcs:ignore WordPress.DB
@@ -131,6 +132,7 @@ function epl_get_next_contact_link( $contact_id ) {
  *
  * @return string|void
  * @since  3.0
+ * @since  3.6 Selects only the ID.
  */
 function epl_get_prev_contact_link( $contact_id ) {
 
@@ -148,7 +150,7 @@ function epl_get_prev_contact_link( $contact_id ) {
 	$where = apply_filters( 'epl_get_prev_contact_link_query', $where );
 
 	$query = "
-		SELECT *
+		SELECT `ID`
 		FROM {$wpdb->prefix}posts
 		WHERE " . $where . '
 		ORDER BY `ID` DESC
