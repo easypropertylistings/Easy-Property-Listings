@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.6\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2026-11-14 12:31:46+00:00\n"
+"POT-Creation-Date: 2026-11-14 12:58:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -56,7 +56,7 @@ msgstr ""
 
 #: lib/compatibility/functions-compat.php:461
 #: lib/includes/class-epl-author.php:950 lib/includes/options-front-end.php:32
-#: lib/includes/template-functions.php:586
+#: lib/includes/template-functions.php:592
 #: lib/widgets/class-epl-widget-recent-property.php:62
 #: lib/widgets/class-epl-widget-recent-property.php:264
 msgid "Read More"
@@ -141,7 +141,7 @@ msgstr ""
 
 #: lib/includes/admin/admin-functions.php:87
 #: lib/includes/admin/admin-functions.php:182
-#: lib/includes/admin/menus/class-epl-welcome.php:665
+#: lib/includes/admin/menus/class-epl-welcome.php:677
 msgid "Advanced Mapping"
 msgstr ""
 
@@ -543,7 +543,8 @@ msgstr ""
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:70
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:233
 #: lib/includes/class-epl-author.php:312 lib/includes/class-epl-author.php:363
-#: lib/includes/functions.php:2519 lib/includes/template-functions.php:2144
+#: lib/includes/functions.php:2519 lib/includes/template-functions.php:2150
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-contact.php:39
 #: lib/post-types/post-type-contact.php:38
 #: lib/post-types/post-type-contact.php:39
 msgid "Contact"
@@ -759,9 +760,9 @@ msgstr ""
 #: lib/includes/admin/contacts/contact-actions.php:1077
 #: lib/includes/admin/contacts/contacts.php:439
 #: lib/includes/admin/help-single.php:52
-#: lib/includes/admin/menus/class-epl-welcome.php:455
+#: lib/includes/admin/menus/class-epl-welcome.php:467
 #: lib/includes/admin/menus/menu-help.php:131
-#: lib/includes/template-functions.php:1774
+#: lib/includes/template-functions.php:1780
 #: lib/meta-boxes/meta-box-init.php:1444 lib/meta-boxes/meta-box-init.php:1459
 #: lib/meta-boxes/meta-box-init.php:1474 lib/meta-boxes/meta-box-init.php:1516
 #: lib/meta-boxes/meta-box-init.php:1531 lib/meta-boxes/meta-box-init.php:1547
@@ -775,6 +776,7 @@ msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1078
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:194
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:40
 #: lib/post-types/post-type-business.php:104
 #: lib/post-types/post-type-commercial-land.php:104
 #: lib/post-types/post-type-commercial.php:104
@@ -820,23 +822,27 @@ msgstr ""
 #: lib/includes/admin/contacts/contact-actions.php:1222
 #: lib/includes/admin/contacts/contacts.php:569
 #: lib/meta-boxes/meta-box-init.php:853
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:356
 msgid "Street Number"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1229
 #: lib/includes/admin/contacts/contacts.php:576
 #: lib/meta-boxes/meta-box-init.php:860
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:357
 msgid "Street Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1257
 #: lib/includes/admin/contacts/contacts.php:604
-#: lib/meta-boxes/meta-box-init.php:906 lib/widgets/widget-functions.php:127
-#: lib/widgets/widget-functions.php:467
+#: lib/meta-boxes/meta-box-init.php:906
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:362
+#: lib/widgets/widget-functions.php:127 lib/widgets/widget-functions.php:467
 msgid "Country"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1263
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:106
 msgid "Full Address"
 msgstr ""
 
@@ -1001,6 +1007,7 @@ msgid "Linked In"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:565 lib/includes/functions.php:1161
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:40
 #: lib/post-types/post-type-business.php:100
 #: lib/post-types/post-type-commercial-land.php:100
 #: lib/post-types/post-type-commercial.php:100
@@ -1013,11 +1020,14 @@ msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:583 lib/includes/functions.php:1171
 #: lib/includes/install.php:42 lib/includes/install.php:43
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:358
 msgid "Suburb"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:590 lib/includes/functions.php:1197
-#: lib/includes/install.php:45 lib/updates/epl-2.2.php:19
+#: lib/includes/install.php:45
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:360
+#: lib/updates/epl-2.2.php:19
 msgid "State"
 msgstr ""
 
@@ -1465,81 +1475,63 @@ msgstr ""
 msgid "The people that build Easy Property Listings"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:169
+#: lib/includes/admin/menus/class-epl-welcome.php:181
 #: lib/includes/admin/menus/menu-help.php:43
 msgid "What's New"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:172
+#: lib/includes/admin/menus/class-epl-welcome.php:184
 #: lib/includes/admin/menus/menu-general.php:91
 #: lib/includes/admin/menus/menu-help.php:44 lib/includes/admin/plugins.php:51
 msgid "Getting Started"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:175
+#: lib/includes/admin/menus/class-epl-welcome.php:187
 msgid "Credits"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:191
+#: lib/includes/admin/menus/class-epl-welcome.php:203
 msgid "No valid changelog was found."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:221
+#: lib/includes/admin/menus/class-epl-welcome.php:233
 msgid "Search up to 48 times faster"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:222
+#: lib/includes/admin/menus/class-epl-welcome.php:234
 msgid ""
 "Search pages, dropdowns and listing counts load in a fraction of the time, "
 "with the same results."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:225
+#: lib/includes/admin/menus/class-epl-welcome.php:237
 msgid "Under Offer keeps the price"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:226
+#: lib/includes/admin/menus/class-epl-welcome.php:238
 msgid ""
 "Under offer listings show their advertised price, as NSW underquoting rules "
 "require. Change it in Settings > Labels."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:229
+#: lib/includes/admin/menus/class-epl-welcome.php:241
 msgid "One listing shortcode"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:230
+#: lib/includes/admin/menus/class-epl-welcome.php:242
 msgid ""
 "[listing] now does everything [listing_advanced] does: features, locations, "
 "open homes, auctions and more."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:233
+#: lib/includes/admin/menus/class-epl-welcome.php:245
 msgid "Elementor widgets (beta)"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:234
+#: lib/includes/admin/menus/class-epl-welcome.php:246
 msgid ""
 "Design single listing, archive and agent templates in Elementor with 30 "
 "Easy Property Listings widgets."
-msgstr ""
-
-#: lib/includes/admin/menus/class-epl-welcome.php:263
-#: lib/includes/admin/menus/class-epl-welcome.php:339
-#: lib/includes/admin/menus/class-epl-welcome.php:703
-#. Translators: %s is the version number.
-#. Translators: %s is a version number.
-msgid "Welcome to Easy Property Listings %s"
-msgstr ""
-
-#: lib/includes/admin/menus/class-epl-welcome.php:269
-#: lib/includes/admin/menus/class-epl-welcome.php:345
-#: lib/includes/admin/menus/class-epl-welcome.php:709
-#. Translators: %s is the version number.
-#. Translators: %s is a version number.
-msgid ""
-"Thank you for updating to the latest version! Easy Property Listings %s is "
-"ready to make your real estate website faster, safer and better!"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:275
@@ -1547,109 +1539,127 @@ msgstr ""
 #: lib/includes/admin/menus/class-epl-welcome.php:715
 #. Translators: %s is the version number.
 #. Translators: %s is a version number.
+msgid "Welcome to Easy Property Listings %s"
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-welcome.php:281
+#: lib/includes/admin/menus/class-epl-welcome.php:357
+#: lib/includes/admin/menus/class-epl-welcome.php:721
+#. Translators: %s is the version number.
+#. Translators: %s is a version number.
+msgid ""
+"Thank you for updating to the latest version! Easy Property Listings %s is "
+"ready to make your real estate website faster, safer and better!"
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-welcome.php:287
+#: lib/includes/admin/menus/class-epl-welcome.php:363
+#: lib/includes/admin/menus/class-epl-welcome.php:727
+#. Translators: %s is the version number.
+#. Translators: %s is a version number.
 msgid "Version %s"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:285
+#: lib/includes/admin/menus/class-epl-welcome.php:297
 #. Translators: %s is the version number.
 msgid "What's New in %s"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:302
+#: lib/includes/admin/menus/class-epl-welcome.php:314
 #. Translators: %s is the version number.
 msgid "See everything new in %s"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:311
-#: lib/includes/admin/menus/class-epl-welcome.php:377
+#: lib/includes/admin/menus/class-epl-welcome.php:323
+#: lib/includes/admin/menus/class-epl-welcome.php:389
 #: lib/includes/admin/menus/menu-help.php:45
 msgid "Full Change Log"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:319
+#: lib/includes/admin/menus/class-epl-welcome.php:331
 msgid "Go to Easy Property Listings Settings"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:358
+#: lib/includes/admin/menus/class-epl-welcome.php:370
 msgid "Real Estate Tools for WordPress"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:366
+#: lib/includes/admin/menus/class-epl-welcome.php:378
 msgid "Quick Start Guide"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:368
+#: lib/includes/admin/menus/class-epl-welcome.php:380
 msgid ""
 "Use the tips below to get started using Easy Property Listings. You will be "
 "up and running in no time!"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:372
+#: lib/includes/admin/menus/class-epl-welcome.php:384
 msgid "Activate the listing types you need & configure the plugin general settings"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:373
-#: lib/includes/admin/menus/class-epl-welcome.php:415
+#: lib/includes/admin/menus/class-epl-welcome.php:385
+#: lib/includes/admin/menus/class-epl-welcome.php:427
 msgid "Create a blank page for each activated listing type"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:374
+#: lib/includes/admin/menus/class-epl-welcome.php:386
 msgid "Publish your first listing for testing your theme setup"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:376
+#: lib/includes/admin/menus/class-epl-welcome.php:388
 msgid "Setup your theme to work with the plugin"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:378
+#: lib/includes/admin/menus/class-epl-welcome.php:390
 #: lib/includes/admin/menus/menu-help.php:48
 msgid "Visit Support"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:385
+#: lib/includes/admin/menus/class-epl-welcome.php:397
 msgid "Activate the listing types you need"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:391
+#: lib/includes/admin/menus/class-epl-welcome.php:403
 msgid ""
 "Visit the general settings page and enable the listing types you need. Once "
 "you have pressed save visit the Permalinks page to re-fresh your sites "
 "permalinks."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:393
+#: lib/includes/admin/menus/class-epl-welcome.php:405
 msgid ""
 "Instead of classifying everything as a property, Easy Property Listings "
 "allows you to separate the different listing types which is better for SEO "
 "and RSS feeds."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:395
+#: lib/includes/admin/menus/class-epl-welcome.php:407
 msgid "Supported Listing Types"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:397
+#: lib/includes/admin/menus/class-epl-welcome.php:409
 #: lib/includes/functions.php:278
 msgid "Property (Residential)"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:398
+#: lib/includes/admin/menus/class-epl-welcome.php:410
 #: lib/includes/functions.php:280 lib/includes/functions.php:1427
 #: lib/includes/functions.php:1429 lib/post-types/post-type-rental.php:39
 #: lib/updates/epl-1.3.1.php:19
 msgid "Rental"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:399
+#: lib/includes/admin/menus/class-epl-welcome.php:411
 #: lib/includes/functions.php:279 lib/includes/functions.php:1421
 #: lib/includes/functions.php:1423 lib/includes/install.php:56
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:577
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:599
 #: lib/post-types/post-type-land.php:38 lib/post-types/post-type-land.php:39
 #: lib/post-types/post-type-land.php:40 lib/updates/epl-1.3.1.php:18
 msgid "Land"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:400
+#: lib/includes/admin/menus/class-epl-welcome.php:412
 #: lib/includes/functions.php:281 lib/includes/functions.php:1433
 #: lib/includes/functions.php:1435 lib/includes/install.php:58
 #: lib/post-types/post-type-rural.php:38 lib/post-types/post-type-rural.php:39
@@ -1657,7 +1667,7 @@ msgstr ""
 msgid "Rural"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:401
+#: lib/includes/admin/menus/class-epl-welcome.php:413
 #: lib/includes/functions.php:282 lib/includes/functions.php:825
 #: lib/includes/functions.php:1439 lib/includes/functions.php:1441
 #: lib/includes/install.php:60 lib/post-types/post-type-commercial.php:40
@@ -1665,27 +1675,27 @@ msgstr ""
 msgid "Commercial"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:402
+#: lib/includes/admin/menus/class-epl-welcome.php:414
 #: lib/includes/functions.php:283 lib/includes/functions.php:1445
 #: lib/includes/functions.php:1447 lib/includes/install.php:61
 #: lib/post-types/post-type-commercial-land.php:40 lib/updates/epl-1.3.1.php:23
 msgid "Commercial Land"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:403
+#: lib/includes/admin/menus/class-epl-welcome.php:415
 #: lib/includes/functions.php:284 lib/includes/functions.php:1451
 #: lib/includes/functions.php:1453 lib/includes/install.php:59
 #: lib/post-types/post-type-business.php:40 lib/updates/epl-1.3.1.php:21
 msgid "Business"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:420
+#: lib/includes/admin/menus/class-epl-welcome.php:432
 msgid ""
 "Doing this allows you to add \"Property\", \"Land\" and \"Rental\" pages to "
 "your WordPress menu. Add a new page for each listing type you activated."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:422
+#: lib/includes/admin/menus/class-epl-welcome.php:434
 msgid ""
 "For example, lets say you have activated: Property, Rental and Land. Create "
 "three pages, one called \"Property\", another \"Land\" and the third "
@@ -1693,45 +1703,45 @@ msgid ""
 "property, rental and land."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:424
+#: lib/includes/admin/menus/class-epl-welcome.php:436
 msgid ""
 "Publish a test \"Property Listing\" and visit your new property page and "
 "you will see the new property and others you have created."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:426
+#: lib/includes/admin/menus/class-epl-welcome.php:438
 msgid ""
 "Now you can rename them to whatever you like eg: \"For Sale\", \"For Rent\" "
 "etc, but leave the slug/permalink as it was,"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:426
+#: lib/includes/admin/menus/class-epl-welcome.php:438
 msgid "this is very important."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:439
+#: lib/includes/admin/menus/class-epl-welcome.php:451
 msgid "Publish Your First Listing"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:449
+#: lib/includes/admin/menus/class-epl-welcome.php:461
 msgid "Title & Author"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:456
+#: lib/includes/admin/menus/class-epl-welcome.php:468
 msgid "Use the full listing address as the title."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:458
+#: lib/includes/admin/menus/class-epl-welcome.php:470
 msgid ""
 "When a property is being sold the \"heading\" is frequently changed and can "
 "cause permalink issues. Not to mention the search engine benefits."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:460
+#: lib/includes/admin/menus/class-epl-welcome.php:472
 msgid "Author or Primary Real Estate Agent"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:461
+#: lib/includes/admin/menus/class-epl-welcome.php:473
 msgid ""
 "Select the author to show the name of the agent who has listed the property "
 "with their contact details. For best results each real estate agent should "
@@ -1739,26 +1749,27 @@ msgid ""
 "details on the listing and in widgets."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:470
+#: lib/includes/admin/menus/class-epl-welcome.php:482
 msgid "Gallery and Featured Image"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:476
+#: lib/includes/admin/menus/class-epl-welcome.php:488
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-gallery.php:40
 msgid "Gallery"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:477
+#: lib/includes/admin/menus/class-epl-welcome.php:489
 #: lib/includes/admin/menus/menu-help.php:153
 msgid ""
 "Add a gallery of images to your listings with the WordPress Add Media "
 "button."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:479
+#: lib/includes/admin/menus/class-epl-welcome.php:491
 msgid "You can automatically output a gallery from the Display options page."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:481
+#: lib/includes/admin/menus/class-epl-welcome.php:493
 msgid ""
 "If set to automatic, just upload your images to the listing and press x to "
 "close the media upload box once the images are attached to the listing. You "
@@ -1766,17 +1777,17 @@ msgid ""
 "Display options."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:483
+#: lib/includes/admin/menus/class-epl-welcome.php:495
 msgid "Gallery Light Box"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:484
+#: lib/includes/admin/menus/class-epl-welcome.php:496
 msgid ""
 "Using a light box plug-in like Easy FancyBox, your automatic gallery images "
 "will use the light box effect."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:495
+#: lib/includes/admin/menus/class-epl-welcome.php:507
 #: lib/includes/admin/menus/menu-help.php:166
 #: lib/meta-boxes/meta-box-init.php:43
 #: lib/post-types/post-type-business.php:101
@@ -1789,55 +1800,57 @@ msgstr ""
 msgid "Listing Details"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:501
+#: lib/includes/admin/menus/class-epl-welcome.php:513
 #: lib/includes/admin/menus/menu-help.php:168
 #: lib/meta-boxes/meta-box-init.php:55
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:42
 msgid "Heading"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:502
+#: lib/includes/admin/menus/class-epl-welcome.php:514
 #: lib/includes/admin/menus/menu-help.php:169
 msgid "Enter the descriptive listing headline like \"Great Property with Views\"."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:504
+#: lib/includes/admin/menus/class-epl-welcome.php:516
 #: lib/includes/admin/menus/menu-help.php:171
 #: lib/meta-boxes/meta-box-init.php:87 lib/post-types/post-types.php:96
 msgid "Second Listing Agent"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:505
+#: lib/includes/admin/menus/class-epl-welcome.php:517
 #: lib/includes/admin/menus/menu-help.php:172
 msgid ""
 "If the listing has two real estate agents marketing it, enter their "
 "WordPress user name here. The primary agent is the post Author."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:507
+#: lib/includes/admin/menus/class-epl-welcome.php:519
 #: lib/includes/admin/menus/menu-help.php:174
 #: lib/meta-boxes/meta-box-init.php:242
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-inspection.php:40
 #: lib/widgets/class-epl-widget-recent-property.php:529
 msgid "Inspection Times"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:508
+#: lib/includes/admin/menus/class-epl-welcome.php:520
 msgid ""
 "Now supports multiple inspection times, add one per line. Past inspection "
 "dates will not display when using the new format."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:510
+#: lib/includes/admin/menus/class-epl-welcome.php:522
 msgid ""
 "The output is now wrapped in an iCal format so clicking on the date will "
 "open the users calendar."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:520
+#: lib/includes/admin/menus/class-epl-welcome.php:532
 #: lib/includes/admin/menus/menu-help.php:186
 msgid "Search by location"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:525
+#: lib/includes/admin/menus/class-epl-welcome.php:537
 #: lib/includes/admin/menus/menu-help.php:188
 msgid ""
 "Although the address details are added into the Property Address box the "
@@ -1845,7 +1858,7 @@ msgid ""
 "taxonomy."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:526
+#: lib/includes/admin/menus/class-epl-welcome.php:538
 #: lib/includes/admin/menus/menu-help.php:189
 msgid ""
 "This works like post tags and will populate the search widget/shortcode "
@@ -1853,123 +1866,123 @@ msgid ""
 "listings have that option."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:540
+#: lib/includes/admin/menus/class-epl-welcome.php:552
 msgid "Configure your theme"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:541
+#: lib/includes/admin/menus/class-epl-welcome.php:553
 msgid ""
 "We have done our best to integrate Easy Property Listings with all "
 "WordPress themes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:546
+#: lib/includes/admin/menus/class-epl-welcome.php:558
 #: lib/includes/functions.php:1538
 msgid "Theme Compatibility"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:547
+#: lib/includes/admin/menus/class-epl-welcome.php:559
 msgid ""
 "Once you add a listing and if your page is really wide or your sidebar is "
 "under the content enable Theme Compatibility mode from settings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:549
+#: lib/includes/admin/menus/class-epl-welcome.php:561
 msgid ""
 "Review your listing and if you are seeing double images, hop back over to "
 "Settings page and either disable the theme feature image or the one "
 "provided by Easy Property Listings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:551
+#: lib/includes/admin/menus/class-epl-welcome.php:563
 msgid "Shortcodes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:553
+#: lib/includes/admin/menus/class-epl-welcome.php:565
 msgid ""
 "The featured image settings have no impact on the Easy Property Listings "
 "shortcodes and widgets."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:558
+#: lib/includes/admin/menus/class-epl-welcome.php:570
 msgid "Theme Compatibility not required for some themes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:560
+#: lib/includes/admin/menus/class-epl-welcome.php:572
 msgid "iThemes Builder Themes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:561
+#: lib/includes/admin/menus/class-epl-welcome.php:573
 msgid "Genesis Framework by StudioPress"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:562
+#: lib/includes/admin/menus/class-epl-welcome.php:574
 msgid "Headway Theme Framework"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:563
+#: lib/includes/admin/menus/class-epl-welcome.php:575
 msgid "Twenty 11, 12, 13, 14, 15, 16, 17 &#38; 19 by WordPress."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:564
+#: lib/includes/admin/menus/class-epl-welcome.php:576
 msgid "Divi by Elegant Themes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:565
+#: lib/includes/admin/menus/class-epl-welcome.php:577
 msgid "Many others, add a listing and see how it looks."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:567
+#: lib/includes/admin/menus/class-epl-welcome.php:579
 msgid "We have a selection of pre configured templates here for many popular themes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:567
+#: lib/includes/admin/menus/class-epl-welcome.php:579
 msgid "here"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:575
+#: lib/includes/admin/menus/class-epl-welcome.php:587
 msgid "Advanced instructions"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:578
+#: lib/includes/admin/menus/class-epl-welcome.php:590
 msgid "theme setup instructions can be found here"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:579
+#: lib/includes/admin/menus/class-epl-welcome.php:591
 msgid "custom templates"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:583
+#: lib/includes/admin/menus/class-epl-welcome.php:595
 #. Translators: %s is a link with translated words "theme setup instructions
 #. can be found here".
 msgid "Detailed %s."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:589
+#: lib/includes/admin/menus/class-epl-welcome.php:601
 #. Translators: %s is a link with translated words. "custom templates".
 msgid "How to create your own %s."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:601
+#: lib/includes/admin/menus/class-epl-welcome.php:613
 msgid "Stuck getting your theme to work?"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:602
+#: lib/includes/admin/menus/class-epl-welcome.php:614
 msgid ""
 "Not all themes follow modern WordPress coding standards and these may take "
 "a little more time and experience to get working. If you just can not get "
 "it to work, visit"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:602
+#: lib/includes/admin/menus/class-epl-welcome.php:614
 msgid "premium support"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:602
+#: lib/includes/admin/menus/class-epl-welcome.php:614
 msgid "and fill out a theme support request."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:604
+#: lib/includes/admin/menus/class-epl-welcome.php:616
 msgid ""
 "If the theme is available in the WordPress.org theme directory let us know "
 "the theme name and URL where we can download it in your support ticket. If "
@@ -1978,16 +1991,16 @@ msgid ""
 "site like Dropbox."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:614
+#: lib/includes/admin/menus/class-epl-welcome.php:626
 msgid "Need Help?"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:618
+#: lib/includes/admin/menus/class-epl-welcome.php:630
 msgid "Premium Support"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:622
 #: lib/includes/admin/menus/class-epl-welcome.php:634
+#: lib/includes/admin/menus/class-epl-welcome.php:646
 #. Translators: %s is a link.
 msgid ""
 "We do our best to provide the best support we can. If you encounter a "
@@ -1995,46 +2008,46 @@ msgid ""
 "forums</a>."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:628
+#: lib/includes/admin/menus/class-epl-welcome.php:640
 msgid "Need Even Faster Support?"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:629
+#: lib/includes/admin/menus/class-epl-welcome.php:641
 msgid ""
 "<a href=\"https://easypropertylistings.com.au/support-ticket/\">Priority "
 "Support forums</a> are there for customers that need faster and/or more "
 "in-depth assistance."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:643
+#: lib/includes/admin/menus/class-epl-welcome.php:655
 msgid "Documentation and Short Codes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:644
+#: lib/includes/admin/menus/class-epl-welcome.php:656
 msgid "Read the"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:644
+#: lib/includes/admin/menus/class-epl-welcome.php:656
 msgid "documentation"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:644
+#: lib/includes/admin/menus/class-epl-welcome.php:656
 msgid " and instructions on how to use the included"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:644
+#: lib/includes/admin/menus/class-epl-welcome.php:656
 msgid "shortcodes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:655
+#: lib/includes/admin/menus/class-epl-welcome.php:667
 msgid "Stay Up to Date"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:656
+#: lib/includes/admin/menus/class-epl-welcome.php:668
 msgid "Get Notified of Extension Releases"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:657
+#: lib/includes/admin/menus/class-epl-welcome.php:669
 msgid ""
 "New extensions that make Easy Property Listings even more powerful are "
 "released nearly every single week. Subscribe to the newsletter to stay up "
@@ -2042,50 +2055,50 @@ msgid ""
 "target=\"_blank\">Sign up now</a> to ensure you do not miss a release!"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:659
+#: lib/includes/admin/menus/class-epl-welcome.php:671
 msgid "Get Alerted About New Tutorials"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:660
+#: lib/includes/admin/menus/class-epl-welcome.php:672
 msgid ""
 "<a href=\"http://eepurl.com/TRO9f\" target=\"_blank\">Sign up now</a> to "
 "hear about the latest tutorial releases that explain how to take Easy "
 "Property Listings further."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:663
+#: lib/includes/admin/menus/class-epl-welcome.php:675
 msgid "Sliders"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:664
+#: lib/includes/admin/menus/class-epl-welcome.php:676
 msgid "Brochures"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:666
+#: lib/includes/admin/menus/class-epl-welcome.php:678
 msgid "Testimonial Manager"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:667
+#: lib/includes/admin/menus/class-epl-welcome.php:679
 msgid "Agent/Staff Directory"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:668
+#: lib/includes/admin/menus/class-epl-welcome.php:680
 msgid "Location Profiles"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:669
+#: lib/includes/admin/menus/class-epl-welcome.php:681
 msgid "Add-On Store"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:671
+#: lib/includes/admin/menus/class-epl-welcome.php:683
 msgid "Extend With Extensions"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:672
+#: lib/includes/admin/menus/class-epl-welcome.php:684
 msgid "18 Extensions and many more coming"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:676
+#: lib/includes/admin/menus/class-epl-welcome.php:688
 #. Translators: %1$s, %2$s, %3$s, %4$s, %5$s, %6$s, %7$s are link s to
 #. extensions.
 msgid ""
@@ -2095,28 +2108,28 @@ msgid ""
 "real estate website."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:680
+#: lib/includes/admin/menus/class-epl-welcome.php:692
 msgid "Visit the Extension Store"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:681
+#: lib/includes/admin/menus/class-epl-welcome.php:693
 msgid "The Extensions store"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:681
+#: lib/includes/admin/menus/class-epl-welcome.php:693
 msgid ""
 "has a list of all available extensions to make your real estate website "
 "even better."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:721
+#: lib/includes/admin/menus/class-epl-welcome.php:733
 msgid ""
 "Easy Property Listings is created by a worldwide team of developers who aim "
 "to provide the #1 property listings platform for managing your real estate "
 "business through WordPress."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-welcome.php:751
+#: lib/includes/admin/menus/class-epl-welcome.php:763
 #: lib/includes/class-epl-cpt.php:428 lib/includes/class-epl-cpt.php:430
 #: lib/includes/class-epl-cpt.php:542
 #. Translators: %s is username form GitHub.
@@ -2279,6 +2292,7 @@ msgid ""
 msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:149
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:40
 #: lib/post-types/post-type-commercial.php:98
 msgid "Featured Image"
 msgstr ""
@@ -2508,7 +2522,7 @@ msgstr ""
 
 #: lib/includes/admin/reports/reports.php:139
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:202
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:116
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:136
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:133
 msgid "Show"
 msgstr ""
@@ -2598,7 +2612,7 @@ msgid "Admin Note"
 msgstr ""
 
 #: lib/includes/class-epl-contact.php:747
-#: lib/includes/template-functions.php:3364
+#: lib/includes/template-functions.php:3370
 #: lib/shortcodes/class-epl-listing-elements.php:76
 msgid "Listing"
 msgstr ""
@@ -2767,7 +2781,7 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:1176
 #: lib/includes/class-epl-property-meta.php:1218
 #: lib/includes/functions.php:2770 lib/includes/functions.php:2808
-#: lib/includes/functions.php:2875 lib/includes/template-functions.php:2491
+#: lib/includes/functions.php:2875 lib/includes/template-functions.php:2497
 #: lib/widgets/widget-admin-dashboard.php:184
 #: lib/widgets/widget-admin-dashboard.php:238
 msgid "Auction"
@@ -2811,8 +2825,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:1237
 #: lib/includes/class-epl-property-meta.php:1436
 #: lib/includes/functions.php:2807 lib/includes/functions.php:2874
-#: lib/includes/template-functions.php:3945
-#: lib/includes/template-functions.php:3977
+#: lib/includes/template-functions.php:3951
+#: lib/includes/template-functions.php:3983
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:88
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:90
 msgid "For Sale"
@@ -2830,8 +2844,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:1281
 #: lib/includes/class-epl-property-meta.php:1445
 #: lib/includes/class-epl-property-meta.php:1447
-#: lib/includes/template-functions.php:3925
-#: lib/includes/template-functions.php:3988
+#: lib/includes/template-functions.php:3931
+#: lib/includes/template-functions.php:3994
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:89
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:91
 msgid "For Lease"
@@ -2868,7 +2882,7 @@ msgstr ""
 #: lib/meta-boxes/meta-box-init.php:326
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:176
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:260
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:590
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:612
 #: lib/widgets/widget-functions.php:177 lib/widgets/widget-functions.php:661
 msgid "Rooms"
 msgstr ""
@@ -2897,7 +2911,7 @@ msgstr ""
 #: lib/meta-boxes/meta-box-init.php:352
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:177
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:261
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:596
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:618
 #: lib/widgets/widget-functions.php:845
 msgid "Pool"
 msgstr ""
@@ -2908,7 +2922,7 @@ msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:2039
 #: lib/includes/class-epl-property-meta.php:2111
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:622
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:644
 #: lib/post-types/post-types.php:384
 msgid "m&#178;"
 msgstr ""
@@ -3125,6 +3139,7 @@ msgstr ""
 
 #: lib/includes/functions.php:669 lib/includes/functions.php:687
 #: lib/includes/functions.php:1190 lib/includes/install.php:44
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:359
 #: lib/updates/epl-2.2.php:18
 msgid "City"
 msgstr ""
@@ -3472,7 +3487,7 @@ msgstr ""
 #: lib/includes/functions.php:1290 lib/includes/functions.php:1867
 #: lib/includes/functions.php:2696 lib/includes/functions.php:2869
 #: lib/includes/install.php:53
-#: lib/page-builders/elementor/class-epl-elementor.php:432
+#: lib/page-builders/elementor/class-epl-elementor.php:461
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:94
 #: lib/updates/epl-2.1.11.php:18
 msgid "Sold"
@@ -3485,7 +3500,7 @@ msgstr ""
 #: lib/includes/functions.php:1297 lib/includes/functions.php:1893
 #: lib/includes/functions.php:2700 lib/includes/functions.php:2870
 #: lib/includes/install.php:52
-#: lib/page-builders/elementor/class-epl-elementor.php:433
+#: lib/page-builders/elementor/class-epl-elementor.php:462
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:95
 #: lib/updates/epl-2.1.php:18
 msgid "Leased"
@@ -3562,15 +3577,17 @@ msgstr ""
 msgid "Listing view type"
 msgstr ""
 
-#: lib/includes/functions.php:1382 lib/includes/template-functions.php:1886
+#: lib/includes/functions.php:1382 lib/includes/template-functions.php:1892
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:240
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:222
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:87
 #: lib/widgets/class-epl-widget-recent-property.php:435
 msgid "List"
 msgstr ""
 
-#: lib/includes/functions.php:1383 lib/includes/template-functions.php:1888
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:248
+#: lib/includes/functions.php:1383 lib/includes/template-functions.php:1894
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:236
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:304
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:213
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:221
 msgid "Grid"
@@ -3600,7 +3617,7 @@ msgstr ""
 
 #: lib/includes/functions.php:1409 lib/includes/functions.php:1411
 #: lib/includes/install.php:54
-#: lib/page-builders/elementor/class-epl-elementor.php:430
+#: lib/page-builders/elementor/class-epl-elementor.php:459
 #: lib/updates/epl-3.3.php:20 lib/widgets/widget-functions.php:29
 msgid "All"
 msgstr ""
@@ -3834,7 +3851,7 @@ msgstr ""
 #: lib/meta-boxes/meta-box-init.php:1130 lib/meta-boxes/meta-box-init.php:1139
 #: lib/meta-boxes/meta-box-init.php:1303 lib/meta-boxes/meta-box-init.php:1321
 #: lib/meta-boxes/meta-box-init.php:1409
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:427
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:570
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-search.php:179
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:119
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:152
@@ -3853,13 +3870,12 @@ msgstr ""
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:104
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-photo.php:106
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:92
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:104
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-features.php:93
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:108
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:120
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:211
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:595
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:601
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:617
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:623
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:110
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:133
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:175
@@ -4001,18 +4017,18 @@ msgid "Under Contract"
 msgstr ""
 
 #: lib/includes/functions.php:2694
-#: lib/page-builders/elementor/class-epl-elementor.php:431
+#: lib/page-builders/elementor/class-epl-elementor.php:460
 msgid "Current"
 msgstr ""
 
 #: lib/includes/functions.php:2703
-#: lib/page-builders/elementor/class-epl-elementor.php:434
+#: lib/page-builders/elementor/class-epl-elementor.php:463
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:96
 msgid "Withdrawn"
 msgstr ""
 
 #: lib/includes/functions.php:2704
-#: lib/page-builders/elementor/class-epl-elementor.php:435
+#: lib/page-builders/elementor/class-epl-elementor.php:464
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:97
 msgid "Off Market"
 msgstr ""
@@ -4181,8 +4197,10 @@ msgid "..."
 msgstr ""
 
 #: lib/includes/pagination.php:248
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:223
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:258
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:309
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:200
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:33
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:69
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:92
 msgid "Pagination"
@@ -4204,144 +4222,146 @@ msgstr ""
 msgid "&laquo; Previous Page"
 msgstr ""
 
-#: lib/includes/template-functions.php:994
-#: lib/includes/template-functions.php:1509
+#: lib/includes/template-functions.php:1000
+#: lib/includes/template-functions.php:1515
 #: lib/meta-boxes/meta-box-init.php:1300
 msgid "Plus Outgoings"
 msgstr ""
 
-#: lib/includes/template-functions.php:1013
+#: lib/includes/template-functions.php:1019
 msgid "Available from"
 msgstr ""
 
-#: lib/includes/template-functions.php:1490
+#: lib/includes/template-functions.php:1496
 msgid "Property Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1569
+#: lib/includes/template-functions.php:1575
 #: lib/meta-boxes/meta-box-init.php:1345
 msgid "Commercial Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1617
+#: lib/includes/template-functions.php:1623
 #: lib/meta-boxes/meta-box-init.php:1150
 msgid "Rural Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1706
+#: lib/includes/template-functions.php:1712
 msgid "Price: High to Low"
 msgstr ""
 
-#: lib/includes/template-functions.php:1714
+#: lib/includes/template-functions.php:1720
 msgid "Price: Low to High"
 msgstr ""
 
-#: lib/includes/template-functions.php:1723
+#: lib/includes/template-functions.php:1729
 msgid "Date: Newest First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1731
+#: lib/includes/template-functions.php:1737
 msgid "Date: Oldest First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1738
+#: lib/includes/template-functions.php:1744
 msgid "Status: Current First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1747
+#: lib/includes/template-functions.php:1753
 msgid "Status: Sold/Leased First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1756
+#: lib/includes/template-functions.php:1762
 msgid ": A-Z"
 msgstr ""
 
-#: lib/includes/template-functions.php:1765
+#: lib/includes/template-functions.php:1771
 msgid ": Z-A"
 msgstr ""
 
-#: lib/includes/template-functions.php:1925
+#: lib/includes/template-functions.php:1931
 msgid "Sort Listings"
 msgstr ""
 
-#: lib/includes/template-functions.php:1927
+#: lib/includes/template-functions.php:1933
 msgid "Sort"
 msgstr ""
 
-#: lib/includes/template-functions.php:2141
+#: lib/includes/template-functions.php:2147
 msgid "About"
 msgstr ""
 
-#: lib/includes/template-functions.php:2142
+#: lib/includes/template-functions.php:2148
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-bio.php:39
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:499
 msgid "Bio"
 msgstr ""
 
-#: lib/includes/template-functions.php:2143
+#: lib/includes/template-functions.php:2149
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-video.php:40
 msgid "Video"
 msgstr ""
 
-#: lib/includes/template-functions.php:3125
+#: lib/includes/template-functions.php:3131
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: lib/includes/template-functions.php:3357
+#: lib/includes/template-functions.php:3363
 #. Translators: term name.
 msgid "Property in %s"
 msgstr ""
 
-#: lib/includes/template-functions.php:3359
+#: lib/includes/template-functions.php:3365
 msgid "Search Result"
 msgstr ""
 
-#: lib/includes/template-functions.php:3437
+#: lib/includes/template-functions.php:3443
 #. Translators: title, page number.
 msgid "Nothing found, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3440
+#: lib/includes/template-functions.php:3446
 msgid "Nothing currently scheduled for inspection, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3464
+#: lib/includes/template-functions.php:3470
 msgid "Listing not Found"
 msgstr ""
 
-#: lib/includes/template-functions.php:3465
+#: lib/includes/template-functions.php:3471
 msgid "Listing not found, expand your search criteria and try again."
 msgstr ""
 
-#: lib/includes/template-functions.php:3636
-#: lib/includes/template-functions.php:3718
-#: lib/includes/template-functions.php:3757
+#: lib/includes/template-functions.php:3642
+#: lib/includes/template-functions.php:3724
+#: lib/includes/template-functions.php:3763
 msgid "There was a problem with your submission."
 msgstr ""
 
-#: lib/includes/template-functions.php:3641
+#: lib/includes/template-functions.php:3647
 msgid "Too many submissions. Please try again later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3646
+#: lib/includes/template-functions.php:3652
 msgid "Email is required."
 msgstr ""
 
-#: lib/includes/template-functions.php:3650
+#: lib/includes/template-functions.php:3656
 msgid "Invalid email."
 msgstr ""
 
-#: lib/includes/template-functions.php:3687
+#: lib/includes/template-functions.php:3693
 msgid "Invalid listing."
 msgstr ""
 
-#: lib/includes/template-functions.php:3699
+#: lib/includes/template-functions.php:3705
 msgid "Enquiry submitted via contact form."
 msgstr ""
 
-#: lib/includes/template-functions.php:3749
+#: lib/includes/template-functions.php:3755
 msgid "Your enquiry has been submitted."
 msgstr ""
 
-#: lib/includes/template-functions.php:3966
+#: lib/includes/template-functions.php:3972
 msgid "For Sale & Lease"
 msgstr ""
 
@@ -4359,6 +4379,7 @@ msgid "Youtube"
 msgstr ""
 
 #: lib/includes/user.php:53
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:39
 msgid "Position"
 msgstr ""
 
@@ -4709,6 +4730,7 @@ msgid "Display Street Address?"
 msgstr ""
 
 #: lib/meta-boxes/meta-box-init.php:874
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:102
 msgid "Display"
 msgstr ""
 
@@ -4995,41 +5017,45 @@ msgid "EPL Archive (Beta)"
 msgstr ""
 
 #: lib/page-builders/elementor/class-epl-elementor.php:207
+msgid "EPL Author (Beta)"
+msgstr ""
+
+#: lib/page-builders/elementor/class-epl-elementor.php:215
 msgid "EPL Staff Directory (Beta)"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:907
+#: lib/page-builders/elementor/class-epl-elementor.php:943
 msgid "Pagination Renderer"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:911
+#: lib/page-builders/elementor/class-epl-elementor.php:947
 msgid "Elementor"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:912
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:228
+#: lib/page-builders/elementor/class-epl-elementor.php:948
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:263
 msgid "EPL"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:922
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:235
+#: lib/page-builders/elementor/class-epl-elementor.php:958
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:270
 msgid "EPL Pagination Type"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:926
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:239
+#: lib/page-builders/elementor/class-epl-elementor.php:962
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:274
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:77
 msgid "Fancy"
 msgstr ""
 
-#: lib/page-builders/elementor/class-epl-elementor.php:927
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:240
+#: lib/page-builders/elementor/class-epl-elementor.php:963
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:275
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:78
 msgid "WordPress Default"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:33
-msgid "EPL Listing Advanced"
+msgid "Listings Loop"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:69
@@ -5207,6 +5233,7 @@ msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:194
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:139
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-price.php:40
 #: lib/post-types/post-type-business.php:99
 #: lib/post-types/post-type-commercial-land.php:99
 #: lib/post-types/post-type-commercial.php:99
@@ -5295,40 +5322,147 @@ msgstr ""
 msgid "Loop Template"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:218
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:220
+msgid "List View Loop Template"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:224
+msgid ""
+"Optional. When set, this template is shown while the archive is in List "
+"view; the Loop Template above is used for Grid view. Requires Archive Tools "
+"(the grid/list switch) to be enabled so visitors can toggle."
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:231
+msgid "Editor Preview View"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:245
+msgid ""
+"Preview only — choose which template shows on the editor canvas. The live "
+"site uses the visitor’s grid/list selection."
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:253
 msgid "Archive Tools Above"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:219
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:254
 msgid "Archive Tools Below"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:227
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:262
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:305
 msgid "None"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:245
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:188
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:234
-msgid "Columns"
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:280
+msgid "Grid Columns"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:249
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:285
+msgid "List Columns"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:291
+msgid "Columns used while the archive is in List view."
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:305
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:220
 msgid "Column Gap"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:250
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:306
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:230
 msgid "Row Gap"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:331
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:313
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:96
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-bio.php:125
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:145
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:103
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:247
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:230
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-buttons.php:102
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:109
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:131
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:142
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:456
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:152
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-price.php:130
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:217
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:100
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-title.php:153
+msgid "Alignment"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:316
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:99
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-bio.php:129
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:149
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:107
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:251
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:234
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-buttons.php:106
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:113
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:135
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:146
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:460
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:152
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-price.php:134
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:221
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:100
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-title.php:157
+msgid "Left"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:317
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:100
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-bio.php:133
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:153
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:111
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:255
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:238
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-buttons.php:110
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:117
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:139
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:150
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:464
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:152
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-price.php:138
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:225
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:100
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-title.php:161
+msgid "Center"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:318
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:101
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-bio.php:137
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:157
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:115
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:259
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:242
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-buttons.php:114
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:121
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:143
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:154
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:468
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:152
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-price.php:142
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:229
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:100
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-title.php:165
+msgid "Right"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:414
 msgid "No listings found."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:427
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-advanced.php:570
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-search.php:180
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:120
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:153
@@ -5347,7 +5481,6 @@ msgstr ""
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:105
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-photo.php:107
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:93
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:105
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-features.php:94
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:109
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:121
@@ -5363,7 +5496,7 @@ msgid "No"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-search.php:40
-msgid "EPL Listing Search"
+msgid "Listing Search"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listing-search.php:82
@@ -5377,7 +5510,7 @@ msgstr ""
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-photo.php:119
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:76
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:170
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:144
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:164
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-buttons.php:82
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:82
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:104
@@ -5446,18 +5579,19 @@ msgstr ""
 msgid "Layout"
 msgstr ""
 
+#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:188
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:234
+msgid "Columns"
+msgstr ""
+
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:203
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:117
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:137
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:134
 msgid "Hide"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-listings.php:251
 msgid "No listings found for this query."
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:33
-msgid "EPL Pagination"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:73
@@ -5469,82 +5603,6 @@ msgid ""
 "This widget paginates the current archive query. For Loop Grid, either use "
 "its built-in Pagination section or disable that pagination before placing "
 "this widget."
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:96
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-bio.php:125
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:145
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:103
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:247
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:194
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-buttons.php:102
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:109
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:131
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:142
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:434
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:152
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-price.php:130
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:217
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:100
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-title.php:153
-msgid "Alignment"
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:99
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-bio.php:129
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:149
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:107
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:251
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:198
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-buttons.php:106
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:113
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:135
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:146
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:438
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:152
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-price.php:134
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:221
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:100
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-title.php:157
-msgid "Left"
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:100
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-bio.php:133
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:153
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:111
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:255
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:202
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-buttons.php:110
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:117
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:139
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:150
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:442
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:152
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-price.php:138
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:225
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:100
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-title.php:161
-msgid "Center"
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:101
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-bio.php:137
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:157
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:115
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:259
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:206
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-buttons.php:114
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:121
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:143
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:154
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:446
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:152
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-price.php:142
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:229
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:100
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-title.php:165
-msgid "Right"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/archive/class-epl-elementor-pagination.php:125
@@ -5565,14 +5623,11 @@ msgstr ""
 msgid "Next Page"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-bio.php:39
-msgid "EPL Agent Bio"
-msgstr ""
-
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-bio.php:75
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-contact.php:75
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:74
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:82
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:40
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:82
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-features.php:82
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:84
@@ -5596,7 +5651,7 @@ msgstr ""
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:125
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:84
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:115
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:152
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:172
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:90
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:112
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-features.php:126
@@ -5618,7 +5673,7 @@ msgid "Agent Bio - No agent context."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:42
-msgid "EPL Agent Box"
+msgid "Author Box"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:96
@@ -5688,7 +5743,7 @@ msgid "Background Color"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:271
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:493
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:505
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:189
 msgid "Padding"
 msgstr ""
@@ -5702,11 +5757,13 @@ msgid "Border Radius"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:314
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-photo.php:38
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-photo.php:74
 msgid "Photo"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:355
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:38
 msgid "Name"
 msgstr ""
 
@@ -5721,6 +5778,7 @@ msgid "Social Icons"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:449
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:192
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:282
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:154
 msgid "Icon Color"
@@ -5728,7 +5786,7 @@ msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:460
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:202
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:172
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:208
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:364
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:158
 msgid "Icon Size"
@@ -5756,10 +5814,6 @@ msgstr ""
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-box.php:622
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-contact.php:283
 msgid "Email:"
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-contact.php:39
-msgid "EPL Agent Contact"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-contact.php:119
@@ -5801,10 +5855,6 @@ msgstr ""
 msgid "Agent Contact - No agent context."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:38
-msgid "EPL Agent Name"
-msgstr ""
-
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-name.php:82
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:92
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:121
@@ -5821,10 +5871,6 @@ msgstr ""
 msgid "Agent Name - No agent context."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-photo.php:38
-msgid "EPL Agent Photo"
-msgstr ""
-
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-photo.php:82
 msgid "Size"
 msgstr ""
@@ -5833,16 +5879,12 @@ msgstr ""
 msgid "Agent Photo - No agent context."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:39
-msgid "EPL Agent Position"
-msgstr ""
-
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-position.php:137
 msgid "Agent Position - No agent context."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:39
-msgid "EPL Agent Social"
+msgid "Social"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:85
@@ -5850,7 +5892,7 @@ msgid "Network"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:103
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:126
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:146
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:187
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:130
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:153
@@ -5869,12 +5911,12 @@ msgstr ""
 msgid "Primary Hover Color"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:289
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agent-social.php:290
 msgid "Agent Social - No agent context."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:42
-msgid "EPL Listing Agents"
+msgid "Agents"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:90
@@ -5931,6 +5973,7 @@ msgid "Tabbed"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:258
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:493
 msgid "Gap"
 msgstr ""
 
@@ -6004,26 +6047,22 @@ msgstr ""
 msgid "Tab Padding"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:463
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:464
 msgid "The selected template is not an EPL Agent Template."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:490
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:491
 msgid "Listing Agents - No listings found."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:512
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:513
 msgid "Please select an Agent Template from the widget settings."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:514
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-agents-loop.php:515
 msgid ""
 "Create a template using EPL Agent widgets (Photo, Name, Contact, Social, "
 "Bio) and select it above."
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:40
-msgid "EPL Property Address"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:90
@@ -6032,20 +6071,67 @@ msgstr ""
 msgid "Link to Listing"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:102
-msgid "Show Suburb Only"
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:107
+msgid "Suburb Only"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:114
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:108
+msgid "Street Only"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:109
+msgid "Custom Parts"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:111
+msgid ""
+"Full address, suburb only, street only, or choose your own combination of "
+"address parts."
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:118
+msgid "Address Parts"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:124
+msgid ""
+"Select which address components to display. Parts always output in natural "
+"address order regardless of selection order."
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:134
 msgid "Show Icon"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:229
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:255
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:434
+msgid "Minimum Height"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:268
+msgid ""
+"Keeps the container from collapsing (e.g. suburb-only) so cards stay "
+"aligned in a grid."
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:288
 msgid "Property Address - No listings found."
 msgstr ""
 
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:354
+msgid "Unit / Sub Number"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:355
+msgid "Lot Number"
+msgstr ""
+
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-address.php:361
+msgid "Postal Code"
+msgstr ""
+
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-buttons.php:40
-msgid "EPL Property Buttons"
+msgid "Buttons"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-buttons.php:90
@@ -6061,16 +6147,13 @@ msgstr ""
 msgid "Property Buttons - No listings found."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:40
-msgid "EPL Property Content"
-msgstr ""
-
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-content.php:148
 msgid "Property Content - No listings found."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:40
-msgid "EPL Property Excerpt"
+#: lib/widgets/class-epl-widget-recent-property.php:489
+msgid "Excerpt"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-excerpt.php:90
@@ -6082,7 +6165,7 @@ msgid "Property Excerpt - No listings found."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-features.php:40
-msgid "EPL Property Features"
+msgid "Feature List"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-features.php:90
@@ -6099,16 +6182,8 @@ msgstr ""
 msgid "Property Features - No listings found."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-gallery.php:40
-msgid "EPL Property Gallery"
-msgstr ""
-
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-gallery.php:112
 msgid "Property Gallery - No listings found."
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:42
-msgid "EPL Property Heading"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-heading.php:177
@@ -6116,7 +6191,8 @@ msgid "Property Heading - No listings found."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:42
-msgid "EPL Property Icons"
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:158
+msgid "Icons"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:124
@@ -6132,17 +6208,13 @@ msgstr ""
 msgid "Divider Character"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:158
-msgid "Icons"
-msgstr ""
-
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:168
 msgid "Data Type"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:173
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:257
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:569
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:591
 msgid "Parking"
 msgstr ""
 
@@ -6193,38 +6265,34 @@ msgstr ""
 msgid "Spacing Between Items"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:469
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:491
 msgid "Property Icons - No listings found."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:557
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:579
 #: lib/post-types/post-types.php:358
 msgid "Beds"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:562
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:584
 #: lib/post-types/post-types.php:359
 msgid "Baths"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:585
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:607
 msgid "Building"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:602
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:624
 msgid "A/C"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:624
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:646
 msgid "acres"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:624
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-icons.php:646
 msgid "acre"
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:40
-msgid "EPL Property Image"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:83
@@ -6412,16 +6480,12 @@ msgstr ""
 msgid "Transition Duration"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:515
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:527
 msgid "Property Image - No listings found."
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:562
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-image.php:574
 msgid "No image available"
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-inspection.php:40
-msgid "EPL Inspection Times"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-inspection.php:119
@@ -6429,7 +6493,7 @@ msgid "Inspection Times - No listings found."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-map.php:40
-msgid "EPL Property Map"
+msgid "Map"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-map.php:112
@@ -6437,7 +6501,7 @@ msgid "Property Map - No listings found."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:33
-msgid "EPL Property Meta"
+msgid "Custom Field"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:69
@@ -6521,12 +6585,8 @@ msgstr ""
 msgid "Icon Spacing"
 msgstr ""
 
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:189
+#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-meta.php:190
 msgid "Property Meta - No listings found."
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-price.php:40
-msgid "EPL Property Price"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-price.php:90
@@ -6543,10 +6603,6 @@ msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-price.php:165
 msgid "Property Price - No listings found."
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:40
-msgid "EPL Property Status"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-status.php:82
@@ -6594,9 +6650,6 @@ msgid "Property Status - No listings found."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:33
-msgid "EPL Property Taxonomy"
-msgstr ""
-
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:85
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-taxonomy.php:86
 msgid "Taxonomy"
@@ -6627,15 +6680,11 @@ msgid "Property Taxonomy - No listings found."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-title.php:40
-msgid "EPL Property Title"
+msgid "Property Title"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-title.php:188
 msgid "Property Title - No listings found. Please create a property listing first."
-msgstr ""
-
-#: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-video.php:40
-msgid "EPL Property Video"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-property-video.php:112
@@ -6643,7 +6692,7 @@ msgid "Property Video - No listings found."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-single-extensions.php:40
-msgid "EPL Single Extensions"
+msgid "Single Extensions"
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-single-extensions.php:112
@@ -6651,9 +6700,6 @@ msgid "Single Extensions - No listings found."
 msgstr ""
 
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-staff-listings.php:33
-msgid "EPL Staff Listings"
-msgstr ""
-
 #: lib/page-builders/elementor/widgets/elements/class-epl-elementor-staff-listings.php:72
 msgid "Staff Listings"
 msgstr ""
@@ -7605,10 +7651,6 @@ msgstr ""
 
 #: lib/widgets/class-epl-widget-recent-property.php:479
 msgid "Property Headline"
-msgstr ""
-
-#: lib/widgets/class-epl-widget-recent-property.php:489
-msgid "Excerpt"
 msgstr ""
 
 #: lib/widgets/class-epl-widget-recent-property.php:509
