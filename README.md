@@ -45,6 +45,8 @@ There are various ways you can contribute:
 -   New: Filters `epl_show_price_under_offer`, `epl_under_offer_price_separator`, `epl_get_under_offer_price`, `epl_is_under_offer` and `epl_listing_has_advertised_price`.
 -   Tweak: Refactored the listing price functions. The under offer, advertised price and No Price label rules are now each defined once in `EPL_Property_Meta` (`is_under_offer()`, `has_advertised_price()`, `show_price_under_offer()`, `get_poa_label()` and `get_under_offer_price()`) and used by `get_price()`, `get_l_price()`, `get_price_plain_value()` and `get_price_sticker()`.
 -   Fix: PHP warning in `get_l_price()` when the No Price label setting is missing.
+-   Tweak: The session now starts only when something is stored in it (a contact error or a favourite listing), so pages no longer send the `epl_wp_session` or `PHPSESSID` cookie to every visitor and full-page caches such as SiteGround Dynamic Cache can cache them. Visitors who already have a session keep it. Add `add_filter( 'epl_lazy_session', '__return_false' );` to start a session on every request as before.
+-   New: Filter `epl_lazy_session`.
 
 = 3.5.29 November 10, 2026 =
 

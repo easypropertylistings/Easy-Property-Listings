@@ -51,6 +51,23 @@ class EPL_Session {
 	 */
 	private $prefix = '';
 
+	/**
+	 * Whether the session has been started for this request
+	 *
+	 * @var bool
+	 * @access private
+	 * @since 3.6
+	 */
+	private $started = false;
+
+	/**
+	 * Whether EPL loaded the bundled WP_Session library
+	 *
+	 * @var bool
+	 * @access private
+	 * @since 3.6
+	 */
+	private $bundled_wp_session = false;
 
 	/**
 	 * Get things started
@@ -59,6 +76,7 @@ class EPL_Session {
 	 * retrieves the WP Session instance
 	 *
 	 * @since 3.4.15
+	 * @since 3.6 The bundled WP_Session library no longer starts a session on every request.
 	 */
 	public function __construct() {
 
@@ -94,6 +112,11 @@ class EPL_Session {
 			if ( ! class_exists( 'WP_Session' ) ) {
 				require_once EPL_PATH_LIB . 'includes/libraries/class-wp-session.php';
 				require_once EPL_PATH_LIB . 'includes/libraries/wp-session.php';
+
+				// The library starts a session, and sends its cookie, on every request. EPL starts it only when needed.
+				remove_action( 'plugins_loaded', 'wp_session_start' );
+				remove_action( 'shutdown', 'wp_session_write_close' );
+				$this->bundled_wp_session = true;
 			}
 
 			add_filter( 'wp_session_expiration_variant', array( $this, 'set_expiration_variant_time' ), 99999 );
@@ -111,18 +134,134 @@ class EPL_Session {
 	/**
 	 * Setup the WP_Session instance
 	 *
+	 * Loads the visitor's existing session. A new session is only started when something
+	 * is stored in it (see set()), so pages for visitors without a session send no session
+	 * cookie and can be cached.
+	 *
 	 * @since 3.4.15
+	 * @since 3.6 Starts a session only when the visitor already has one, or when lazy sessions are off.
 	 * @return array|WP_Session
 	 */
 	public function init() {
 
 		if ( $this->use_php_sessions ) {
-			$this->session = isset( $_SESSION[ 'epl' . $this->prefix ] ) && is_array( $_SESSION[ 'epl' . $this->prefix ] ) ? $_SESSION[ 'epl' . $this->prefix ] : array();
+			if ( session_id() ) {
+				$this->started = true;
+				$this->session = $this->get_php_session_data();
+			} else {
+				$this->session = array();
+			}
+		} elseif ( ! $this->lazy_session() || $this->has_session_cookie() ) {
+			$this->start_session();
 		} else {
-			$this->session = WP_Session::get_instance();
+			$this->session = array();
 		}
 
 		return $this->session;
+	}
+
+	/**
+	 * EPL's data in the PHP session
+	 *
+	 * @since 3.6
+	 * @return array
+	 */
+	private function get_php_session_data() {
+		return isset( $_SESSION[ 'epl' . $this->prefix ] ) && is_array( $_SESSION[ 'epl' . $this->prefix ] ) ? $_SESSION[ 'epl' . $this->prefix ] : array();
+	}
+
+	/**
+	 * Start the session only when something is stored in it?
+	 *
+	 * @since 3.6
+	 * @return bool
+	 */
+	public function lazy_session() {
+		/**
+		 * Filters whether EPL starts the session only when something is stored in it.
+		 *
+		 * Return false to start a session, and send its cookie, on every request as before 3.6.
+		 *
+		 * @since 3.6
+		 *
+		 * @param bool $lazy Default true.
+		 */
+		return (bool) apply_filters( 'epl_lazy_session', true );
+	}
+
+	/**
+	 * Does the request carry a session cookie?
+	 *
+	 * @since 3.6
+	 * @return bool
+	 */
+	public function has_session_cookie() {
+		if ( $this->use_php_sessions ) {
+			$name = session_name();
+		} else {
+			$name = defined( 'WP_SESSION_COOKIE' ) ? WP_SESSION_COOKIE : 'epl_wp_session';
+		}
+		return ! empty( $_COOKIE[ $name ] );
+	}
+
+	/**
+	 * Start the session and send its cookie
+	 *
+	 * Values stored before the session started are kept.
+	 *
+	 * @since 3.6
+	 * @return bool True when the session is started.
+	 */
+	public function start_session() {
+
+		if ( $this->started ) {
+			return true;
+		}
+
+		if ( ! $this->should_start_session() ) {
+			return false;
+		}
+
+		$pending = is_array( $this->session ) ? $this->session : array();
+
+		if ( $this->use_php_sessions ) {
+
+			if ( ! session_id() ) {
+				if ( headers_sent() ) {
+					return false;
+				}
+				session_start();
+			}
+
+			$this->session = array_merge( $this->get_php_session_data(), $pending );
+
+			$_SESSION[ 'epl' . $this->prefix ] = $this->session;
+
+		} else {
+
+			// The cookie can't be sent once output has started.
+			if ( ! class_exists( 'WP_Session' ) || headers_sent() ) {
+				return false;
+			}
+
+			if ( $this->bundled_wp_session ) {
+				wp_session_start();
+			}
+
+			$this->session = WP_Session::get_instance();
+
+			foreach ( $pending as $key => $value ) {
+				$this->session[ $key ] = $value;
+			}
+
+			if ( $this->bundled_wp_session && ! has_action( 'shutdown', 'wp_session_write_close' ) ) {
+				add_action( 'shutdown', 'wp_session_write_close' );
+			}
+		}
+
+		$this->started = true;
+
+		return true;
 	}
 
 
@@ -130,10 +269,14 @@ class EPL_Session {
 	 * Retrieve session ID
 	 *
 	 * @since 1.6
+	 * @since 3.6 Returns an empty string when no session is started.
 	 * @return string Session ID
 	 */
 	public function get_id() {
-		return $this->session->session_id;
+		if ( $this->use_php_sessions ) {
+			return session_id();
+		}
+		return is_object( $this->session ) && isset( $this->session->session_id ) ? $this->session->session_id : '';
 	}
 
 
@@ -186,6 +329,7 @@ class EPL_Session {
 	 * Set a session variable
 	 *
 	 * @since 3.4.15
+	 * @since 3.6 Starts the session, and sends its cookie, the first time a value is stored.
 	 *
 	 * @param string           $key Session key.
 	 * @param int|string|array $value Session variable.
@@ -195,13 +339,19 @@ class EPL_Session {
 
 		$key = sanitize_key( $key );
 
+		// Clearing a value that was never stored needs no session; storing one starts it.
+		$clearing = null === $value || '' === $value || array() === $value;
+		if ( ! $this->started && ! ( $clearing && empty( $this->session[ $key ] ) ) ) {
+			$this->start_session();
+		}
+
 		if ( is_array( $value ) ) {
 			$this->session[ $key ] = wp_json_encode( $value );
 		} else {
 			$this->session[ $key ] = esc_attr( $value );
 		}
 
-		if ( $this->use_php_sessions ) {
+		if ( $this->use_php_sessions && $this->started ) {
 
 			$_SESSION[ 'epl' . $this->prefix ] = $this->session;
 		}
@@ -251,19 +401,13 @@ class EPL_Session {
 
 		if ( ! $epl_use_php_sessions ) {
 
-			// Attempt to detect if the server supports PHP sessions.
+			// Attempt to detect if the server supports PHP sessions. Doesn't store anything, so no session is started.
 			if ( function_exists( 'session_start' ) ) {
 
-				$this->set( 'epl_use_php_sessions', 1 );
+				$ret = true;
 
-				if ( $this->get( 'epl_use_php_sessions' ) ) {
-
-					$ret = true;
-
-					// Set the database option.
-					update_option( 'epl_use_php_sessions', true );
-
-				}
+				// Set the database option.
+				update_option( 'epl_use_php_sessions', true );
 			}
 		} else {
 			$ret = $epl_use_php_sessions;
@@ -348,10 +492,16 @@ class EPL_Session {
 
 	/**
 	 * Starts a new session if one hasn't started yet.
+	 *
+	 * @since 3.6 Only resumes an existing session; a new one starts when something is stored.
 	 */
 	public function maybe_start_session() {
 
 		if ( ! $this->should_start_session() ) {
+			return;
+		}
+
+		if ( $this->lazy_session() && ! $this->has_session_cookie() ) {
 			return;
 		}
 
