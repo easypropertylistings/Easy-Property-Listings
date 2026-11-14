@@ -2034,6 +2034,7 @@ add_action( 'set_object_terms', 'epl_listing_query_cache_changed', 10, 1 );
  * @since 3.5.3  Fix: Prepared statement for SQL.
  * @since 3.5.5  Fix: DB error due to double escaping.
  * @since 3.5.6  Fix: Status variable overwritten when status option was passed to the shortcode.
+ * @since 3.5.29 Fix: SQL injection. Post types are limited to registered ones and passed as prepared placeholders.
  * @since 3.6    Fix: Slow query. The listing status table is only joined when filtering by status, on its own meta key, instead of every meta row of every listing (33x faster on 735 rentals). Results are cached until a listing changes (epl_listing_query_cache()).
  */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status = '' ) {

@@ -75,8 +75,8 @@ function epl_add_ons_page() {
 		</h2>
 		<p><?php esc_html_e( 'These add-ons extend the functionality of Easy Property Listings.', 'easy-property-listings' ); ?></p>
 		<?php
-		if ( class_exists( 'EPL_Admin_Feedsync_Ads' ) ) {
-			EPL_Admin_Feedsync_Ads::render_addons_row();
+		if ( class_exists( 'EPL_Admin_Messages' ) ) {
+			EPL_Admin_Messages::render_addons_row();
 		}
 		?>
 		<div class="epl-add-ons-grid"><?php echo wp_kses_post( epl_add_ons_get_feed() ); ?></div>

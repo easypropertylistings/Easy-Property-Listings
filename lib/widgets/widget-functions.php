@@ -1122,6 +1122,7 @@ function epl_is_search() {
  * @return mixed|void
  * @since  2.3.1
  * @since  3.4.40 Fix: Search category options fixed for the all search tab.
+ * @since  3.5.29 Fix: SQL injection. Post types are limited to registered ones and passed as prepared placeholders.
  * @since  3.6 Results are cached until a listing changes (epl_listing_query_cache()).
  */
 function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {

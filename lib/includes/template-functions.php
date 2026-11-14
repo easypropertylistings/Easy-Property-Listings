@@ -3217,6 +3217,7 @@ function epl_esc_attr( $value ) {
  *
  * @since      2.2.0
  * @since      3.4.38 PHP 8.0 fix.
+ * @since      3.5.29 Fix: SQL injection. Post types are limited to registered ones and passed as prepared placeholders.
  * @since      3.6 Fix: Slow query. The second agent meta is only joined when counting an author's listings, on the property_second_agent key, instead of every meta row of every listing.
  */
 function epl_get_post_count( $type, $meta_key, $meta_value, $author_id = '' ) {
