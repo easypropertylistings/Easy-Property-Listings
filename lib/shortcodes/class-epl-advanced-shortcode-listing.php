@@ -600,6 +600,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 * @since 3.3
 	 * @since 3.4.35 Fixed the issue : [listing_advanced] not marked as EPL shortcode in WP_Query object
 	 * @since 3.6 Uses the shortcode name for the sorting context and the args filter, so [listing] keeps epl_shortcode_listing_args.
+	 * @since 3.6 Fix: with sortby set, orderby_clause crashed on PHP 8; a clause without |ASC or |DESC gave a warning (now ASC).
 	 */
 	public function set_orderby_clause() {
 
@@ -611,11 +612,20 @@ class EPL_Advanced_Shortcode_Listing {
 
 			$this->attributes['orderby_clause'] =
 			array_map( 'trim', explode( ',', $this->attributes['orderby_clause'] ) );
+
+			// orderby_clause replaces any sortby order; start from a list.
+			if ( ! isset( $this->args['orderby'] ) || ! is_array( $this->args['orderby'] ) ) {
+				$this->args['orderby'] = array();
+			}
+
 			foreach ( $this->attributes['orderby_clause'] as $oc ) {
 				$oc_array = explode( '|', $oc );
+				$clause   = trim( $oc_array[0] );
+				$order    = isset( $oc_array[1] ) && 'DESC' === strtoupper( trim( $oc_array[1] ) ) ? 'DESC' : 'ASC';
 
-				$this->args['orderby'][ $oc_array[0] ] = $oc_array[1];
-
+				if ( '' !== $clause ) {
+					$this->args['orderby'][ $clause ] = $order;
+				}
 			}
 
 			unset( $this->args['order'] );
