@@ -130,7 +130,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * @since 3.6
 	 */
 	public static function enqueue_styles() {
-		if ( ! current_user_can( 'edit_posts' ) || ! self::should_show() ) {
+		if ( ! current_user_can( 'edit_posts' ) || ( ! self::should_show() && ! self::is_addons_page() ) ) {
 			return;
 		}
 
@@ -149,7 +149,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * @since 3.6
 	 */
 	public static function render_ad() {
-		if ( ! current_user_can( 'edit_posts' ) || ! self::should_show() ) {
+		if ( ! current_user_can( 'edit_posts' ) || ! self::should_show() || self::is_addons_page() ) {
 			return;
 		}
 
@@ -172,6 +172,36 @@ class EPL_Admin_Feedsync_Ads {
 	}
 
 	/**
+	 * Is this the EPL Add Ons page?
+	 *
+	 * @return bool
+	 * @since 3.6
+	 */
+	private static function is_addons_page() {
+		return isset( $_GET['page'] ) && 'epl-addons' === sanitize_key( wp_unslash( $_GET['page'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	}
+
+	/**
+	 * FeedSync Service row on the Add Ons page
+	 *
+	 * Creative C as a listing of the service: shown to every site except those already
+	 * using the FeedSync companion, and it can't be dismissed. The "detected" chip and
+	 * the WP All Import wording only appear when the EPL WP All Import add-on is active.
+	 *
+	 * @return void
+	 * @since 3.6
+	 */
+	public static function render_addons_row() {
+		if ( self::is_plugin_file_active( 'feedsync-companion.php' ) ) {
+			return;
+		}
+
+		echo '<div class="epl-fs-ad-addons-row">';
+		self::render_creative_c( false );
+		echo '</div>';
+	}
+
+	/**
 	 * Determine which creative belongs on the current screen.
 	 *
 	 * @return string
@@ -180,7 +210,7 @@ class EPL_Admin_Feedsync_Ads {
 	private static function get_current_creative() {
 		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
 
-		if ( in_array( $page, array( 'epl-settings', 'epl-extensions', 'epl-addons' ), true ) ) {
+		if ( in_array( $page, array( 'epl-settings', 'epl-extensions' ), true ) ) {
 			return 'a';
 		}
 
@@ -405,26 +435,41 @@ class EPL_Admin_Feedsync_Ads {
 	/**
 	 * Render WP All Import screen creative C.
 	 *
+	 * @param bool $dismissible Show the dismiss control. False on the Add Ons page.
 	 * @return void
 	 * @since 3.6
 	 */
-	private static function render_creative_c() {
+	private static function render_creative_c( $dismissible = true ) {
+		$importer = self::is_plugin_file_active( 'epl-wp-all-import.php' );
+		$source   = $importer ? self::get_product_label() : __( 'Scheduled imports', 'easy-property-listings' );
 		?>
 		<div class="epl-fs-ad-wrap">
 			<div class="epl-fs-ad epl-fs-ad--c">
 				<div class="epl-fs-ad__top">
 					<div>
 						<?php self::render_from(); ?>
-						<?php self::render_detected( false ); ?>
+						<?php
+						if ( $importer ) {
+							self::render_detected( false );
+						}
+						?>
 						<h2><?php esc_html_e( 'Sold this morning.', 'easy-property-listings' ); ?> <em><?php esc_html_e( 'Still on your site tonight?', 'easy-property-listings' ); ?></em></h2>
-						<p><?php echo esc_html( self::get_product_label() ); ?> <?php esc_html_e( 'only updates your website when its next import runs. FeedSync updates it the second your CRM changes something.', 'easy-property-listings' ); ?></p>
+						<p>
+						<?php
+						if ( $importer ) {
+							echo esc_html( self::get_product_label() ) . ' ' . esc_html__( 'only updates your website when its next import runs. FeedSync updates it the second your CRM changes something.', 'easy-property-listings' );
+						} else {
+							esc_html_e( 'Scheduled imports only update your website when the next one runs. FeedSync updates it the second your CRM changes something.', 'easy-property-listings' );
+						}
+						?>
+						</p>
 						<?php self::render_deadline(); ?>
 					</div>
 					<a class="epl-fs-ad__button" href="<?php echo esc_url( self::FEEDSYNC_URL ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Move to FeedSync →', 'easy-property-listings' ); ?></a>
 				</div>
 				<div class="epl-fs-ad__lanes" aria-hidden="true">
 					<div class="epl-fs-ad__lane">
-						<div class="epl-fs-ad__who"><strong><?php esc_html_e( 'Your site now', 'easy-property-listings' ); ?></strong><span><?php echo esc_html( self::get_product_label() ); ?></span></div>
+						<div class="epl-fs-ad__who"><strong><?php esc_html_e( 'Your site now', 'easy-property-listings' ); ?></strong><span><?php echo esc_html( $source ); ?></span></div>
 						<div class="epl-fs-ad__track"><i class="epl-fs-ad__batch"></i></div>
 						<div class="epl-fs-ad__end"><?php esc_html_e( 'updates every few hours', 'easy-property-listings' ); ?></div>
 					</div>
@@ -434,7 +479,11 @@ class EPL_Admin_Feedsync_Ads {
 						<div class="epl-fs-ad__end"><?php esc_html_e( 'updates instantly', 'easy-property-listings' ); ?></div>
 					</div>
 				</div>
-				<?php self::render_dismiss( 'c' ); ?>
+				<?php
+				if ( $dismissible ) {
+					self::render_dismiss( 'c' );
+				}
+				?>
 			</div>
 		</div>
 		<?php

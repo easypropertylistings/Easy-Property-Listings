@@ -64,6 +64,7 @@ function epl_add_ons_get_feed() {
  *
  * @since 1.0
  * @since 3.5.0 Fix: Notice error on add-ons page.
+ * @since 3.6 FeedSync Service row above the add-ons list. Add-ons shown in a grid so long descriptions don't run under the button.
  */
 function epl_add_ons_page() {
 	ob_start(); ?>
@@ -73,7 +74,12 @@ function epl_add_ons_page() {
 			&nbsp;&mdash;&nbsp;<a href="https://easypropertylistings.com.au/extensions/?utm_source=plugin-addons-page&utm_medium=plugin&ytm_campaign=epl%20Addons%20Page&utm_content=All%20Extensions" class="button-primary" title="<?php esc_html_e( 'Browse All Extensions', 'easy-property-listings' ); ?>" target="_blank"><?php esc_html_e( 'Browse All Extensions', 'easy-property-listings' ); ?></a>
 		</h2>
 		<p><?php esc_html_e( 'These add-ons extend the functionality of Easy Property Listings.', 'easy-property-listings' ); ?></p>
-		<?php echo wp_kses_post( epl_add_ons_get_feed() ); ?>
+		<?php
+		if ( class_exists( 'EPL_Admin_Feedsync_Ads' ) ) {
+			EPL_Admin_Feedsync_Ads::render_addons_row();
+		}
+		?>
+		<div class="epl-add-ons-grid"><?php echo wp_kses_post( epl_add_ons_get_feed() ); ?></div>
 	</div>
 	<?php
 	return wp_kses_post( ob_get_clean() );

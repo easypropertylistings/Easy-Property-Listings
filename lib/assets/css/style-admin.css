@@ -121,22 +121,29 @@ h3.epl-welcome-sub-heading {
 .epl-extension .stuffbox .hndle {
 	border-bottom: 1px solid #1494dd;
 }
-#epl-menu-licences .epl-menu-license,
-#epl-add-ons .epl-extension {
+#epl-menu-licences .epl-menu-license {
 	float: left;
 	margin: 0 15px 15px 0;
 	background: #fff;
 	border: 1px solid #ccc;
-	width: 320px;
-	height: 360px;
+	width: 290px;
+	height: 180px;
 	position: relative;
 	text-align: center;
 }
-#epl-menu-licences .epl-menu-license {
-	height: 180px;
-	width: 290px;
+/* Add-ons: a grid, so cards in a row share the tallest card's height and long descriptions don't run under the button. */
+#epl-add-ons .epl-add-ons-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 322px); /* 320px card + 1px border each side. */
+	gap: 15px;
+	margin-bottom: 15px;
 }
 #epl-add-ons .epl-extension {
+	display: flex;
+	flex-direction: column;
+	background: #fff;
+	border: 1px solid #ccc;
+	text-align: center;
 }
 #epl-add-ons .epl-extension h3 {
 	margin: 0 0 8px;
@@ -147,12 +154,11 @@ h3.epl-welcome-sub-heading {
 	padding: 0 8px;
 }
 #epl-add-ons .epl-extension .button-secondary {
-	position: absolute;
-	bottom: 8px;
-	left: 30%;
+	align-self: center;
+	margin: auto 0 8px;
 }
 #epl-add-ons .epl-browse-all {
-	clear: both;
+	grid-column: 1 / -1;
 	width: 100%;
 }
 #epl-add-ons .epl-extension .third-party {
