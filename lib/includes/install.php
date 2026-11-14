@@ -47,6 +47,7 @@ function epl_get_default_settings() {
 		'label_poa'                            => __( 'POA', 'easy-property-listings' ),
 		'label_new'                            => __( 'New', 'easy-property-listings' ),
 		'label_under_offer'                    => __( 'Under Offer', 'easy-property-listings' ),
+		'display_price_under_offer'            => 'yes',
 		'label_leased'                         => __( 'Leased', 'easy-property-listings' ),
 		'label_sold'                           => __( 'Sold', 'easy-property-listings' ),
 		'widget_label_all'                     => __( 'All', 'easy-property-listings' ),

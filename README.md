@@ -38,6 +38,14 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.6 November 16, 2026 =
+
+-   New: Under offer listings keep their advertised price visible next to the Under Offer label, for example "Under Offer | $360,000 - $390,000", so sites meet the NSW underquoting rules that apply from 17 November 2026. On by default. Listings that show the No Price label or an auction date still show Under Offer on its own.
+-   New: Under Offer Price Display setting in Settings > Labels to hide the price on under offer listings and show only the Under Offer label, as before 3.6.
+-   New: Filters `epl_show_price_under_offer`, `epl_under_offer_price_separator`, `epl_get_under_offer_price`, `epl_is_under_offer` and `epl_listing_has_advertised_price`.
+-   Tweak: Refactored the listing price functions. The under offer, advertised price and No Price label rules are now each defined once in `EPL_Property_Meta` (`is_under_offer()`, `has_advertised_price()`, `show_price_under_offer()`, `get_poa_label()` and `get_under_offer_price()`) and used by `get_price()`, `get_l_price()`, `get_price_plain_value()` and `get_price_sticker()`.
+-   Fix: PHP warning in `get_l_price()` when the No Price label setting is missing.
+
 = 3.5.29 November 10, 2026 =
 
 -   Fix: SQL injection via the `post_type` attribute of the `[listing_search]` shortcode, exploitable by Contributor-level users. The post_type value is now restricted to registered post types and bound with prepared statements in `epl_get_unique_post_meta_values()`, `epl_get_meta_values()` and `epl_get_post_count()`. Thanks Wordfence Intelligence.

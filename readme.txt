@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, reports
 Requires PHP: 7.4
 Requires at least: 6.0
 Tested up to: 7.1
-Stable Tag: 3.5.29
+Stable Tag: 3.6
 License: GPLv2 or later
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management and works with any theme.
@@ -423,3 +423,8 @@ Please report security issues privately by email to support@easypropertylistings
 == Changelog ==
 
 Discover [What's New](https://easypropertylistings.com.au/whats-new/?utm_source=readme&utm_medium=whats_new_tab&utm_content=new&utm_campaign=epl_whats_new) with [Easy Property Listings](https://easypropertylistings.com.au/?utm_source=readme&utm_medium=whats_new_tab&utm_content=home&utm_campaign=link_home). The [change log](https://easypropertylistings.com.au/change-log/?utm_source=readme&utm_medium=change_log_tab&utm_content=changes&utm_campaign=epl_change_log) can now be found [here at Easy Property Listings](https://easypropertylistings.com.au/change-log/?utm_source=readme&utm_medium=change_log_tab&utm_content=changes&utm_campaign=epl_change_log).
+
+== Upgrade Notice ==
+
+= 3.6 =
+Under offer listings now keep their advertised price visible, for example "Under Offer | $360,000 - $390,000", as NSW underquoting rules require from 17 November 2026. To show only the Under Offer label as before, go to Settings > Labels > Under Offer Price Display.

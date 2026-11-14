@@ -1204,6 +1204,18 @@ function epl_get_admin_option_fields() {
 				),
 
 				array(
+					'name'    => 'display_price_under_offer',
+					'label'   => __( 'Under Offer Price Display', 'easy-property-listings' ),
+					'type'    => 'radio',
+					'opts'    => array(
+						'yes' => __( 'Show the price with the Under Offer label', 'easy-property-listings' ),
+						'no'  => __( 'Hide the price and show only the Under Offer label', 'easy-property-listings' ),
+					),
+					'default' => 'yes',
+					'help'    => __( 'Under offer listings keep their advertised price visible, for example "Under Offer | $360,000 - $390,000". NSW underquoting rules require the advertised price to stay visible until the property is sold (from 17 November 2026).', 'easy-property-listings' ),
+				),
+
+				array(
 					'name'    => 'label_sold',
 					'label'   => __( 'Sold Label', 'easy-property-listings' ),
 					'type'    => 'text',
