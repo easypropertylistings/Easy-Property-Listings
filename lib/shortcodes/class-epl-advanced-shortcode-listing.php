@@ -72,6 +72,15 @@ class EPL_Advanced_Shortcode_Listing {
 	public $query_open;
 
 	/**
+	 * Shortcode name: picks the args filter (epl_shortcode_{name}_args) and the sorting
+	 * context. [listing] runs on this class with the name 'listing'.
+	 *
+	 * @since 3.6
+	 * @var string $shortcode Shortcode name.
+	 */
+	public $shortcode = 'listing_advanced';
+
+	/**
 	 * Construct the shortcode.
 	 *
 	 * @since 3.3.0
@@ -120,11 +129,19 @@ class EPL_Advanced_Shortcode_Listing {
 	/**
 	 * Get meta key price.
 	 *
+	 * The rent when the shortcode lists rentals only, otherwise the price.
+	 *
 	 * @since 3.3
+	 * @since 3.6 Fix: post_type="rental" with sortby="price" sorted by property_price, because post_type is a list by the time this runs. Now sorts by property_rent, as [listing] did.
 	 */
 	public function get_meta_key_price() {
 
-		if ( is_string( $this->attributes['post_type'] ) && 'rental' === $this->attributes['post_type'] ) {
+		$post_type = $this->attributes['post_type'];
+		if ( is_array( $post_type ) && 1 === count( $post_type ) ) {
+			$post_type = reset( $post_type );
+		}
+
+		if ( is_string( $post_type ) && 'rental' === $post_type ) {
 			$this->meta_key_price = 'property_rent';
 		} else {
 			$this->meta_key_price = 'property_price';
@@ -567,6 +584,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 * @since 3.4.35 Fixed the issue : [listing_advanced] not marked as EPL shortcode in WP_Query object
+	 * @since 3.6 Uses the shortcode name for the sorting context and the args filter, so [listing] keeps epl_shortcode_listing_args.
 	 */
 	public function set_orderby_clause() {
 
@@ -591,9 +609,9 @@ class EPL_Advanced_Shortcode_Listing {
 		$this->args['instance_id'] = $this->attributes['instance_id'];
 
 		// add sortby arguments to query, if listings sorted by $_GET['sortby'];.
-		$this->args = epl_add_orderby_args( $this->args, 'shortcode', 'listing_advanced' );
-		// Option to filter args.
-		$this->args = apply_filters( 'epl_shortcode_listing_advanced_args', $this->args, $this->attributes );
+		$this->args = epl_add_orderby_args( $this->args, 'shortcode', $this->shortcode );
+		// Option to filter args: epl_shortcode_listing_advanced_args, or epl_shortcode_listing_args for [listing].
+		$this->args = apply_filters( 'epl_shortcode_' . $this->shortcode . '_args', $this->args, $this->attributes );
 	}
 
 	/**
