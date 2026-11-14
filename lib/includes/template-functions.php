@@ -2280,6 +2280,7 @@ add_action( 'epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
  *
  * @since 1.0
  * @since 3.3 Revised.
+ * @since 3.6 New filter epl_property_gallery_html: an add-on can supply the whole gallery HTML (for example CDN-hosted images not in the media library).
  */
 function epl_property_gallery() {
 
@@ -2288,6 +2289,22 @@ function epl_property_gallery() {
 	$d_gallery_n = epl_get_option( 'display_gallery_n' );
 
 	if ( 1 !== $d_gallery ) {
+		return;
+	}
+
+	/**
+	 * Allow an extension to fully supply the gallery HTML (e.g. CDN-hosted images
+	 * that are not in the WP media library). Return a string to short-circuit the
+	 * default attachment-based gallery; return null to leave default behaviour.
+	 *
+	 * @since 3.6
+	 *
+	 * @param string|null $custom  Custom gallery HTML, or null for default.
+	 * @param int         $post_id Current listing ID.
+	 */
+	$custom = apply_filters( 'epl_property_gallery_html', null, get_the_ID() );
+	if ( null !== $custom ) {
+		echo $custom; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		return;
 	}
 

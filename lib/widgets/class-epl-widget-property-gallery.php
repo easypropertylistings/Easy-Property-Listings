@@ -37,6 +37,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 *
 	 * @since 1.0
 	 * @since 3.5 Added escaping to elements.
+	 * @since 3.6 Uses the epl_property_gallery_html filter, as epl_property_gallery() does.
 	 *
 	 * @param array $args Widget arguments.
 	 * @param array $instance Widget instance.
@@ -55,8 +56,22 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 			${$arg_key} = $arg_val;
 		}
 
-		$title       = apply_filters( 'widget_title', $instance['title'] );
-		$d_columns   = $instance['d_columns'];
+		$title     = apply_filters( 'widget_title', $instance['title'] );
+		$d_columns = $instance['d_columns'];
+
+		// Allow an extension to supply gallery HTML (e.g. CDN-hosted images not in
+		// the media library). Mirrors epl_property_gallery().
+		$custom = apply_filters( 'epl_property_gallery_html', null, get_the_ID() );
+		if ( null !== $custom ) {
+			echo $before_widget; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			if ( $title ) {
+				echo $before_title . esc_html( $title ) . $after_title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
+			echo $custom; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo $after_widget; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			return;
+		}
+
 		$attachments = get_children(
 			array(
 				'post_parent'    => get_the_ID(),

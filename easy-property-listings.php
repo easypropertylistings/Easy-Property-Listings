@@ -190,7 +190,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 *
 		 * @access private
 		 * @since 1.0.0
-		 * @since 3.6 Loads the admin messages (class-epl-admin-messages.php) and the [listing] shortcode class (class-epl-shortcode-listing.php).
+		 * @since 3.6 Loads the admin messages (class-epl-admin-messages.php), the [listing] shortcode class (class-epl-shortcode-listing.php) and the Elementor widgets (beta).
 		 * @return void
 		 */
 		private function includes() {
@@ -338,6 +338,18 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-auction.php';
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-results.php';
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-meta-doc.php';
+
+			/**
+			 * Filters whether the Elementor widgets (beta) load. They only start when Elementor
+			 * 3.5 or later is active. Return false from a must-use plugin to turn them off.
+			 *
+			 * @since 3.6
+			 *
+			 * @param bool $enabled True to load the Elementor widgets.
+			 */
+			if ( apply_filters( 'epl_elementor_enabled', true ) ) {
+				require_once EPL_PATH_LIB . 'page-builders/elementor/class-epl-elementor.php';
+			}
 
 			require_once EPL_PATH_LIB . 'includes/install.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
