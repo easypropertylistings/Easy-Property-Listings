@@ -1889,6 +1889,134 @@ function epl_leased_label_status_filter_callback() {
 add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_callback' );
 
 /**
+ * Run a listing query, with its result cached across page loads
+ *
+ * For queries whose results only change when listings change, such as the values in the
+ * search dropdowns. The result is remembered for the rest of the page load and saved as a
+ * transient for 12 hours (filter epl_listing_query_cache_expiration). Saving, deleting or
+ * changing any listing clears every cached result (epl_flush_listing_query_cache()).
+ *
+ * @param string $sql    A prepared SQL query.
+ * @param string $return_type col for $wpdb->get_col(), results for $wpdb->get_results().
+ *
+ * @return array
+ *
+ * @since 3.6
+ */
+function epl_listing_query_cache( $sql, $return_type = 'col' ) {
+	global $wpdb;
+
+	static $memory = array();
+
+	$key = md5( $return_type . '|' . $sql );
+
+	if ( isset( $memory[ $key ] ) ) {
+		return $memory[ $key ];
+	}
+
+	/**
+	 * Filters whether listing query results are cached across page loads.
+	 *
+	 * @since 3.6
+	 *
+	 * @param bool $enabled Default true.
+	 */
+	$enabled = (bool) apply_filters( 'epl_listing_query_cache_enabled', true );
+
+	$transient = 'epl_lqc_' . md5( (int) get_option( 'epl_listing_query_cache_version', 1 ) . '|' . $key );
+
+	$result = $enabled ? get_transient( $transient ) : false;
+
+	if ( ! is_array( $result ) ) {
+		$result = 'results' === $return_type ? $wpdb->get_results( $sql ) : $wpdb->get_col( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
+		$result = is_array( $result ) ? $result : array();
+
+		if ( $enabled ) {
+			/**
+			 * Filters how long listing query results are cached, in seconds.
+			 *
+			 * @since 3.6
+			 *
+			 * @param int $expiration Default 12 hours.
+			 */
+			set_transient( $transient, $result, (int) apply_filters( 'epl_listing_query_cache_expiration', 12 * HOUR_IN_SECONDS ) );
+		}
+	}
+
+	$memory[ $key ] = $result;
+
+	return $result;
+}
+
+/**
+ * Clear every cached listing query result
+ *
+ * Moves the cache to a new version, so old results are no longer read; they expire on
+ * their own. Call it after changing listings directly in the database.
+ *
+ * @return void
+ *
+ * @since 3.6
+ */
+function epl_flush_listing_query_cache() {
+	update_option( 'epl_listing_query_cache_version', (int) get_option( 'epl_listing_query_cache_version', 1 ) + 1, true );
+}
+
+/**
+ * Mark the listing query cache to be cleared when this request ends
+ *
+ * Hooked to listing saves, deletes, status, meta and term changes. An import can change
+ * hundreds of meta values per listing, so the cache is cleared once, at the end of the
+ * request, which also clears anything cached while the import was running.
+ *
+ * @param mixed $arg1 Hook argument: a post ID, post object, meta ID or new status, by hook.
+ * @param mixed $arg2 Hook argument: the object ID or old status, by hook.
+ * @param mixed $arg3 Hook argument: the post, by hook.
+ *
+ * @return void
+ *
+ * @since 3.6
+ */
+function epl_listing_query_cache_changed( $arg1 = null, $arg2 = null, $arg3 = null ) {
+	static $scheduled = false;
+
+	if ( $scheduled ) {
+		return;
+	}
+
+	$post_id = 0;
+	switch ( current_filter() ) {
+		case 'transition_post_status':
+			$post_id = $arg3 instanceof WP_Post ? $arg3->ID : 0;
+			break;
+		case 'added_post_meta':
+		case 'updated_post_meta':
+		case 'deleted_post_meta':
+		case 'set_object_terms':
+			$post_id = 'set_object_terms' === current_filter() ? (int) $arg1 : (int) $arg2;
+			break;
+		default:
+			$post_id = (int) $arg1;
+	}
+
+	$types = array_unique( array_merge( epl_get_core_post_types(), (array) epl_all_post_types() ) );
+
+	if ( ! $post_id || ! in_array( get_post_type( $post_id ), $types, true ) ) {
+		return;
+	}
+
+	$scheduled = true;
+	add_action( 'shutdown', 'epl_flush_listing_query_cache' );
+}
+add_action( 'save_post', 'epl_listing_query_cache_changed', 10, 1 );
+add_action( 'before_delete_post', 'epl_listing_query_cache_changed', 10, 1 );
+add_action( 'transition_post_status', 'epl_listing_query_cache_changed', 10, 3 );
+add_action( 'added_post_meta', 'epl_listing_query_cache_changed', 10, 2 );
+add_action( 'updated_post_meta', 'epl_listing_query_cache_changed', 10, 2 );
+add_action( 'deleted_post_meta', 'epl_listing_query_cache_changed', 10, 2 );
+add_action( 'set_object_terms', 'epl_listing_query_cache_changed', 10, 1 );
+
+/**
  * Description: Getting all the values associated with a specific custom post meta key, across all posts
  * Author: Chinmoy Paul
  * Author URL: http://pwdtechnology.com
@@ -1906,7 +2034,7 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  * @since 3.5.3  Fix: Prepared statement for SQL.
  * @since 3.5.5  Fix: DB error due to double escaping.
  * @since 3.5.6  Fix: Status variable overwritten when status option was passed to the shortcode.
- * @since 3.6    Fix: Slow query. The listing status table is only joined when filtering by status, on its own meta key, instead of every meta row of every listing (33x faster on 735 rentals). Results are remembered for the rest of the page load.
+ * @since 3.6    Fix: Slow query. The listing status table is only joined when filtering by status, on its own meta key, instead of every meta row of every listing (33x faster on 735 rentals). Results are cached until a listing changes (epl_listing_query_cache()).
  */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status = '' ) {
 
@@ -1967,12 +2095,7 @@ function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publ
 	$prepare_args = array_merge( array( $key, $status ), $type );
 	$sql          = $wpdb->prepare( $query, $prepare_args ); // phpcs:ignore
 
-	// The search widget asks for the same values several times per page.
-	static $cache = array();
-	if ( ! isset( $cache[ $sql ] ) ) {
-		$cache[ $sql ] = $wpdb->get_col( $sql ); // phpcs:ignore
-	}
-	$res = array_filter( $cache[ $sql ] );
+	$res = array_filter( epl_listing_query_cache( $sql ) );
 
 	foreach ( $res as $key => &$elem ) {
 		$elem = maybe_unserialize( $elem );

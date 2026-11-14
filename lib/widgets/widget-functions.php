@@ -1122,6 +1122,7 @@ function epl_is_search() {
  * @return mixed|void
  * @since  2.3.1
  * @since  3.4.40 Fix: Search category options fixed for the all search tab.
+ * @since  3.6 Results are cached until a listing changes (epl_listing_query_cache()).
  */
 function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 
@@ -1161,7 +1162,7 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 		AND pm.`meta_value` != ''";
 
 	$prepare_args = array_merge( array( $key, $status ), $type );
-	$results      = $wpdb->get_results( $wpdb->prepare( $query, $prepare_args ) );
+	$results      = epl_listing_query_cache( $wpdb->prepare( $query, $prepare_args ), 'results' );
 
 	if ( ! empty( $results ) ) {
 
@@ -1251,7 +1252,7 @@ add_filter( 'posts_where', 'epl_listings_where', 10, 2 );
  * @return mixed terms which is filterable with epl_get_available_terms.
  *
  * @since 3.5.26 Query values are now escaped with a prepared statement.
- * @since 3.6 Fix: Slow query. The listing meta table is only joined when filtering by listing status, on the property_status key, instead of every meta row of every listing (23x faster on 735 rentals). Results are remembered for the rest of the page load.
+ * @since 3.6 Fix: Slow query. The listing meta table is only joined when filtering by listing status, on the property_status key, instead of every meta row of every listing (23x faster on 735 rentals). Results are cached until a listing changes (epl_listing_query_cache()).
  */
 function epl_get_available_terms( $tax = 'location', $post_type = '', $property_status = '' ) {
 	global $wpdb;
@@ -1294,12 +1295,7 @@ function epl_get_available_terms( $tax = 'location', $post_type = '', $property_
 
 	$sql = $wpdb->prepare( $available_loc_query, $query_args ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
-	// The search widget asks for the same terms several times per page.
-	static $cache = array();
-	if ( ! isset( $cache[ $sql ] ) ) {
-		$cache[ $sql ] = $wpdb->get_col( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
-	}
-	$available_locs = $cache[ $sql ];
+	$available_locs = epl_listing_query_cache( $sql );
 	$terms          = get_terms(
 		array(
 			'taxonomy'   => $tax,
