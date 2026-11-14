@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Admin
- * @since       3.6.0
+ * @since       3.6
  */
 
 // Exit if accessed directly.
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Dismissal is stored per user and per creative.
  *
- * @since 3.6.0
+ * @since 3.6
  */
 class EPL_Admin_Feedsync_Ads {
 
@@ -41,6 +41,13 @@ class EPL_Admin_Feedsync_Ads {
 	const FEEDSYNC_URL = 'https://feedsync.com.au/';
 
 	/**
+	 * Last day legacy FeedSync is supported (Y-m-d). The deadline line shows until the end of this day.
+	 *
+	 * @var string
+	 */
+	const LEGACY_RETIRES = '2026-12-05';
+
+	/**
 	 * Whether a supported WP All Import plugin is installed.
 	 *
 	 * @var bool|null
@@ -57,7 +64,7 @@ class EPL_Admin_Feedsync_Ads {
 	/**
 	 * Register hooks.
 	 *
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	public static function init() {
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_styles' ) );
@@ -72,7 +79,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * message remains relevant when an import plugin has been temporarily disabled.
 	 *
 	 * @return bool
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	public static function is_wp_all_import_installed() {
 		if ( null !== self::$wp_all_import_installed ) {
@@ -133,7 +140,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * Enqueue the advertisement stylesheet only on targeted installations.
 	 *
 	 * @return void
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	public static function enqueue_styles() {
 		if ( ! current_user_can( 'edit_posts' ) || ! self::is_wp_all_import_installed() ) {
@@ -152,7 +159,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * Render the appropriate advertisement for the current screen.
 	 *
 	 * @return void
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	public static function render_ad() {
 		if ( ! current_user_can( 'edit_posts' ) || ! self::is_wp_all_import_installed() ) {
@@ -181,7 +188,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * Determine which creative belongs on the current screen.
 	 *
 	 * @return string
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	private static function get_current_creative() {
 		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
@@ -206,7 +213,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * Get the detected product label.
 	 *
 	 * @return string
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	private static function get_product_label() {
 		return self::$wp_all_import_label ? self::$wp_all_import_label : __( 'WP All Import', 'easy-property-listings' );
@@ -217,7 +224,7 @@ class EPL_Admin_Feedsync_Ads {
 	 *
 	 * @param string $creative Creative identifier.
 	 * @return bool
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	private static function is_dismissed( $creative ) {
 		$dismissed = get_user_meta( get_current_user_id(), self::DISMISSED_META_KEY, true );
@@ -230,7 +237,7 @@ class EPL_Admin_Feedsync_Ads {
 	 *
 	 * @param string $creative Creative identifier.
 	 * @return string
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	private static function get_dismiss_url( $creative ) {
 		return wp_nonce_url(
@@ -249,7 +256,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * Store a per-user dismissal and return to the originating screen.
 	 *
 	 * @return void
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	public static function dismiss_ad() {
 		if ( ! current_user_can( 'edit_posts' ) ) {
@@ -274,11 +281,38 @@ class EPL_Admin_Feedsync_Ads {
 	}
 
 	/**
+	 * Legacy FeedSync retirement line, shown until the retirement date.
+	 *
+	 * @return string The line, or '' after the retirement date.
+	 * @since 3.6
+	 */
+	private static function get_deadline_text() {
+		if ( current_time( 'Y-m-d' ) > self::LEGACY_RETIRES ) {
+			return '';
+		}
+		return __( 'Using legacy FeedSync? It retires on 5 December 2026.', 'easy-property-listings' );
+	}
+
+	/**
+	 * Output the legacy FeedSync retirement line, when it still applies.
+	 *
+	 * @return void
+	 * @since 3.6
+	 */
+	private static function render_deadline() {
+		$text = self::get_deadline_text();
+		if ( '' === $text ) {
+			return;
+		}
+		printf( '<span class="epl-fs-ad__deadline">%s</span>', esc_html( $text ) );
+	}
+
+	/**
 	 * Output shared animated wire markup.
 	 *
 	 * @param int $packets Number of packets.
 	 * @return void
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	private static function render_wire( $packets = 3 ) {
 		echo '<span class="epl-fs-ad__wire" aria-hidden="true"></span>';
@@ -294,7 +328,7 @@ class EPL_Admin_Feedsync_Ads {
 	 *
 	 * @param string $creative Creative identifier.
 	 * @return void
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	private static function render_dismiss( $creative ) {
 		printf(
@@ -308,7 +342,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * Render flagship creative A.
 	 *
 	 * @return void
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	private static function render_creative_a() {
 		?>
@@ -323,10 +357,11 @@ class EPL_Admin_Feedsync_Ads {
 					<span class="epl-fs-ad__detected"><span></span><?php echo esc_html( self::get_product_label() ); ?> <?php esc_html_e( 'detected on this site', 'easy-property-listings' ); ?></span>
 					<h2><?php esc_html_e( 'Listings taking hours to show up?', 'easy-property-listings' ); ?></h2>
 					<p><?php esc_html_e( 'Move to FeedSync. Your listings go live the second your CRM sends them — no imports, no schedule, nothing to manage.', 'easy-property-listings' ); ?></p>
+					<?php self::render_deadline(); ?>
 				</div>
 				<div class="epl-fs-ad__cta">
 					<a class="epl-fs-ad__button" href="<?php echo esc_url( self::FEEDSYNC_URL ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Move to FeedSync →', 'easy-property-listings' ); ?></a>
-					<span><?php esc_html_e( 'Built for real estate feeds · since 2014', 'easy-property-listings' ); ?></span>
+					<span><?php esc_html_e( 'Built for real estate feeds · since 2011', 'easy-property-listings' ); ?></span>
 				</div>
 				<?php self::render_dismiss( 'a' ); ?>
 			</div>
@@ -338,7 +373,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * Render global strip creative B.
 	 *
 	 * @return void
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	private static function render_creative_b() {
 		?>
@@ -346,7 +381,7 @@ class EPL_Admin_Feedsync_Ads {
 			<div class="epl-fs-ad epl-fs-ad--b">
 				<?php self::render_wire( 3 ); ?>
 				<span class="epl-fs-ad__badge"><?php esc_html_e( 'Slow site?', 'easy-property-listings' ); ?></span>
-				<div class="epl-fs-ad__text"><strong><?php esc_html_e( 'Website slow when your imports run?', 'easy-property-listings' ); ?></strong> <?php esc_html_e( 'Move to FeedSync — your CRM syncs straight to your site. No imports at all.', 'easy-property-listings' ); ?></div>
+				<div class="epl-fs-ad__text"><strong><?php esc_html_e( 'Website slow when your imports run?', 'easy-property-listings' ); ?></strong> <?php esc_html_e( 'Move to FeedSync — your CRM syncs straight to your site. No imports at all.', 'easy-property-listings' ); ?><?php self::render_deadline(); ?></div>
 				<a class="epl-fs-ad__button" href="<?php echo esc_url( self::FEEDSYNC_URL ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Move to FeedSync', 'easy-property-listings' ); ?></a>
 				<?php self::render_dismiss( 'b' ); ?>
 			</div>
@@ -358,7 +393,7 @@ class EPL_Admin_Feedsync_Ads {
 	 * Render WP All Import screen creative C.
 	 *
 	 * @return void
-	 * @since 3.6.0
+	 * @since 3.6
 	 */
 	private static function render_creative_c() {
 		?>
@@ -369,6 +404,7 @@ class EPL_Admin_Feedsync_Ads {
 						<span class="epl-fs-ad__detected"><span></span><?php echo esc_html( self::get_product_label() ); ?> <?php esc_html_e( 'detected', 'easy-property-listings' ); ?></span>
 						<h2><?php esc_html_e( 'Sold this morning.', 'easy-property-listings' ); ?> <em><?php esc_html_e( 'Still on your site tonight?', 'easy-property-listings' ); ?></em></h2>
 						<p><?php echo esc_html( self::get_product_label() ); ?> <?php esc_html_e( 'only updates your website when its next import runs. FeedSync updates it the second your CRM changes something.', 'easy-property-listings' ); ?></p>
+						<?php self::render_deadline(); ?>
 					</div>
 					<a class="epl-fs-ad__button" href="<?php echo esc_url( self::FEEDSYNC_URL ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Move to FeedSync →', 'easy-property-listings' ); ?></a>
 				</div>

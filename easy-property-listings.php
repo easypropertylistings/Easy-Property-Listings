@@ -190,6 +190,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 *
 		 * @access private
 		 * @since 1.0.0
+		 * @since 3.6 Loads the FeedSync admin banners (class-epl-admin-feedsync-ads.php).
 		 * @return void
 		 */
 		private function includes() {
