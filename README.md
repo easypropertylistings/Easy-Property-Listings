@@ -54,6 +54,7 @@ There are various ways you can contribute:
 -   Fix: The Dashboard listing counts (`epl_get_post_count()`) joined every meta row of every listing; the second agent is now joined only when counting an author's listings. About three times faster.
 -   Fix: The next contact link on a contact went to the newest contact instead of the next one.
 -   Fix: `[listing_advanced]` (and now `[listing]`) with both `sortby` and `orderby_clause` caused a PHP 8 fatal error, and a clause without `|ASC` or `|DESC` gave a warning.
+-   Security: Post types in the listing search dropdown queries are limited to registered ones and bound as prepared placeholders (fixed in 3.5.29). Thanks Peter Wilfahrt for an independent report.
 -   Security: Shortcode `wrap_template` and `template` values can no longer reach files outside the template folders (`epl_get_template_part()` refuses names with `..`). A `wrap_template` that doesn't exist now falls back to the standard wrapper.
 -   Security: `[listing]`, `[listing_advanced]` and the Elementor listing widgets leave out post types visitors can't view, such as contacts.
 -   Security: Search requests with made-up `property_status` values no longer add entries to the listing query cache.
