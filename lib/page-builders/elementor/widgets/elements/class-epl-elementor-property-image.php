@@ -409,17 +409,17 @@ class EPL_Elementor_Property_Image extends \Elementor\Widget_Base {
 
 		foreach (
 			array(
-				'brightness' => array( 'Brightness', 100, 0, 200 ),
-				'contrast'   => array( 'Contrast', 100, 0, 200 ),
-				'saturate'   => array( 'Saturation', 100, 0, 300 ),
-				'grayscale'  => array( 'Grayscale', 0, 0, 100 ),
-				'opacity'    => array( 'Opacity', 100, 0, 100 ),
+				'brightness' => array( __( 'Brightness', 'easy-property-listings' ), 100, 0, 200 ),
+				'contrast'   => array( __( 'Contrast', 'easy-property-listings' ), 100, 0, 200 ),
+				'saturate'   => array( __( 'Saturation', 'easy-property-listings' ), 100, 0, 300 ),
+				'grayscale'  => array( __( 'Grayscale', 'easy-property-listings' ), 0, 0, 100 ),
+				'opacity'    => array( __( 'Opacity', 'easy-property-listings' ), 100, 0, 100 ),
 			) as $filter => $control
 		) {
 			$this->add_control(
 				'image_hover_' . $filter,
 				array(
-					'label'      => esc_html__( $control[0], 'easy-property-listings' ),
+					'label'      => esc_html( $control[0] ),
 					'type'       => \Elementor\Controls_Manager::SLIDER,
 					'size_units' => array( '%' ),
 					'range'      => array( '%' => array( 'min' => $control[2], 'max' => $control[3] ) ),

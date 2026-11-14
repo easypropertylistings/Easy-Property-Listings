@@ -162,12 +162,15 @@ class EPL_Elementor {
 		<div class="notice notice-warning is-dismissible">
 			<p>
 				<?php
-				printf(
-					/* translators: 1: Plugin name 2: Elementor 3: Version */
-					esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'easy-property-listings' ),
-					'<strong>' . esc_html__( 'Easy Property Listings - Elementor', 'easy-property-listings' ) . '</strong>',
-					'<strong>Elementor</strong>',
-					self::MINIMUM_ELEMENTOR_VERSION
+				echo wp_kses(
+					sprintf(
+						/* translators: 1: Plugin name 2: Elementor 3: Version */
+						esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'easy-property-listings' ),
+						'<strong>' . esc_html__( 'Easy Property Listings - Elementor', 'easy-property-listings' ) . '</strong>',
+						'<strong>Elementor</strong>',
+						esc_html( self::MINIMUM_ELEMENTOR_VERSION )
+					),
+					array( 'strong' => array() )
 				);
 				?>
 			</p>

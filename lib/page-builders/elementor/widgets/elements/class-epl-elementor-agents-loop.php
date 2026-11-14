@@ -472,7 +472,7 @@ class EPL_Elementor_Listing_Agents extends \Elementor\Widget_Base {
 			}
 
 			self::$rendering_templates[ $template_id ] = true;
-			echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $template_id, true );
+			echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $template_id, true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor builds and escapes its own template HTML.
 			unset( self::$rendering_templates[ $template_id ] );
 		}
 	}

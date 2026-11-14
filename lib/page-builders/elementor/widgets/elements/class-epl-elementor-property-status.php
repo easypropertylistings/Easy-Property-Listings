@@ -72,6 +72,7 @@ class EPL_Elementor_Property_Status extends \Elementor\Widget_Base {
 
 	/**
 	 * Register widget controls.
+	 *
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	protected function register_controls() {
@@ -84,27 +85,27 @@ class EPL_Elementor_Property_Status extends \Elementor\Widget_Base {
 		);
 
 		$labels = array(
-			'current_sale_label'       => array( 'Current Sale', 'For Sale' ),
-			'current_rental_label'     => array( 'Current Rental', 'For Lease' ),
-			'current_com_sale_label'   => array( 'Current Commercial Sale', 'For Sale' ),
-			'current_com_lease_label'  => array( 'Current Commercial Lease', 'For Lease' ),
-			'current_com_both_label'   => array( 'Current Commercial Sale/Lease', 'For Sale / Lease' ),
-			'under_offer_label'        => array( 'Under Offer', 'Under Offer' ),
-			'sold_label'               => array( 'Sold', 'Sold' ),
-			'leased_label'             => array( 'Leased', 'Leased' ),
-			'withdrawn_label'          => array( 'Withdrawn', 'Withdrawn' ),
-			'offmarket_label'          => array( 'Off Market', 'Off Market' ),
-			'deleted_label'            => array( 'Deleted', 'Deleted' ),
-			'fallback_label'           => array( 'Unknown Status', '' ),
+			'current_sale_label'      => array( __( 'Current Sale', 'easy-property-listings' ), __( 'For Sale', 'easy-property-listings' ) ),
+			'current_rental_label'    => array( __( 'Current Rental', 'easy-property-listings' ), __( 'For Lease', 'easy-property-listings' ) ),
+			'current_com_sale_label'  => array( __( 'Current Commercial Sale', 'easy-property-listings' ), __( 'For Sale', 'easy-property-listings' ) ),
+			'current_com_lease_label' => array( __( 'Current Commercial Lease', 'easy-property-listings' ), __( 'For Lease', 'easy-property-listings' ) ),
+			'current_com_both_label'  => array( __( 'Current Commercial Sale/Lease', 'easy-property-listings' ), __( 'For Sale / Lease', 'easy-property-listings' ) ),
+			'under_offer_label'       => array( __( 'Under Offer', 'easy-property-listings' ), __( 'Under Offer', 'easy-property-listings' ) ),
+			'sold_label'              => array( __( 'Sold', 'easy-property-listings' ), __( 'Sold', 'easy-property-listings' ) ),
+			'leased_label'            => array( __( 'Leased', 'easy-property-listings' ), __( 'Leased', 'easy-property-listings' ) ),
+			'withdrawn_label'         => array( __( 'Withdrawn', 'easy-property-listings' ), __( 'Withdrawn', 'easy-property-listings' ) ),
+			'offmarket_label'         => array( __( 'Off Market', 'easy-property-listings' ), __( 'Off Market', 'easy-property-listings' ) ),
+			'deleted_label'           => array( __( 'Deleted', 'easy-property-listings' ), __( 'Deleted', 'easy-property-listings' ) ),
+			'fallback_label'          => array( __( 'Unknown Status', 'easy-property-listings' ), '' ),
 		);
 
 		foreach ( $labels as $control => $label ) {
 			$this->add_control(
 				$control,
 				array(
-					'label'   => esc_html__( $label[0], 'easy-property-listings' ),
+					'label'   => esc_html( $label[0] ),
 					'type'    => \Elementor\Controls_Manager::TEXT,
-					'default' => esc_html__( $label[1], 'easy-property-listings' ),
+					'default' => esc_html( $label[1] ),
 				)
 			);
 		}
@@ -150,7 +151,14 @@ class EPL_Elementor_Property_Status extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->add_control( 'background_heading', array( 'label' => esc_html__( 'Status Backgrounds', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::HEADING, 'separator' => 'before' ) );
+		$this->add_control(
+			'background_heading',
+			array(
+				'label'     => esc_html__( 'Status Backgrounds', 'easy-property-listings' ),
+				'type'      => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
 		$backgrounds = array(
 			'current_sale_background'      => array( 'Current Sale', 'current-sale' ),
 			'current_rental_background'    => array( 'Current Rental', 'current-rental' ),
@@ -233,6 +241,7 @@ class EPL_Elementor_Property_Status extends \Elementor\Widget_Base {
 
 	/**
 	 * Render widget output.
+	 *
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	protected function render() {

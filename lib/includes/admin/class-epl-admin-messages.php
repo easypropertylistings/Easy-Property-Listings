@@ -239,7 +239,7 @@ class EPL_Admin_Messages {
 	 * @since 3.6
 	 */
 	private static function get_current_creative() {
-		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
+		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only picks which banner to show; nothing is saved.
 
 		if ( in_array( $page, array( 'epl-settings', 'epl-extensions' ), true ) ) {
 			return 'a';

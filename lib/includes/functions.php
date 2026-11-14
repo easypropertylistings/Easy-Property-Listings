@@ -1983,7 +1983,7 @@ function epl_listing_query_cache( $sql, $return_type = 'col' ) {
 function epl_listing_query_run( $sql, $return_type = 'col' ) {
 	global $wpdb;
 
-	$result = 'results' === $return_type ? $wpdb->get_results( $sql ) : $wpdb->get_col( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
+	$result = 'results' === $return_type ? $wpdb->get_results( $sql ) : $wpdb->get_col( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $sql is prepared by the caller.
 
 	return is_array( $result ) ? $result : array();
 }

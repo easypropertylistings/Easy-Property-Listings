@@ -124,9 +124,21 @@ class EPL_Welcome {
 
 		.epl-whats-new {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+			grid-template-columns: repeat(4, 1fr);
 			gap: 20px;
 			margin: 24px 0;
+		}
+
+		@media (max-width: 1280px) {
+			.epl-whats-new {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+
+		@media (max-width: 600px) {
+			.epl-whats-new {
+				grid-template-columns: 1fr;
+			}
 		}
 
 		.epl-whats-new__item {
@@ -206,7 +218,7 @@ class EPL_Welcome {
 	}
 
 	/**
-	 * What's new in this version: up to three headlines for the What's New tab.
+	 * What's new in this version: a few headlines for the What's New tab.
 	 *
 	 * The full story is a post on easypropertylistings.com.au/whats-new/, so only these
 	 * few lines need translating each release. Edit them for each x.y.0 release.
@@ -228,6 +240,10 @@ class EPL_Welcome {
 			array(
 				'title' => __( 'One listing shortcode', 'easy-property-listings' ),
 				'text'  => __( '[listing] now does everything [listing_advanced] does: features, locations, open homes, auctions and more.', 'easy-property-listings' ),
+			),
+			array(
+				'title' => __( 'Elementor widgets (beta)', 'easy-property-listings' ),
+				'text'  => __( 'Design single listing, archive and agent templates in Elementor with 30 Easy Property Listings widgets.', 'easy-property-listings' ),
 			),
 		);
 
