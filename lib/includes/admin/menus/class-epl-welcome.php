@@ -153,6 +153,7 @@ class EPL_Welcome {
 	 * Parse the EPL readme.txt file
 	 *
 	 * @since 3.1.20
+	 * @since 3.6 Fix: shows only the Changelog section. The Upgrade Notice section after it showed as stray "=" lines and an "Upgrade Notice" heading.
 	 * @return string $readme HTML formatted readme file
 	 */
 	public function parse_readme() {
@@ -161,9 +162,11 @@ class EPL_Welcome {
 			$readme = '<p>' . esc_html__( 'No valid changelog was found.', 'easy-property-listings' ) . '</p>';
 		} else {
 			$readme = file_get_contents( $file ); //phpcs:ignore
-			$readme = nl2br( esc_html( $readme ) );
 			$readme = explode( '== Changelog ==', $readme );
 			$readme = end( $readme );
+			// Stop at the next section (== Upgrade Notice ==).
+			$readme = preg_split( '/^== /m', $readme );
+			$readme = nl2br( esc_html( trim( $readme[0] ) ) );
 			$readme = preg_replace( '/`(.*?)`/', '<code>\\1</code>', $readme );
 			$readme = preg_replace( '/[\040]\*\*(.*?)\*\*/', ' <strong>\\1</strong>', $readme );
 			$readme = preg_replace( '/[\040]\*(.*?)\*/', ' <em>\\1</em>', $readme );
