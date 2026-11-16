@@ -392,6 +392,97 @@ function epl_hide_listing_statuses() {
 }
 
 /**
+ * Is this one of EPL's own listing queries on the front end?
+ *
+ * The listing archives, search results, location, feature and business category pages
+ * (the main query), the EPL shortcodes and the EPL widgets. Admin screens, single listings
+ * and other plugins' queries (an importer looking up a listing, for example) are not.
+ *
+ * @param WP_Query $query The query.
+ *
+ * @return bool
+ *
+ * @since 3.6 Added.
+ */
+function epl_is_front_end_listing_query( $query ) {
+	$is = false;
+
+	if ( ! is_admin() && ! $query->is_singular() ) {
+		$is = (bool) $query->get( 'is_epl_shortcode' ) || (bool) $query->get( 'is_epl_widget' );
+
+		if ( ! $is && $query->is_main_query() ) {
+			$is = is_post_type_archive( epl_all_post_types() ) || is_tax( array( 'location', 'tax_feature', 'tax_business_listing' ) ) || epl_is_search();
+		}
+	}
+
+	/**
+	 * Filters whether a query is one of EPL's front end listing queries.
+	 *
+	 * @since 3.6
+	 *
+	 * @param bool     $is    True for EPL archives, search, shortcodes and widgets.
+	 * @param WP_Query $query The query.
+	 */
+	return (bool) apply_filters( 'epl_is_front_end_listing_query', $is, $query );
+}
+
+/**
+ * Leave hidden listings (withdrawn, off market, deleted) out of EPL's listing queries
+ *
+ * Before 3.6 they were only skipped when each listing was shown, so pages showed fewer
+ * listings than they should, and page counts included listings nobody could see. Uses
+ * epl_hide_listing_statuses(), so a site that shows off market listings with that filter
+ * still gets them. Listings with no status are kept, as before.
+ *
+ * @param WP_Query $query The query.
+ *
+ * @return void
+ *
+ * @since 3.6 Added.
+ */
+function epl_exclude_hidden_listing_statuses( $query ) {
+	if ( ! epl_is_front_end_listing_query( $query ) ) {
+		return;
+	}
+
+	$hidden_ids = epl_get_hidden_listing_ids();
+	if ( empty( $hidden_ids ) ) {
+		return;
+	}
+
+	$not_in = $query->get( 'post__not_in' );
+	$not_in = is_array( $not_in ) ? $not_in : array();
+
+	$query->set( 'post__not_in', array_values( array_unique( array_merge( array_map( 'absint', $not_in ), $hidden_ids ) ) ) );
+}
+add_action( 'pre_get_posts', 'epl_exclude_hidden_listing_statuses', 20 );
+
+/**
+ * IDs of listings with a hidden status (epl_hide_listing_statuses())
+ *
+ * One query on the status meta key, kept in the listing query cache until a listing
+ * changes. Excluding these IDs is fast: a meta_query "status NOT IN, or no status" joins
+ * every meta row of every listing (15 seconds on 735 rentals, much longer at 100,000).
+ *
+ * @return int[]
+ *
+ * @since 3.6 Added.
+ */
+function epl_get_hidden_listing_ids() {
+	global $wpdb;
+
+	$hidden = array_values( array_filter( array_map( 'strval', (array) epl_hide_listing_statuses() ) ) );
+	if ( empty( $hidden ) ) {
+		return array();
+	}
+
+	$placeholders = implode( ', ', array_fill( 0, count( $hidden ), '%s' ) );
+	$sql          = $wpdb->prepare( "SELECT DISTINCT post_id FROM {$wpdb->postmeta} WHERE meta_key = 'property_status' AND meta_value IN ( $placeholders )", $hidden ); // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+	return array_map( 'absint', epl_listing_query_cache( $sql ) );
+}
+
+/**
  * Selecting Card Display Style
  *
  * Allows the use of one function where we can then select a different template

@@ -133,13 +133,6 @@ function epl_listing_results_loop_callback( $atts ) {
 			'posts_per_page' => epl_is_page_builder_preview() && '' !== $attributes['preview_limit'] ? (int) $attributes['preview_limit'] : (int) get_option( 'posts_per_page' ),
 			'paged'          => $paged,
 			'instance_id'    => sanitize_text_field( $attributes['instance_id'] ),
-			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
-				array(
-					'key'     => 'property_status',
-					'value'   => epl_hide_listing_statuses(),
-					'compare' => 'NOT IN',
-				),
-			),
 		);
 		$query   = new WP_Query( epl_add_orderby_args( $args, 'shortcode', 'listing_results' ) );
 	}
