@@ -205,7 +205,11 @@ h3.property-address {
 .epl-property-blog.suburb-top .page-price.under-offer-status{
 	display: block
 }
-.under-offer-status {
+.under-offer-status:not(:where(.epl-under-offer-has-price)) {
+	color: #FFA500;
+}
+/* Under offer with the price shown: only the label is orange, the price keeps its usual colour. */
+.under-offer-status .epl-under-offer-label {
 	color: #FFA500;
 }
 /*Tab Content*/

@@ -999,6 +999,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * the listing advertises no price or the site hides the price under offer.
 		 *
 		 * @since 3.6
+		 * @since 3.6 With the price shown, the wrapper has the class epl-under-offer-has-price so only the label is coloured.
 		 *
 		 * @param string $price  The price shown when the listing is not under offer.
 		 * @param string $format Output format: span, div, li or text.
@@ -1027,7 +1028,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 				if ( 'text' === $format ) {
 					$output = $label . $separator . $price;
 				} else {
-					$output = '<' . $format . ' class="page-price under-offer-status">'
+					$output = '<' . $format . ' class="page-price under-offer-status epl-under-offer-has-price">'
 						. '<span class="epl-under-offer-label">' . $label . '</span>'
 						. '<span class="epl-under-offer-separator">' . $separator . '</span>'
 						. '<span class="epl-under-offer-price">' . $price . '</span>'

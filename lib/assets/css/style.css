@@ -105,7 +105,11 @@
 	text-transform: uppercase;
 	color: #F00;
 }
-.under-offer-status {
+.under-offer-status:not(:where(.epl-under-offer-has-price)) {
+	color: #FFA500;
+}
+/* Under offer with the price shown: only the label is orange, the price keeps its usual colour. */
+.under-offer-status .epl-under-offer-label {
 	color: #FFA500;
 }
 
