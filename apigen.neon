@@ -13,6 +13,8 @@ exclude:
     - node_modules/
     - epl-apidocs/
     - apigen/
+    # Elementor integration: uses PHP 7 return types (it must match Elementor's own methods), which this ApiGen version can't parse. Its hooks are in the codex.
+    - lib/page-builders/
     - .claude/
 
 # character set of source files; if you use only one across your files, we recommend you name it
