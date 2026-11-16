@@ -412,12 +412,12 @@ To get rid of the 404 error when viewing a listing, you need to re-save your per
 
 Place the php function on your single.php template in your theme <?php do_action( 'epl_single_author' ); ?>
 
-= Can I add integrations for third party real estate applications like 1Form or Inspect Real Estate? =
+= Can I add integrations for third party real estate applications like 1Form or Reapit Lettings (formerly Inspect Real Estate)? =
 
 Yes, through the addition of one or more of the add-on integrations, you can quickly integrate third party buttons to listings. The add-on gateways currently available:
 
 * [1form](https://easypropertylistings.com.au/extensions/1form/?utm_source=readme&utm_medium=faq_tab&utm_content=extensions_link&utm_campaign=epl_extension_1form)
-* [Inspect Real Estate](https://easypropertylistings.com.au/extensions/inspect-real-estate/?utm_source=readme&utm_medium=faq_tab&utm_content=extensions_link&utm_campaign=epl_extension_inspect_real_estate)
+* [Reapit Lettings (formerly Inspect Real Estate)](https://easypropertylistings.com.au/extensions/inspect-real-estate/?utm_source=readme&utm_medium=faq_tab&utm_content=extensions_link&utm_campaign=epl_extension_inspect_real_estate)
 * [Rate My Agent](https://easypropertylistings.com.au/extensions/rate-my-agent/?utm_source=readme&utm_medium=faq_tab&utm_content=extensions_link&utm_campaign=epl_extension_rate_my_agent)
 
 = How do I report a security vulnerability? =
