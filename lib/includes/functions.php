@@ -2173,8 +2173,10 @@ function epl_listing_query_cache_remember( $key, $sql, $return_type ) {
  */
 function epl_flush_listing_query_cache( $now = false ) {
 	if ( $now ) {
-		update_option( 'epl_listing_query_cache_version', (int) get_option( 'epl_listing_query_cache_version', 1 ) + 1, true );
+		$old_version = (int) get_option( 'epl_listing_query_cache_version', 1 );
+		update_option( 'epl_listing_query_cache_version', $old_version + 1, true );
 		delete_option( 'epl_listing_query_cache_stale' );
+		epl_delete_listing_query_cache_version( $old_version );
 		return;
 	}
 
@@ -2222,6 +2224,7 @@ function epl_rebuild_listing_query_cache() {
 
 	update_option( 'epl_listing_query_cache_queries', $queries, false );
 	update_option( 'epl_listing_query_cache_version', $version, true );
+	epl_delete_listing_query_cache_version( $version - 1, $queries );
 
 	// Listings changed again while rebuilding: go again.
 	if ( (int) get_option( 'epl_listing_query_cache_stale', 0 ) >= $started ) {
@@ -2231,6 +2234,56 @@ function epl_rebuild_listing_query_cache() {
 	}
 }
 add_action( 'epl_listing_query_cache_rebuild', 'epl_rebuild_listing_query_cache' );
+
+/**
+ * Delete the cached results of an old cache version
+ *
+ * Without this, every refresh left a full copy of the old results in the database until
+ * they expired (12 hours), which adds up on sites without an object cache.
+ *
+ * @param int        $version Cache version to delete.
+ * @param array|null $queries Remembered queries, read from the option when null.
+ *
+ * @return void
+ *
+ * @since 3.6 Added: old copies are deleted as soon as a refresh finishes.
+ */
+function epl_delete_listing_query_cache_version( $version, $queries = null ) {
+	if ( null === $queries ) {
+		$queries = get_option( 'epl_listing_query_cache_queries', array() );
+	}
+
+	foreach ( array_keys( (array) $queries ) as $key ) {
+		delete_transient( epl_listing_query_cache_transient( $key, (int) $version ) );
+	}
+}
+
+/**
+ * Does a change to this meta key leave the listing query cache as it is?
+ *
+ * Hidden meta keys (starting with an underscore, like the _edit_lock WordPress saves
+ * every minute while a listing is open in the editor) are never used by the cached
+ * search queries, so changing them doesn't refresh the cache.
+ *
+ * @param string $meta_key Meta key.
+ *
+ * @return bool
+ *
+ * @since 3.6 Added: editing a listing refreshed the cache every minute.
+ */
+function epl_listing_query_cache_ignores_meta_key( $meta_key ) {
+	$ignore = is_string( $meta_key ) && 0 === strpos( $meta_key, '_' );
+
+	/**
+	 * Filters whether a meta key change leaves the listing query cache as it is.
+	 *
+	 * @since 3.6
+	 *
+	 * @param bool   $ignore   True for hidden keys (starting with an underscore).
+	 * @param string $meta_key Meta key.
+	 */
+	return (bool) apply_filters( 'epl_listing_query_cache_ignores_meta_key', $ignore, $meta_key );
+}
 
 /**
  * Mark the listing query cache to be refreshed when this request ends
@@ -2262,6 +2315,9 @@ function epl_listing_query_cache_changed( $arg1 = null, $arg2 = null, $arg3 = nu
 		case 'added_post_meta':
 		case 'updated_post_meta':
 		case 'deleted_post_meta':
+			if ( epl_listing_query_cache_ignores_meta_key( $arg3 ) ) {
+				return;
+			}
 			$post_id = (int) $arg2;
 			break;
 		default:
@@ -2280,9 +2336,9 @@ function epl_listing_query_cache_changed( $arg1 = null, $arg2 = null, $arg3 = nu
 add_action( 'save_post', 'epl_listing_query_cache_changed', 10, 1 );
 add_action( 'before_delete_post', 'epl_listing_query_cache_changed', 10, 1 );
 add_action( 'transition_post_status', 'epl_listing_query_cache_changed', 10, 3 );
-add_action( 'added_post_meta', 'epl_listing_query_cache_changed', 10, 2 );
-add_action( 'updated_post_meta', 'epl_listing_query_cache_changed', 10, 2 );
-add_action( 'deleted_post_meta', 'epl_listing_query_cache_changed', 10, 2 );
+add_action( 'added_post_meta', 'epl_listing_query_cache_changed', 10, 3 );
+add_action( 'updated_post_meta', 'epl_listing_query_cache_changed', 10, 3 );
+add_action( 'deleted_post_meta', 'epl_listing_query_cache_changed', 10, 3 );
 add_action( 'set_object_terms', 'epl_listing_query_cache_changed', 10, 1 );
 
 /**

@@ -54,6 +54,7 @@ There are various ways you can contribute:
 -   Fix: The Dashboard listing counts (`epl_get_post_count()`) joined every meta row of every listing; the second agent is now joined only when counting an author's listings. About three times faster.
 -   Fix: French sites now get the complete French translation from WordPress.org. The plugin shipped a French file from 2016 that covered about a third of the text and was loaded instead of it. Also removed an unused Brazilian Portuguese file (WordPress.org provides that one too).
 -   Fix: `epl_get_option()` returned a saved decimal between -1 and 1, such as 0.5, as 0. Only a real 0 is returned as 0 now.
+-   Fix: The search cache no longer refreshes every minute while a listing is open in the editor, and each refresh deletes the old cached results instead of leaving them in the database. New filter `epl_listing_query_cache_ignores_meta_key`.
 -   Fix: The next contact link on a contact went to the newest contact instead of the next one.
 -   Fix: `[listing_advanced]` (and now `[listing]`) with both `sortby` and `orderby_clause` caused a PHP 8 fatal error, and a clause without `|ASC` or `|DESC` gave a warning.
 -   Security: Post types in the listing search dropdown queries are limited to registered ones and bound as prepared placeholders (fixed in 3.5.29). Thanks Peter Wilfahrt for an independent report.
