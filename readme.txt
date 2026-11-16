@@ -18,6 +18,15 @@ Easy Property Listings is one of the most dynamic and feature rich Real Estate p
 
 An easy-to-use plugin that provides the needed functions to configure a dynamic real estate website in minutes. Packed with advanced features, shortcodes and templates letting you create real estate websites fast.
 
+**New in 3.6**
+
+* Under offer listings show their advertised price, as NSW underquoting rules require from 17 November 2026.
+* Search up to 48 times faster on large sites, and pages with a search form 3 to 5 times faster.
+* One listing shortcode: [listing] takes every [listing_advanced] option.
+* Elementor widgets and templates (beta).
+
+[See everything new in 3.6](https://easypropertylistings.com.au/whats-new/?utm_source=readme&utm_medium=description_tab&utm_content=new_in_version&utm_campaign=epl_whats_new).
+
 **Features:**
 
 **Get Real Estate Online Faster Than Ever**
@@ -209,6 +218,8 @@ Several short codes to insert your listings into posts and pages with many custo
 
 The [listing] shortcode allows you to output your listings on pages and posts with advanced filtering options for listing types, order, status filtering, locations and much more which you can [read about the settings and options here](https://codex.easypropertylistings.com.au/article/24-listing?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg).
 
+From 3.6, [listing] and [listing_advanced] are the same shortcode, so [listing] can also filter by feature, location, open homes, auctions and custom fields. [See all the options](https://codex.easypropertylistings.com.au/article/443-listingadvanced-shortcode?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg).
+
 **Listing Open**
 
 The [listing_open] shortcode quickly outputs listings that have scheduled open for inspection times. Use this on posts so your site will always have an up-to-date list of properties open for inspection. Use the [listing_open post_type="property" template="table"] or for rentals and slimmer [listing_open post_type="rental" template="table_open"] option to create a slim list of listings.
@@ -224,6 +235,10 @@ Use the [listing_category] short code to filter listings by any variable you wan
 **Use any theme**
 
 Use any theme you want which means you can use your creativity and build beautiful websites the way you want. We’ve kept CSS to a minimum so it looks great on any theme you choose.
+
+**Elementor (beta)**
+
+With Elementor active, Easy Property Listings adds widgets for listings, archives, agents and staff, and templates for single listings and listing cards. [Read more](https://codex.easypropertylistings.com.au/article/676-elementor-templates-settings?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg).
 
 **Developer Features:**
 
