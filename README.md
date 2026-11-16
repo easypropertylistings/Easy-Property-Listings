@@ -58,6 +58,7 @@ There are various ways you can contribute:
 -   Security: Shortcode `wrap_template` and `template` values can no longer reach files outside the template folders (`epl_get_template_part()` refuses names with `..`). A `wrap_template` that doesn't exist now falls back to the standard wrapper.
 -   Security: `[listing]`, `[listing_advanced]` and the Elementor listing widgets leave out post types visitors can't view, such as contacts.
 -   Security: Search requests with made-up `property_status` values no longer add entries to the listing query cache.
+-   Security: Contact notes and activities are private records and no longer appear in comment lists or comment feeds outside wp-admin.
 -   Security: Elementor widgets (beta) only preview an unpublished listing for users who can edit it, only render published templates, never show a hidden street address or price in the Property Meta widget, and list only users who can write posts.
 -   Fix: The Full Change Log on the Dashboard > Welcome page showed the Upgrade Notice section as stray "=" lines and an "Upgrade Notice" heading.
 -   Fix: `[listing_advanced post_type="rental" sortby="price"]` sorted rentals by the sale price field instead of the rent.

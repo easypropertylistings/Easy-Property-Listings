@@ -3327,6 +3327,44 @@ function epl_count_total_contacts() {
 }
 
 /**
+ * The comment_agent labels EPL saves on contact notes and activities.
+ *
+ * Contact notes, calls, emails and other activities are stored as comments on
+ * the listing they relate to. They are private CRM records, never comments.
+ *
+ * @return array
+ * @since 3.6 Added so every check uses the same labels: 'easy-property-listings' since 3.0, 'epl' on older notes.
+ */
+function epl_contact_note_agents() {
+	return array( 'easy-property-listings', 'epl' );
+}
+
+/**
+ * Is this comment an EPL contact note or activity?
+ *
+ * @param WP_Comment|object $comment The comment.
+ *
+ * @return bool
+ * @since 3.6 Added.
+ */
+function epl_is_contact_note( $comment ) {
+	return isset( $comment->comment_agent ) && in_array( $comment->comment_agent, epl_contact_note_agents(), true );
+}
+
+/**
+ * Can the current request see contact notes in comment lists?
+ *
+ * Staff in wp-admin can. Everywhere else (the front end, feeds, the REST API,
+ * visitors' AJAX requests) contact notes are left out.
+ *
+ * @return bool
+ * @since 3.6 Added.
+ */
+function epl_can_see_contact_notes() {
+	return is_admin() && current_user_can( 'edit_posts' );
+}
+
+/**
  * Hide contacts notes from showing on frontend
  *
  * @param      array  $comments  The comments.
@@ -3334,16 +3372,70 @@ function epl_count_total_contacts() {
  *
  * @return     array
  * @since      3.0
+ * @since      3.6 Fix: matched only the old 'epl' label, so notes saved as 'easy-property-listings' were not hidden.
  */
 function epl_filter_listing_comments_array( $comments, $post_id ) {
-	foreach ( $comments as $key   => &$comment ) {
-		if ( 'epl' === $comment->comment_agent ) {
+	foreach ( $comments as $key => $comment ) {
+		if ( epl_is_contact_note( $comment ) ) {
 			unset( $comments[ $key ] );
 		}
 	}
 	return $comments;
 }
 add_filter( 'comments_array', 'epl_filter_listing_comments_array', 10, 2 );
+
+/**
+ * SQL that leaves EPL contact notes out of a comment query.
+ *
+ * @return string
+ * @since 3.6 Added.
+ */
+function epl_exclude_contact_notes_sql() {
+	global $wpdb;
+
+	$agents       = epl_contact_note_agents();
+	$placeholders = implode( ', ', array_fill( 0, count( $agents ), '%s' ) );
+
+	// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+	return $wpdb->prepare( " AND {$wpdb->comments}.comment_agent NOT IN ( $placeholders )", $agents );
+}
+
+/**
+ * Leave contact notes out of comment queries outside wp-admin.
+ *
+ * Covers comment lists, the Recent Comments widget and the REST API. EPL's own
+ * contact screens ask for notes by contact (meta key epl_contact_id) and still get them.
+ *
+ * @param array            $clauses The query clauses.
+ * @param WP_Comment_Query $query   The comment query.
+ *
+ * @return array
+ * @since 3.6 Added: contact notes and activities showed in public comment lists.
+ */
+function epl_hide_contact_notes_from_comment_queries( $clauses, $query ) {
+	$asks_for_a_contacts_notes = isset( $query->query_vars['meta_key'] ) && 'epl_contact_id' === $query->query_vars['meta_key'];
+
+	if ( epl_can_see_contact_notes() || $asks_for_a_contacts_notes ) {
+		return $clauses;
+	}
+
+	$clauses['where'] .= epl_exclude_contact_notes_sql();
+	return $clauses;
+}
+add_filter( 'comments_clauses', 'epl_hide_contact_notes_from_comment_queries', 10, 2 );
+
+/**
+ * Leave contact notes out of the comment RSS feeds.
+ *
+ * @param string $where The feed's WHERE clause.
+ *
+ * @return string
+ * @since 3.6 Added: contact notes and activities showed in the comment feeds.
+ */
+function epl_hide_contact_notes_from_comment_feeds( $where ) {
+	return $where . epl_exclude_contact_notes_sql();
+}
+add_filter( 'comment_feed_where', 'epl_hide_contact_notes_from_comment_feeds' );
 
 /**
  * Archive Page Title
