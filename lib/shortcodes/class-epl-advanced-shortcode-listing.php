@@ -699,19 +699,48 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 * @since 3.6 Fix: a wrap_template that doesn't exist falls back to shortcode-listing.php instead of PHP warnings and no listings.
+	 * @since 3.6 The wrapper always has the shortcode's own class (get_wrapper_class()).
 	 */
 	public function render() {
 		$wrap_template = $this->get_wrap_template();
+		$attributes    = $this->attributes;
+
+		$attributes['class'] = $this->get_wrapper_class();
+
 		ob_start();
 		epl_get_template_part(
 			$wrap_template,
 			array(
-				'attributes' => $this->attributes,
+				'attributes' => $attributes,
 				'query_open' => $this->query_open,
 			),
 			'shortcode-listing.php'
 		);
 
 		return ob_get_clean();
+	}
+
+	/**
+	 * Wrapper classes: the shortcode's own classes, then any class option
+	 *
+	 * Every listing shortcode always has its own class, like the other listing shortcodes
+	 * (epl-shortcode-listing-category and so on): epl-shortcode-listing for [listing] and
+	 * [listing_advanced], plus epl-shortcode-listing-advanced for [listing_advanced]. The
+	 * class option adds to them instead of replacing them.
+	 *
+	 * @return string
+	 *
+	 * @since 3.6 New: [listing] had no wrapper class, and a class option removed epl-shortcode-listing.
+	 */
+	public function get_wrapper_class() {
+		$classes = array( 'epl-shortcode-listing' );
+
+		if ( 'listing' !== $this->shortcode ) {
+			$classes[] = 'epl-shortcode-' . str_replace( '_', '-', sanitize_key( $this->shortcode ) );
+		}
+
+		$extra = isset( $this->attributes['class'] ) ? preg_split( '/\s+/', trim( (string) $this->attributes['class'] ) ) : array();
+
+		return implode( ' ', array_unique( array_filter( array_merge( $classes, (array) $extra ) ) ) );
 	}
 }

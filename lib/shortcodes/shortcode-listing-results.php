@@ -98,6 +98,7 @@ function epl_is_page_builder_preview() {
  * @since 3.5.0
  * @since 3.6 Works in Elementor templates (it showed nothing when the template switched the current post) and on location, feature and empty archives. Shows the latest listings in page builder editors. New options: template, class, title and preview_limit.
  * @since 3.6 Fix: title="on" in a page builder editor shows a plain title, so an editor redraw can't fail.
+ * @since 3.6 The wrapper has its own class, epl-shortcode-listing-results, like the other listing shortcodes.
  */
 function epl_listing_results_loop_callback( $atts ) {
 
@@ -136,7 +137,7 @@ function epl_listing_results_loop_callback( $atts ) {
 	}
 
 	$template      = str_replace( '_', '-', sanitize_key( $attributes['template'] ) );
-	$wrapper_class = epl_template_class( $template, 'archive' );
+	$wrapper_class = 'epl-shortcode-listing-results ' . epl_template_class( $template, 'archive' );
 	if ( '' !== $attributes['class'] ) {
 		$wrapper_class .= ' ' . $attributes['class'];
 	}
