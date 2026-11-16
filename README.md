@@ -4,6 +4,8 @@
 
 ### Welcome to our GitHub Repository
 
+> **Downloading?** `master` is the development branch and may contain unreleased code. Get the released plugin from [WordPress.org](https://wordpress.org/plugins/easy-property-listings/) or the [latest GitHub Release](https://github.com/easypropertylistings/Easy-Property-Listings/releases/latest).
+
 Properties listed for rent or sale is something that not a single one of the large WordPress real estate plugins has ever gotten really right. This plugin aims to fix that. Instead of focusing on providing every single feature under the sun, Easy Property Listings tries to provide only the ones that you really need. It aims to make real estate websites through WordPress easy, and complete.
 
 More information can be found at [easypropertylistings.com.au](https://easypropertylistings.com.au/).
