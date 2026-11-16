@@ -26,13 +26,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 2.2
  * @since 3.5.2 Added check to identify 0 values so that it's not ignored by empty check.
+ * @since 3.6 Fix: a decimal between -1 and 1, such as 0.5, was returned as 0. Only a real 0 is returned as 0 now.
  */
 function epl_get_option( $key = '', $default_val = false ) {
 
 	global $epl_settings;
 
 	// Check for zeros.
-	if ( isset( $epl_settings[ $key ] ) && is_numeric( $epl_settings[ $key ] ) && 0 === (int) $epl_settings[ $key ] ) {
+	if ( isset( $epl_settings[ $key ] ) && is_numeric( $epl_settings[ $key ] ) && 0.0 === (float) $epl_settings[ $key ] ) {
 			$value = 0;
 	} else {
 		// Preserve empty check for rest of the values to preserve the behaviour: if value empty, then return default.
