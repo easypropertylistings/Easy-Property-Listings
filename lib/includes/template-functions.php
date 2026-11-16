@@ -395,8 +395,9 @@ function epl_hide_listing_statuses() {
  * Is this one of EPL's own listing queries on the front end?
  *
  * The listing archives, search results, location, feature and business category pages
- * (the main query), the EPL shortcodes and the EPL widgets. Admin screens, single listings
- * and other plugins' queries (an importer looking up a listing, for example) are not.
+ * (the main query), the EPL shortcodes, the EPL widgets and Elementor Pro Loop Grids that use
+ * an EPL Loop Item. Admin screens, single listings and other plugins' queries (an importer
+ * looking up a listing, for example) are not.
  *
  * @param WP_Query $query The query.
  *
@@ -408,7 +409,8 @@ function epl_is_front_end_listing_query( $query ) {
 	$is = false;
 
 	if ( ! is_admin() && ! $query->is_singular() ) {
-		$is = (bool) $query->get( 'is_epl_shortcode' ) || (bool) $query->get( 'is_epl_widget' );
+		// EPL shortcodes and widgets, and Elementor Pro Loop Grids using an EPL Loop Item (Elementor draws those cards, so EPL's display check never runs).
+		$is = (bool) $query->get( 'is_epl_shortcode' ) || (bool) $query->get( 'is_epl_widget' ) || (bool) $query->get( 'epl_elementor_loop' );
 
 		if ( ! $is && $query->is_main_query() ) {
 			$is = is_post_type_archive( epl_all_post_types() ) || is_tax( array( 'location', 'tax_feature', 'tax_business_listing' ) ) || epl_is_search();
