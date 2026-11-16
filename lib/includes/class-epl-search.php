@@ -345,19 +345,7 @@ class EPL_SEARCH {
 	 * @return string Comma separated statuses, or ''.
 	 */
 	protected function get_field_status() {
-		$requested = $this->get_data['property_status'];
-		$requested = is_array( $requested ) ? $requested : explode( ',', (string) $requested );
-		$known     = array_keys( epl_get_property_status_opts() );
-		$statuses  = array();
-
-		foreach ( $requested as $status ) {
-			$status = trim( (string) $status );
-			if ( in_array( $status, $known, true ) ) {
-				$statuses[] = $status;
-			}
-		}
-
-		return implode( ',', $statuses );
+		return epl_search_known_statuses( $this->get_data['property_status'] );
 	}
 
 	/**

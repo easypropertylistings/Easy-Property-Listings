@@ -62,7 +62,8 @@ There are various ways you can contribute:
 -   Security: Post types in the listing search dropdown queries are limited to registered ones and bound as prepared placeholders (fixed in 3.5.29). Thanks Peter Wilfahrt for an independent report.
 -   Security: Shortcode `wrap_template` and `template` values can no longer reach files outside the template folders (`epl_get_template_part()` refuses names with `..`). A `wrap_template` that doesn't exist now falls back to the standard wrapper.
 -   Security: `[listing]`, `[listing_advanced]` and the Elementor listing widgets leave out post types visitors can't view, such as contacts.
--   Security: Search requests with made-up `property_status` values no longer add entries to the listing query cache.
+-   Security: Search requests with made-up `property_status` values no longer add entries to the listing query cache, including through the search form's dropdowns and theme copies of the search templates.
+-   Fix: A web address with certain extra values (for example `?atts=x`) broke any page with a listing search form. The search templates no longer take their own internal settings from the address; search values and options still come through as before.
 -   Security: Contact notes and activities are private records and no longer appear in comment lists or comment feeds outside wp-admin.
 -   Security: Elementor widgets (beta) only preview an unpublished listing for users who can edit it, only render published templates, never show a hidden street address or price in the Property Meta widget, and list only users who can write posts.
 -   Fix: The Full Change Log on the Dashboard > Welcome page showed the Upgrade Notice section as stray "=" lines and an "Upgrade Notice" heading.

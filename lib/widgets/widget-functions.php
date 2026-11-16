@@ -1273,8 +1273,12 @@ add_filter( 'posts_where', 'epl_listings_where', 10, 2 );
  *
  * @since 3.5.26 Query values are now escaped with a prepared statement.
  * @since 3.6 Fix: Slow query. The listing meta table is only joined when filtering by listing status, on the property_status key, instead of every meta row of every listing (23x faster on 735 rentals). Results are cached until a listing changes (epl_listing_query_cache()).
+ * @since 3.6 Security: only real listing statuses are used (epl_search_known_statuses()), so a made-up status can't add cache entries.
  */
 function epl_get_available_terms( $tax = 'location', $post_type = '', $property_status = '' ) {
+
+	// Only real listing statuses: results are cached per status (epl_search_known_statuses()).
+	$property_status = epl_search_known_statuses( $property_status );
 	global $wpdb;
 
 	$query_args = array( $tax );

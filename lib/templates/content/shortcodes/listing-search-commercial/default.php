@@ -40,9 +40,15 @@ $get_data            = epl_array_map_recursive( 'sanitize_text_field', $_GET );
 
 foreach ( $get_data as $get_key => $get_val ) {
 
-	if ( ! empty( $get_data[ $get_key ] ) ) {
+	// Search values and options can come from the URL, but never this template's own variables (?atts=x broke the page).
+	if ( ! empty( $get_data[ $get_key ] ) && ! in_array( $get_key, epl_search_template_reserved_vars(), true ) ) {
 		${$get_key} = $get_val;
 	}
+}
+
+// Only real listing statuses reach the dropdowns (they're cached per status).
+if ( isset( $property_status ) ) {
+	$property_status = epl_search_known_statuses( $property_status );
 }
 
 $queried_post_type = isset( $get_data['post_type'] ) ? sanitize_text_field( $get_data['post_type'] ) : 'commercial';

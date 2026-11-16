@@ -2341,6 +2341,47 @@ add_action( 'deleted_post_meta', 'epl_listing_query_cache_changed', 10, 3 );
 add_action( 'set_object_terms', 'epl_listing_query_cache_changed', 10, 1 );
 
 /**
+ * Variable names the listing search templates keep for themselves
+ *
+ * The search templates copy URL values into variables so the form shows the current search.
+ * These names are never taken from the URL, or ?atts=x would break the page.
+ *
+ * @return string[]
+ *
+ * @since 3.6 Added.
+ */
+function epl_search_template_reserved_vars() {
+	return array( 'atts', 'user_atts', 'atts_key', 'atts_val', 'config', 'epl_frontend_field', 'epl_frontend_fields', 'epl_settings', 'get_data', 'get_key', 'get_val', 'global_counters', 'global_tab_counter', 'is_sb_current', 'post_type_label', 'queried_post_type', 'selected_post_types', 'show_title', 'tabcounter', 'value', 'GLOBALS', 'this', '_GET', '_POST', '_REQUEST', '_SERVER', '_COOKIE', '_FILES', '_ENV', '_SESSION' );
+}
+
+/**
+ * Keep only real listing statuses from a requested status list
+ *
+ * The search form's dropdowns are cached per status, so a made-up status in the URL
+ * (?property_status=<anything>) must not reach them, or every request adds cache entries.
+ *
+ * @param string|array $requested Comma separated statuses, or an array.
+ *
+ * @return string Comma separated known statuses, or '' when none are known.
+ *
+ * @since 3.6 Added: the search form templates passed the URL status to the dropdown queries unchecked.
+ */
+function epl_search_known_statuses( $requested ) {
+	$requested = is_array( $requested ) ? $requested : explode( ',', (string) $requested );
+	$known     = array_keys( epl_get_property_status_opts() );
+	$statuses  = array();
+
+	foreach ( $requested as $status ) {
+		$status = trim( (string) $status );
+		if ( in_array( $status, $known, true ) ) {
+			$statuses[] = $status;
+		}
+	}
+
+	return implode( ',', $statuses );
+}
+
+/**
  * Description: Getting all the values associated with a specific custom post meta key, across all posts
  * Author: Chinmoy Paul
  * Author URL: http://pwdtechnology.com
@@ -2360,8 +2401,12 @@ add_action( 'set_object_terms', 'epl_listing_query_cache_changed', 10, 1 );
  * @since 3.5.6  Fix: Status variable overwritten when status option was passed to the shortcode.
  * @since 3.5.29 Fix: SQL injection. Post types are limited to registered ones and passed as prepared placeholders.
  * @since 3.6    Fix: Slow query. The listing status table is only joined when filtering by status, on its own meta key, instead of every meta row of every listing (33x faster on 735 rentals). Results are cached until a listing changes (epl_listing_query_cache()).
+ * @since 3.6 Security: only real listing statuses are used (epl_search_known_statuses()), so a made-up status can't add cache entries.
  */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status = '' ) {
+
+	// Only real listing statuses: results are cached per status (epl_search_known_statuses()).
+	$property_status = epl_search_known_statuses( $property_status );
 
 	global $wpdb;
 
