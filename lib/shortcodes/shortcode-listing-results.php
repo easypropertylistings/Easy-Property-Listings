@@ -89,8 +89,9 @@ function epl_is_page_builder_preview() {
  * Page Builder Archive / Search Results Loop
  * Load the Easy Property Listings Loop using a shortcode. For use in Page Builders like Elementor, Divi, WP Bakery, Visual Composer.
  *
- * On search results and listing archives it shows the page's listings. Anywhere else (a
- * normal page, or a page builder editor) it shows the latest listings, with paging.
+ * On search results and listing archives it shows the page's listings. On a normal page or
+ * post, and in a page builder editor, it shows the latest listings, with paging. Anywhere
+ * else (blog, author or other archives) it shows nothing.
  *
  * @param array $atts Shortcode options.
  *
@@ -99,7 +100,7 @@ function epl_is_page_builder_preview() {
  * @since 3.6 Works in Elementor templates (it showed nothing when the template switched the current post) and on location, feature and empty archives. Shows the latest listings in page builder editors. New options: template, class, title and preview_limit.
  * @since 3.6 Fix: title="on" in a page builder editor shows a plain title, so an editor redraw can't fail.
  * @since 3.6 The wrapper has its own class, epl-shortcode-listing-results, like the other listing shortcodes.
- * @since 3.6 On a normal page it shows the latest listings with paging (it showed nothing).
+ * @since 3.6 On a normal page or post it shows the latest listings with paging (it showed nothing). Other archives stay empty.
  */
 function epl_listing_results_loop_callback( $atts ) {
 
@@ -123,8 +124,10 @@ function epl_listing_results_loop_callback( $atts ) {
 	if ( epl_is_listing_results_page() ) {
 		global $wp_query;
 		$query = $wp_query;
-	} else {
-		// A page builder editor, or a normal page: show the latest listings, with paging.
+	} elseif ( epl_is_page_builder_preview() || is_singular() ) {
+		// A page builder editor, or a normal page or post: show the latest listings, with paging.
+		// Other archives (blog, author, other post types) stay empty: a site-wide archive
+		// template with this shortcode must not fill them with listings.
 		$preview = true;
 		$paged   = max( 1, (int) get_query_var( 'paged' ), (int) get_query_var( 'page' ) );
 		$args    = array(
@@ -135,6 +138,8 @@ function epl_listing_results_loop_callback( $atts ) {
 			'instance_id'    => sanitize_text_field( $attributes['instance_id'] ),
 		);
 		$query   = new WP_Query( epl_add_orderby_args( $args, 'shortcode', 'listing_results' ) );
+	} else {
+		return '';
 	}
 
 	$template      = str_replace( '_', '-', sanitize_key( $attributes['template'] ) );
