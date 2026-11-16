@@ -243,6 +243,7 @@ class EPL_Elementor_Property_Status extends \Elementor\Widget_Base {
 	 * Render widget output.
 	 *
 	 * @since 3.6.0 New: Elementor widgets (beta).
+	 * @since 3.6.0 Uses is_under_offer(), so its filter applies.
 	 */
 	protected function render() {
 		$property  = EPL_Elementor::setup_listing_context();
@@ -262,7 +263,7 @@ class EPL_Elementor_Property_Status extends \Elementor\Widget_Base {
 		$label    = '';
 		$kind     = $status;
 
-		if ( 'current' === $status && 'yes' === $property->get_property_meta( 'property_under_offer' ) ) {
+		if ( 'current' === $status && $property->is_under_offer() ) {
 			$label = $settings['under_offer_label'];
 			$kind  = 'under-offer';
 		} elseif ( 'current' === $status ) {

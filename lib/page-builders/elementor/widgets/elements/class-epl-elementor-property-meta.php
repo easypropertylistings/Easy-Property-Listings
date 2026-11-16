@@ -182,6 +182,7 @@ class EPL_Elementor_Property_Meta extends \Elementor\Widget_Base {
 	 *
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 * @since 3.6.0 Security: won't show a hidden street address or price, or private meta.
+	 * @since 3.6.0 Fix: rentals check Rent Display, so a displayed rent isn't hidden.
 	 */
 	protected function render() {
 		$property = EPL_Elementor::setup_listing_context();
@@ -201,7 +202,9 @@ class EPL_Elementor_Property_Meta extends \Elementor\Widget_Base {
 		if ( ! $property->show_street_address() ) {
 			$blocked = array( 'property_address_street', 'property_address_street_number', 'property_address_sub_number', 'property_address_lot_number', 'property_address_coordinates' );
 		}
-		if ( 'yes' !== $property->get_property_meta( 'property_price_display' ) ) {
+		// Rentals show their rent with Rent Display; every other type uses Price Display.
+		$price_display_key = 'rental' === $property->post_type ? 'property_rent_display' : 'property_price_display';
+		if ( 'yes' !== $property->get_property_meta( $price_display_key ) ) {
 			$blocked = array_merge( $blocked, array( 'property_price', 'property_price_view', 'property_sold_price', 'property_rent', 'property_rent_view', 'property_com_rent' ) );
 		}
 		/**

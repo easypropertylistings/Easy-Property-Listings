@@ -127,7 +127,7 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 			'dynamic_filters_note',
 			array(
 				'type'            => \Elementor\Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'These filters are passed to epl_parse_atts(). Each filter creates a named clause using the meta key plus “_clause”, which can be referenced by Advanced Orderby Clauses.', 'easy-property-listings' ),
+				'raw'             => esc_html__( 'Use a filter in Advanced Orderby Clauses as its meta key plus “_clause”.', 'easy-property-listings' ),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			)
 		);
@@ -221,7 +221,7 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 					'type'        => \Elementor\Controls_Manager::SELECT2,
 					'options'     => $templates,
 					'label_block' => true,
-					'description' => esc_html__( 'Optional. When set, this template is shown while the archive is in List view; the Loop Template above is used for Grid view. Requires Archive Tools (the grid/list switch) to be enabled so visitors can toggle.', 'easy-property-listings' ),
+					'description' => esc_html__( 'Optional. Used in List view. Needs Archive Tools on.', 'easy-property-listings' ),
 					'condition'   => array( 'renderer' => 'elementor' ),
 				)
 			);

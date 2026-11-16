@@ -5,7 +5,7 @@
  *
  * @package    EPL
  * @subpackage PageBuilders/Elementor
- * @since      3.7.0
+ * @since      3.6.0
  */
 
 // Exit if accessed directly.

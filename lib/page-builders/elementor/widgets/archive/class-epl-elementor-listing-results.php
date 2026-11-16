@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  PageBuilders/Elementor/Widgets/Archive
- * @since       3.7.0
+ * @since       3.6.0
  */
 
 // Exit if accessed directly.
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * as the listings archive page, and it renders the actual archive, search
  * or taxonomy results with real pagination.
  *
- * @since 3.7.0
+ * @since 3.6.0
  */
 class EPL_Elementor_Listing_Results extends \Elementor\Widget_Base {
 	use EPL_Elementor_Dynamic_Widget;
@@ -97,7 +97,7 @@ class EPL_Elementor_Listing_Results extends \Elementor\Widget_Base {
 			'results_notice',
 			array(
 				'type'            => \Elementor\Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'Shows whatever listings the visitor is actually looking at — the archive, a search, or a location/feature page — with real pagination. Pair it with the EPL Listing Search widget above it for a working search bar, and EPL Pagination below it for page numbers. Only use this on a page assigned as the "Listings Archive Page" in EPL settings; elsewhere there is no real listings query for it to show.', 'easy-property-listings' ),
+				'raw'             => esc_html__( 'Shows the archive, search or location listings. Use it on your Listings Archive Page.', 'easy-property-listings' ),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			)
 		);
@@ -110,7 +110,7 @@ class EPL_Elementor_Listing_Results extends \Elementor\Widget_Base {
 				'label_block' => true,
 				'options'     => $this->get_card_template_options(),
 				'default'     => (string) EPL_Elementor_Template_Seeder::get_default_card_id(),
-				'description' => esc_html__( 'Pick which card design listings use on this page. "EPL Card" is the ready-made design that ships with the plugin — edit it under Elementor > Templates > Saved Templates, or duplicate it to build your own. Choose "EPL Built-in Card" to fall back to the plugin\'s original PHP design instead. To use a different card for a different listing type, assign a separate archive page per listing type in EPL Settings > Elementor Templates.', 'easy-property-listings' ),
+				'description' => esc_html__( 'The card design for this page. Edit cards in Elementor > Templates.', 'easy-property-listings' ),
 			)
 		);
 

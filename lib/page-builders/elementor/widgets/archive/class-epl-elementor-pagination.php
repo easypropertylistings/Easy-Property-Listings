@@ -83,7 +83,7 @@ class EPL_Elementor_Pagination extends \Elementor\Widget_Base {
 			'editor_note',
 			array(
 				'type'            => \Elementor\Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'This widget paginates the current archive query. For Loop Grid, either use its built-in Pagination section or disable that pagination before placing this widget.', 'easy-property-listings' ),
+				'raw'             => esc_html__( 'Pages the current archive. With Loop Grid, turn off its own pagination.', 'easy-property-listings' ),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			)
 		);

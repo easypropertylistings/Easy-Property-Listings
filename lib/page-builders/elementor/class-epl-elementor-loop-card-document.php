@@ -4,7 +4,7 @@
  *
  * @package    EPL
  * @subpackage PageBuilders/Elementor
- * @since      3.7.0
+ * @since      3.6.0
  */
 
 // Exit if accessed directly.
@@ -92,7 +92,7 @@ class EPL_Elementor_Loop_Card_Document extends EPL_Elementor_Listing_Document {
 				'max'         => 800,
 				'step'        => 10,
 				'default'     => 320,
-				'description' => esc_html__( 'A card is normally seen sitting narrow inside a grid, not stretched across the whole screen. This just narrows the editing canvas to roughly that width so it\'s easier to design — it has no effect on the front end, where the card always fills whatever grid column it\'s placed in.', 'easy-property-listings' ),
+				'description' => esc_html__( 'Narrows the editor to card width. No effect on the front end.', 'easy-property-listings' ),
 			)
 		);
 

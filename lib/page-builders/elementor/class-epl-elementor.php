@@ -468,7 +468,7 @@ class EPL_Elementor {
 	 *    editing an EPL Listing Card document, per its own "Editing Preview
 	 *    Width" document setting — see EPL_Elementor_Loop_Card_Document.
 	 *
-	 * @since 3.7.0
+	 * @since 3.6.0
 	 * @since 3.6.0 New: Elementor templates for free Elementor (beta).
 	 */
 	public function editor_scripts() {
@@ -1442,7 +1442,7 @@ class EPL_Elementor {
 	/**
 	 * Get a sample property for editor preview.
 	 *
-	 * Fetches a random published EPL listing to use as preview data in the Elementor editor.
+	 * Fetches the newest published EPL listing to use as preview data in the Elementor editor.
 	 *
 	 * @return EPL_Property_Meta|false The property object or false if none found.
 	 * @since 3.6.0

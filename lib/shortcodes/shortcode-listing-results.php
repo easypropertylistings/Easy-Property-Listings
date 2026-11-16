@@ -97,6 +97,7 @@ function epl_is_page_builder_preview() {
  * @return false|string
  * @since 3.5.0
  * @since 3.6 Works in Elementor templates (it showed nothing when the template switched the current post) and on location, feature and empty archives. Shows the latest listings in page builder editors. New options: template, class, title and preview_limit.
+ * @since 3.6 Fix: title="on" in a page builder editor shows a plain title, so an editor redraw can't fail.
  */
 function epl_listing_results_loop_callback( $atts ) {
 
@@ -148,7 +149,14 @@ function epl_listing_results_loop_callback( $atts ) {
 		<?php if ( 'on' === $attributes['title'] ) : ?>
 			<header class="archive-header entry-header loop-header">
 				<h4 class="archive-title loop-title">
-					<?php do_action( 'epl_the_archive_title' ); ?>
+					<?php
+					if ( $preview ) {
+						// The archive title steps through the main query, which an editor redraw doesn't have.
+						esc_html_e( 'Listings', 'easy-property-listings' );
+					} else {
+						do_action( 'epl_the_archive_title' );
+					}
+					?>
 				</h4>
 			</header>
 		<?php endif; ?>
