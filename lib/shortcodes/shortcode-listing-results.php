@@ -89,8 +89,8 @@ function epl_is_page_builder_preview() {
  * Page Builder Archive / Search Results Loop
  * Load the Easy Property Listings Loop using a shortcode. For use in Page Builders like Elementor, Divi, WP Bakery, Visual Composer.
  *
- * On search results and listing archives it shows the page's listings. In a page builder
- * editor it shows the latest listings, so the template can be designed.
+ * On search results and listing archives it shows the page's listings. Anywhere else (a
+ * normal page, or a page builder editor) it shows the latest listings, with paging.
  *
  * @param array $atts Shortcode options.
  *
@@ -99,6 +99,7 @@ function epl_is_page_builder_preview() {
  * @since 3.6 Works in Elementor templates (it showed nothing when the template switched the current post) and on location, feature and empty archives. Shows the latest listings in page builder editors. New options: template, class, title and preview_limit.
  * @since 3.6 Fix: title="on" in a page builder editor shows a plain title, so an editor redraw can't fail.
  * @since 3.6 The wrapper has its own class, epl-shortcode-listing-results, like the other listing shortcodes.
+ * @since 3.6 On a normal page it shows the latest listings with paging (it showed nothing).
  */
 function epl_listing_results_loop_callback( $atts ) {
 
@@ -111,29 +112,36 @@ function epl_listing_results_loop_callback( $atts ) {
 			'class'         => '', // Extra wrapper class.
 			'title'         => 'off', // Show the archive or search title.
 			'preview_limit' => '', // Listings to show in a page builder editor. Default: Settings > Reading.
+			'instance_id'   => '1', // Matches the sort dropdown when the shortcode shows the latest listings.
 		),
 		$atts
 	);
 
+	// $preview: the shortcode runs its own query (latest listings) instead of the page's.
 	$preview = false;
-	$query   = null;
 
 	if ( epl_is_listing_results_page() ) {
 		global $wp_query;
 		$query = $wp_query;
-	} elseif ( epl_is_page_builder_preview() ) {
+	} else {
+		// A page builder editor, or a normal page: show the latest listings, with paging.
 		$preview = true;
-		$query   = new WP_Query(
-			array(
-				'post_type'      => array_keys( epl_get_active_post_types() ),
-				'post_status'    => 'publish',
-				'posts_per_page' => '' !== $attributes['preview_limit'] ? (int) $attributes['preview_limit'] : (int) get_option( 'posts_per_page' ),
-			)
+		$paged   = max( 1, (int) get_query_var( 'paged' ), (int) get_query_var( 'page' ) );
+		$args    = array(
+			'post_type'      => array_keys( epl_get_active_post_types() ),
+			'post_status'    => 'publish',
+			'posts_per_page' => epl_is_page_builder_preview() && '' !== $attributes['preview_limit'] ? (int) $attributes['preview_limit'] : (int) get_option( 'posts_per_page' ),
+			'paged'          => $paged,
+			'instance_id'    => sanitize_text_field( $attributes['instance_id'] ),
+			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+				array(
+					'key'     => 'property_status',
+					'value'   => epl_hide_listing_statuses(),
+					'compare' => 'NOT IN',
+				),
+			),
 		);
-	}
-
-	if ( null === $query ) {
-		return '';
+		$query   = new WP_Query( epl_add_orderby_args( $args, 'shortcode', 'listing_results' ) );
 	}
 
 	$template      = str_replace( '_', '-', sanitize_key( $attributes['template'] ) );
@@ -152,7 +160,7 @@ function epl_listing_results_loop_callback( $atts ) {
 				<h4 class="archive-title loop-title">
 					<?php
 					if ( $preview ) {
-						// The archive title steps through the main query, which an editor redraw doesn't have.
+						// The archive title steps through the page's main query, not this one.
 						esc_html_e( 'Listings', 'easy-property-listings' );
 					} else {
 						do_action( 'epl_the_archive_title' );
