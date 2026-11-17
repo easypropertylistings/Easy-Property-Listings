@@ -954,16 +954,16 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Show the price on listings that are under offer?
 		 *
-		 * On unless the Under Offer Price Display setting is set to hide the price, so the
-		 * advertised price stays visible until the listing sells. NSW underquoting rules
-		 * require this from 17 November 2026.
+		 * Only when the Under Offer Price Display setting is set to show the price. Off by
+		 * default, so under offer listings show only the Under Offer label, as before 3.6.
 		 *
 		 * @since 3.6
+		 * @since 3.6.1 Off by default. NSW paused its price advertising rules on 16 November 2026, the day before they were due to start, so 3.6 showing the price on every site by default was no longer needed.
 		 *
 		 * @return bool
 		 */
 		public function show_price_under_offer() {
-			$show = 'no' !== $this->get_epl_settings( 'display_price_under_offer' );
+			$show = 'yes' === $this->get_epl_settings( 'display_price_under_offer' );
 
 			/**
 			 * Filters whether under offer listings show their price.

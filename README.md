@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.6.1 November 17, 2026 =
+
+-   **IMPORTANT** Tweak: Under offer listings show only the Under Offer label by default again, as before 3.6. NSW paused its new price advertising rules on 16 November 2026, the day before they were due to start. To show the price next to the label ("Under Offer | $360,000 - $390,000"), go to Settings > Labels > Under Offer Price Display and choose Show the price. Sites that saved Show the price keep it. [Read more](https://codex.easypropertylistings.com.au/article/626-under-offer-price-display).
+
 = 3.6 November 16, 2026 =
 
 -   **IMPORTANT** New: Under offer listings show their advertised price next to the Under Offer label, for example "Under Offer | $360,000 - $390,000". NSW underquoting rules from 17 November 2026 require the advertised price to stay visible until the property is sold. On by default. Listings with no advertised price (the No Price label, such as POA, and auctions) show "Under Offer" on its own. To show only the label, as before 3.6, go to Settings > Labels > Under Offer Price Display. [Read more](https://codex.easypropertylistings.com.au/article/626-under-offer-price-display).
