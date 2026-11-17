@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, reports
 Requires PHP: 7.4
 Requires at least: 6.0
 Tested up to: 7.1
-Stable Tag: 3.6
+Stable Tag: 3.6.1
 License: GPLv2 or later
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management and works with any theme.
@@ -20,7 +20,7 @@ An easy-to-use plugin that provides the needed functions to configure a dynamic 
 
 **New in 3.6**
 
-* Under offer listings show their advertised price, as NSW underquoting rules require from 17 November 2026.
+* Under offer listings can show their advertised price next to the Under Offer label (Settings > Labels).
 * Search up to 48 times faster on large sites, and pages with a search form 3 to 5 times faster.
 * One listing shortcode: [listing] takes every [listing_advanced] option.
 * Elementor widgets and templates (beta).
@@ -440,6 +440,9 @@ Please report security issues privately by email to support@easypropertylistings
 Discover [What's New](https://easypropertylistings.com.au/whats-new/?utm_source=readme&utm_medium=whats_new_tab&utm_content=new&utm_campaign=epl_whats_new) with [Easy Property Listings](https://easypropertylistings.com.au/?utm_source=readme&utm_medium=whats_new_tab&utm_content=home&utm_campaign=link_home). The [change log](https://easypropertylistings.com.au/change-log/?utm_source=readme&utm_medium=change_log_tab&utm_content=changes&utm_campaign=epl_change_log) can now be found [here at Easy Property Listings](https://easypropertylistings.com.au/change-log/?utm_source=readme&utm_medium=change_log_tab&utm_content=changes&utm_campaign=epl_change_log).
 
 == Upgrade Notice ==
+
+= 3.6.1 =
+Under offer listings show only the Under Offer label again, as before 3.6, because NSW paused its new price advertising rules. Updating switches the setting back to hide once, even if it was on in 3.6. To show the price, see Settings > Labels > Under Offer Price Display.
 
 = 3.6 =
 Under offer listings now keep their price visible ("Under Offer | $360,000 - $390,000"), as NSW underquoting rules require from 17 November 2026. To hide it, see Settings > Labels > Under Offer Price Display. Card images are now 600x400: regenerate thumbnails for older images.

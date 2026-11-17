@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return array
  * @since 3.3.5
  * @since 3.6 Added the display_price_under_offer default.
+ * @since 3.6.1 display_price_under_offer defaults to no (hide the price), as before 3.6.
  */
 function epl_get_default_settings() {
 
@@ -48,7 +49,7 @@ function epl_get_default_settings() {
 		'label_poa'                            => __( 'POA', 'easy-property-listings' ),
 		'label_new'                            => __( 'New', 'easy-property-listings' ),
 		'label_under_offer'                    => __( 'Under Offer', 'easy-property-listings' ),
-		'display_price_under_offer'            => 'yes',
+		'display_price_under_offer'            => 'no',
 		'label_leased'                         => __( 'Leased', 'easy-property-listings' ),
 		'label_sold'                           => __( 'Sold', 'easy-property-listings' ),
 		'widget_label_all'                     => __( 'All', 'easy-property-listings' ),
@@ -209,6 +210,7 @@ add_action( 'admin_init', 'epl_after_install' );
  * Runs just after plugin installation
  *
  * @since 1.0
+ * @since 3.6.1 Adds the 3.6.1 step: sites that had Under Offer Price Display on from 3.6 go back to hiding the price once, as NSW paused its underquoting rules.
  * @return void
  */
 function epl_plugin_updates() {
@@ -262,6 +264,10 @@ function epl_plugin_updates() {
 		include EPL_PATH_UPDATES . 'epl-3.3.php';
 		flush_rewrite_rules();
 		update_option( 'epl_version', '3.3' );
+	}
+	if ( version_compare( $current_version, '3.6.1', '<' ) ) {
+		include EPL_PATH_UPDATES . 'epl-3.6.1.php';
+		update_option( 'epl_version', '3.6.1' );
 	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );

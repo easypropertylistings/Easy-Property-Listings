@@ -1088,6 +1088,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
  * @since 2.1
  * @since 3.5.3 Updated to return local timestamp.
  * @since 3.6 Added the Under Offer Price Display setting (display_price_under_offer).
+ * @since 3.6.1 Under Offer Price Display defaults to Hide the price, as before 3.6.
  */
 function epl_get_admin_option_fields() {
 	global $epl_settings;
@@ -1280,7 +1281,7 @@ function epl_get_admin_option_fields() {
 						'yes' => __( 'Show the price', 'easy-property-listings' ),
 						'no'  => __( 'Hide the price', 'easy-property-listings' ),
 					),
-					'default' => 'yes',
+					'default' => 'no',
 					'help'    => __( 'Example: Under Offer | $500,000', 'easy-property-listings' ) . ' <a href="' . esc_url( 'https://codex.easypropertylistings.com.au/article/626-under-offer-price-display' ) . '" target="_blank">' . __( 'Read More', 'easy-property-listings' ) . '</a>',
 				),
 
