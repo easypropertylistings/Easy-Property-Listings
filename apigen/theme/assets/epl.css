@@ -1,0 +1,323 @@
+/*
+ * EPL code reference: styling borrowed from easypropertylistings.com.au/whats-new/.
+ * Loaded after ApiGen's main.css. Change the custom properties to restyle everything.
+ */
+:root {
+	--epl-blue: #2f6fd6;
+	--epl-blue-light: #4aa3e8;
+	--epl-blue-dark: #1d3f7a;
+	--epl-orange: #f7a823;
+	--epl-orange-tint: #fff4df;
+	--epl-orange-dark: #a86a00;
+	--epl-text: #2b2f36;
+	--epl-muted: #5f6b7a;
+	--epl-line: #e4e9f0;
+	--epl-tint: #f4f7fb;
+	--epl-code-bg: #eef2f8;
+	--epl-radius: 12px;
+	--epl-header-height: 72px;
+	--epl-gradient: linear-gradient(120deg, var(--epl-blue) 0%, var(--epl-blue-light) 100%);
+
+	/* ApiGen's own variables */
+	--font-family-text: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--font-family-heading: var(--font-family-text);
+	--font-family-code: SFMono-Regular, Menlo, Consolas, monospace;
+	--color-heading-dark: var(--epl-text);
+	--color-heading-light: var(--epl-text);
+	--color-link: var(--epl-blue);
+	--color-selected: var(--epl-orange-tint);
+	--border-color: var(--epl-line);
+	--background-color: var(--epl-tint);
+}
+
+body {
+	font-size: 15px;
+	line-height: 1.6;
+	color: var(--epl-text);
+}
+
+h1 {
+	font-size: 32px;
+	font-weight: 700;
+	letter-spacing: -0.5px;
+	margin: 28px 0 8px;
+}
+
+h1, h1 a {
+	color: var(--epl-text);
+}
+
+h4 {
+	color: var(--epl-blue);
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1.2px;
+}
+
+a {
+	color: var(--epl-blue);
+	padding: 0;
+}
+
+a:hover, a:active, a:focus, a:hover b, a:hover var {
+	background: none;
+	color: var(--epl-blue-dark) !important;
+	text-decoration: underline;
+}
+
+var, var a {
+	color: var(--epl-orange-dark);
+}
+
+p code, li code, .description code {
+	background: var(--epl-code-bg);
+	color: var(--epl-blue-dark);
+	padding: 1px 5px;
+	border-radius: 4px;
+}
+
+.epl-intro {
+	color: var(--epl-muted);
+	font-size: 17px;
+	max-width: 760px;
+	margin-bottom: 8px;
+}
+
+/* Side menu */
+.layout-aside {
+	background: var(--epl-tint);
+	border-right: 0;
+}
+
+.menu {
+	padding: 0 0 24px;
+	gap: 22px;
+}
+
+.menu-section {
+	padding: 0 20px;
+}
+
+.menu h3 {
+	color: var(--epl-blue);
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1.2px;
+	margin: 0 0 6px;
+}
+
+.menu a {
+	color: var(--epl-text);
+	font-size: 13.5px;
+	padding: 1px 0;
+}
+
+.menu a:hover {
+	color: var(--epl-blue) !important;
+}
+
+.menu .active > a {
+	color: var(--epl-blue);
+}
+
+.menu .active > a:hover {
+	background: none;
+}
+
+.epl-brand {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: var(--epl-header-height);
+	padding: 0 20px !important;
+	background: var(--epl-gradient);
+	color: #fff !important;
+	font-size: 19px !important;
+	letter-spacing: -0.3px;
+	text-decoration: none !important;
+}
+
+.epl-brand b {
+	font-weight: 800;
+}
+
+.epl-brand span {
+	display: block;
+	margin-top: 2px;
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	opacity: 0.85;
+}
+
+/* Top bar */
+.layout-navbar .navbar {
+	background: var(--epl-gradient);
+	border-bottom: 0;
+	padding: 10px 20px;
+	min-height: var(--epl-header-height);
+}
+
+.layout-rest > .navbar {
+	background: var(--epl-blue-light);
+	border-bottom: 0;
+	height: var(--epl-header-height);
+}
+
+.navbar-links {
+	gap: 4px;
+}
+
+.navbar-links li > * {
+	padding: 8px 14px;
+	border-radius: 999px;
+	color: #fff;
+	font-size: 14px;
+}
+
+.navbar-links li > a,
+.navbar-links li > span > a {
+	color: #fff;
+}
+
+.navbar-links li > a:hover {
+	background: rgba(255, 255, 255, 0.14);
+	color: #fff !important;
+	text-decoration: none;
+}
+
+.navbar-links li > span {
+	color: rgba(255, 255, 255, 0.55);
+}
+
+.navbar-links li.active {
+	background: none;
+}
+
+.navbar-links li.active > * {
+	background: #fff;
+	color: var(--epl-blue) !important;
+}
+
+.search-input {
+	border: 0;
+	border-radius: 999px;
+	padding: 9px 16px;
+	font-size: 14px;
+}
+
+.search-results {
+	top: 42px;
+	border: 1px solid var(--epl-line);
+	border-radius: 8px;
+	box-shadow: 0 10px 30px rgba(20, 40, 80, 0.12);
+}
+
+.search-results li:hover, .search-results li.active {
+	background: var(--epl-blue);
+}
+
+/* Content */
+.layout-content {
+	padding: 0 32px;
+}
+
+.layout-footer {
+	color: var(--epl-muted);
+	font-size: 13px;
+}
+
+.classLikeDescription {
+	border: 0;
+	border-radius: var(--epl-radius);
+	background: var(--epl-tint);
+	padding: 16px 20px;
+	font-size: 16px;
+}
+
+.classLikeSection b {
+	color: var(--epl-muted);
+	font-weight: 600;
+}
+
+/* Tables become white cards with a soft border */
+.table {
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 1px solid var(--epl-line);
+	border-radius: var(--epl-radius);
+	overflow: hidden;
+	margin: 20px 0 32px;
+	background: #fff;
+}
+
+.table-heading {
+	border: 0;
+	border-bottom: 1px solid var(--epl-line);
+	background: var(--epl-tint);
+	padding: 10px 16px;
+	color: var(--epl-blue);
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1.2px;
+}
+
+.table-cell,
+.table-anchor {
+	border: 0;
+	border-top: 1px solid var(--epl-line);
+	padding: 8px 16px;
+}
+
+tr:nth-child(2) > .table-cell,
+tr:nth-child(2) > .table-anchor {
+	border-top: 0;
+}
+
+.table-cell:not(:last-child) {
+	border-right: 0;
+}
+
+.table-anchor > a {
+	color: var(--epl-line);
+}
+
+tr:hover > .table-anchor > a {
+	color: var(--epl-blue);
+}
+
+/* @since versions as badges, like the What's New page */
+.epl-since code,
+.epl-since-list code {
+	display: inline-block;
+	background: var(--epl-orange-tint);
+	color: var(--epl-orange-dark);
+	font-family: var(--font-family-text);
+	font-size: 12px;
+	font-weight: 700;
+	padding: 2px 8px;
+	border-radius: 4px;
+	letter-spacing: 0.5px;
+}
+
+.epl-since-list td {
+	padding: 2px 0;
+	vertical-align: top;
+}
+
+/* Source pages */
+.source {
+	font-size: 13px;
+	line-height: 1.55;
+}
+
+.source-line.selected {
+	background: var(--epl-orange-tint);
+}
+
+/* Hook list: hook name gets the room */
+.epl-hooks-table .table-cell:first-child {
+	width: 55%;
+}

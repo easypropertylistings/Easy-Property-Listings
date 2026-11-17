@@ -1,230 +1,287 @@
 <?php
 /**
- * Generate documentation for hooks in EPL
- * Adapted from WooCommerce
+ * Hook reference for the EPL code reference.
+ *
+ * Lists every EPL action and filter (do_action / apply_filters) in core and
+ * writes hook-docs.html into the ApiGen output, using ApiGen's own page shell
+ * so it looks like the rest of the site. Each hook links to the line it is
+ * fired on in ApiGen's source pages.
+ *
+ * Run from the plugin folder, after `apigen`:
+ *   php apigen/hook-docs.php [output folder, default epl-apidocs]
+ *
+ * Adapted from WooCommerce's hook-docs.
+ *
+ * @package EPL
+ * @since 3.6.2 Command line script for ApiGen 7: scans every lib/ folder (page builders, integrations and updates were missed), links hooks to their source line, and copies ApiGen 7's page layout.
  */
-class EPL_HookFinder {
-	private static $current_file           = '';
-	private static $files_to_scan          = array();
-	private static $pattern_custom_actions = '/do_action(.*?);/i';
-	private static $pattern_custom_filters = '/apply_filters(.*?);/i';
-	private static $found_files            = array();
-	private static $custom_hooks_found     = '';
 
-	private static function get_files( $pattern, $flags = 0, $path = '' ) {
+// phpcs:disable WordPress.Security.EscapeOutput, WordPress.WP.AlternativeFunctions -- Command line tool: WordPress isn't loaded, so its escaping and filesystem functions don't exist. Output is escaped with htmlspecialchars().
 
-	    if ( ! $path && ( $dir = dirname( $pattern ) ) != '.' ) {
+if ( 'cli' !== PHP_SAPI ) {
+	exit( "Run from the command line: php apigen/hook-docs.php\n" );
+}
 
-	        if ($dir == '\\' || $dir == '/') { $dir = ''; } // End IF Statement
+/**
+ * Finds EPL hooks in the plugin's PHP files.
+ *
+ * @since 3.6.2 Command line version for ApiGen 7.
+ */
+class EPL_Hook_Finder {
 
-	        return self::get_files(basename( $pattern ), $flags, $dir . '/' );
+	/**
+	 * Plugin folder, with a trailing slash.
+	 *
+	 * @var string
+	 */
+	private $plugin_dir;
 
-	    } // End IF Statement
-
-	    $paths = glob( $path . '*', GLOB_ONLYDIR | GLOB_NOSORT );
-	    $files = glob( $path . $pattern, $flags );
-
-	    if ( is_array( $paths ) ) {
-		    foreach ( $paths as $p ) {
-			    $found_files = array();
-		   		$retrieved_files = (array) self::get_files( $pattern, $flags, $p . '/' );
-		   		foreach ( $retrieved_files as $file ) {
-			   		if ( ! in_array( $file, self::$found_files ) )
-			   			$found_files[] = $file;
-		   		}
-
-		   		self::$found_files = array_merge( self::$found_files, $found_files );
-
-		   		if ( is_array( $files ) && is_array( $found_files ) ) {
-		   			$files = array_merge( $files, $found_files );
-		   		}
-
-		    } // End FOREACH Loop
-	    }
-	    return $files;
+	/**
+	 * Set up.
+	 *
+	 * @param string $plugin_dir Plugin folder.
+	 *
+	 * @since 3.6.2
+	 */
+	public function __construct( $plugin_dir ) {
+		$this->plugin_dir = rtrim( $plugin_dir, '/' ) . '/';
 	}
 
-	private static function get_hook_link( $hook, $details = array() ) {
-		if ( ! empty( $details['class'] ) ) {
-			$link = 'https://docs.easypropertylistings.com.au/source-class-' . $details['class'] . '.html#' . $details['line'];
-		} elseif ( ! empty( $details['function'] ) ) {
-			$link = 'https://docs.easypropertylistings.com.au/source-function-' . $details['function'] . '.html#' . $details['line'];
-		} else {
-			$link = 'https://github.com/easypropertylistings/Easy-Property-Listings/search?utf8=%E2%9C%93&q=' . $hook;
+	/**
+	 * Files to scan, grouped under a heading per lib/ folder.
+	 *
+	 * @return array Heading => list of paths relative to the plugin folder.
+	 *
+	 * @since 3.6.2 Every lib/ folder, found automatically, so new folders are never missed.
+	 */
+	public function get_file_groups() {
+		$groups = array();
+
+		foreach ( glob( $this->plugin_dir . 'lib/*', GLOB_ONLYDIR ) as $folder ) {
+			$name  = basename( $folder );
+			$files = $this->get_php_files( 'lib/' . $name );
+			if ( $files ) {
+				$groups[ ucwords( str_replace( '-', ' ', $name ) ) . ' (lib/' . $name . ')' ] = $files;
+			}
 		}
 
-		return '<a href="' . $link . '">' . $hook . '</a>';
+		$groups['Other (plugin folder)'] = array( 'easy-property-listings.php', 'uninstall.php' );
+
+		return $groups;
 	}
 
-	public static function process_hooks() {
-		$assets_files  	     = self::get_files( '*.php', GLOB_MARK, '../lib/assets/' );
-		$compatibility_files = self::get_files( '*.php', GLOB_MARK, '../lib/compatibility/' );
-		$includes_files      = self::get_files( '*.php', GLOB_MARK, '../lib/includes/' );
-		$hooks_files  	     = self::get_files( '*.php', GLOB_MARK, '../lib/hooks/' );
-		$meta_boxes_files    = self::get_files( '*.php', GLOB_MARK, '../lib/meta-boxes/' );
-		$post_types_files    = self::get_files( '*.php', GLOB_MARK, '../lib/post-types/' );
-		$shortcode_files     = self::get_files( '*.php', GLOB_MARK, '../lib/shortcodes/' );
-		$taxonomies_files    = self::get_files( '*.php', GLOB_MARK, '../lib/taxonomies/' );
-		$template_files      = self::get_files( '*.php', GLOB_MARK, '../lib/templates/' );
-		$widget_files        = self::get_files( '*.php', GLOB_MARK, '../lib/widgets/' );
-		$other_files         = array(
-			'../easy-property-listings.php'
-		);
+	/**
+	 * Every PHP file under a folder, sorted.
+	 *
+	 * @param string $folder Folder relative to the plugin folder.
+	 *
+	 * @return array Paths relative to the plugin folder.
+	 *
+	 * @since 3.6.2
+	 */
+	private function get_php_files( $folder ) {
+		$files    = array();
+		$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $this->plugin_dir . $folder, FilesystemIterator::SKIP_DOTS ) );
 
-		self::$files_to_scan = array(
-			'Assets Folder Hooks'        => $assets_files,
-			'Compatibility Folder Hooks' => $compatibility_files,
-			'Includes Folder Hooks'      => $includes_files,
-			'Hooks Folder Hooks'         => $hooks_files,
-			'Meta Boxes Folder Hooks'    => $meta_boxes_files,
-			'Post Types'                 => $post_types_files,
-			'Shortcode Hooks'            => $shortcode_files,
-			'Taxonomies Hooks'           => $taxonomies_files,
-			'Template Hooks'             => $template_files,
-			'Widget Hooks'               => $widget_files,
-			'Other Hooks'                => $other_files,
-		);
+		foreach ( $iterator as $file ) {
+			if ( 'php' === $file->getExtension() ) {
+				$files[] = substr( $file->getPathname(), strlen( $this->plugin_dir ) );
+			}
+		}
 
-		$scanned = array();
+		sort( $files );
 
-		ob_start();
+		return $files;
+	}
 
-		echo '<div id="content">';
-		echo '<h1>Action and Filter Hook Reference</h1>';
+	/**
+	 * Hooks fired in a list of files.
+	 *
+	 * Hook names built from variables are shown with the variable part in
+	 * braces, e.g. epl_{$post_type}_meta.
+	 *
+	 * @param array $files Paths relative to the plugin folder.
+	 *
+	 * @return array Hook name => type, path and line of the first use, and every file it's used in.
+	 *
+	 * @since 3.6.2
+	 */
+	public function find_hooks( $files ) {
+		$hooks = array();
 
-		foreach ( self::$files_to_scan as $heading => $files ) {
-			self::$custom_hooks_found = array();
+		foreach ( $files as $path ) {
+			$tokens     = token_get_all( file_get_contents( $this->plugin_dir . $path ) );
+			$token_type = false;
 
-			foreach ( $files as $f ) {
-				self::$current_file = basename( $f );
-				$tokens             = token_get_all( file_get_contents( $f ) );
-				$token_type         = false;
-				$current_class      = '';
-				$current_function   = '';
-
-				if ( in_array( self::$current_file, $scanned ) ) {
+			foreach ( $tokens as $index => $token ) {
+				if ( ! is_array( $token ) ) {
 					continue;
 				}
 
-				$scanned[] = self::$current_file;
-
-				foreach ( $tokens as $index => $token ) {
-					if ( is_array( $token ) ) {
-						$trimmed_token_1 = trim( $token[1] );
-						if ( T_CLASS == $token[0] ) {
-							$token_type = 'class';
-						} elseif ( T_FUNCTION == $token[0] ) {
-							$token_type = 'function';
-						} elseif ( 'do_action' === $token[1] ) {
-							$token_type = 'action';
-						} elseif ( 'apply_filters' === $token[1] ) {
-							$token_type = 'filter';
-						} elseif ( $token_type && ! empty( $trimmed_token_1 ) ) {
-							switch ( $token_type ) {
-								case 'class' :
-									$current_class = $token[1];
-								break;
-								case 'function' :
-									$current_function = $token[1];
-								break;
-								case 'filter' :
-								case 'action' :
-									$hook = trim( $token[1], "'" );
-									$loop = 0;
-
-									if ( '_' === substr( $hook, '-1', 1 ) ) {
-										$hook .= '{';
-										$open = true;
-										// Keep adding to hook until we find a comma or colon
-										while ( 1 ) {
-											$loop ++;
-											$next_hook  = trim( trim( is_string( $tokens[ $index + $loop ] ) ? $tokens[ $index + $loop ] : $tokens[ $index + $loop ][1], '"' ), "'" );
-
-											if ( in_array( $next_hook, array( '.', '{', '}', '"', "'", ' ' ) ) ) {
-												continue;
-											}
-
-											$hook_first = substr( $next_hook, 0, 1 );
-											$hook_last  = substr( $next_hook, -1, 1 );
-
-											if ( in_array( $next_hook, array( ',', ';' ) ) ) {
-												if ( $open ) {
-													$hook .= '}';
-													$open = false;
-												}
-												break;
-											}
-
-											if ( '_' === $hook_first ) {
-												$next_hook = '}' . $next_hook;
-												$open = false;
-											}
-
-											if ( '_' === $hook_last ) {
-												$next_hook .= '{';
-												$open = true;
-											}
-
-											$hook .= $next_hook;
-										}
-									}
-
-									if ( isset( self::$custom_hooks_found[ $hook ] ) ) {
-										self::$custom_hooks_found[ $hook ]['file'][] = self::$current_file;
-									} else {
-    									self::$custom_hooks_found[ $hook ] = array(
-											'line'     => $token[2],
-											'class'    => $current_class,
-											'function' => $current_function,
-											'file'     => array( self::$current_file ),
-											'type'     => $token_type,
-										);
-									}
-								break;
-							}
-							$token_type = false;
-						}
-					}
-				}
-			}
-
-			foreach ( self::$custom_hooks_found as $hook => $details ) {
-				if ( ! strstr( $hook, 'property' ) && ! strstr( $hook, 'product' ) && ! strstr( $hook, 'epl_' ) ) {
-					unset( self::$custom_hooks_found[ $hook ] );
-				}
-			}
-
-			ksort( self::$custom_hooks_found );
-
-			if ( ! empty( self::$custom_hooks_found ) ) {
-				echo '<div class="panel panel-default"><div class="panel-heading"><h2>' . $heading . '</h2></div>';
-
-				echo '<table class="summary table table-bordered table-striped"><thead><tr><th>Hook</th><th>Type</th><th>File(s)</th></tr></thead><tbody>';
-
-				foreach ( self::$custom_hooks_found as $hook => $details ) {
-					echo '<tr>
-						<td>' . self::get_hook_link( $hook, $details ) . '</td>
-						<td>' . $details['type'] . '</td>
-						<td>' . implode( ', ', array_unique( $details['file'] ) ) . '</td>
-					</tr>' . "\n";
+				if ( 'do_action' === $token[1] ) {
+					$token_type = 'action';
+					continue;
 				}
 
-				echo '</tbody></table></div>';
+				if ( 'apply_filters' === $token[1] ) {
+					$token_type = 'filter';
+					continue;
+				}
+
+				if ( ! $token_type || '' === trim( $token[1] ) ) {
+					continue;
+				}
+
+				$hook = $this->read_hook_name( $tokens, $index );
+
+				if ( isset( $hooks[ $hook ] ) ) {
+					$hooks[ $hook ]['files'][] = $path;
+				} else {
+					$hooks[ $hook ] = array(
+						'type'  => $token_type,
+						'path'  => $path,
+						'line'  => $token[2],
+						'files' => array( $path ),
+					);
+				}
+
+				$token_type = false;
 			}
 		}
 
-		echo '</div><div id="footer">';
+		// Only EPL hooks, not WordPress ones such as the_content.
+		foreach ( array_keys( $hooks ) as $hook ) {
+			if ( false === strpos( $hook, 'epl_' ) && false === strpos( $hook, 'property' ) ) {
+				unset( $hooks[ $hook ] );
+			}
+		}
 
-		$html   = file_get_contents( '../epl-apidocs/tree.html' );
-		$header = explode( '<div id="content">', $html );
-		$header = str_replace( '<li class="active">', '<li>', current( $header ) );
-		$header = str_replace( '<li class="hooks">', '<li class="active">', $header );
-		$header = str_replace( 'Tree | ', 'Hook Reference | ', $header );
-		$footer = explode( '<div id="footer">', $html );
+		ksort( $hooks );
 
-		file_put_contents( '../epl-apidocs/hook-docs.html', $header . ob_get_clean() . end( $footer ) );
-		echo "Hook docs generated :)\n";
+		return $hooks;
+	}
+
+	/**
+	 * Hook name starting at a token, joining the parts of names built with variables.
+	 *
+	 * @param array $tokens All tokens of the file.
+	 * @param int   $index  Token holding the start of the hook name.
+	 *
+	 * @return string Hook name.
+	 *
+	 * @since 3.6.2 Same logic as the old hook-docs.php.
+	 */
+	private function read_hook_name( $tokens, $index ) {
+		$hook = trim( $tokens[ $index ][1], "'\"" );
+
+		if ( '_' !== substr( $hook, -1 ) ) {
+			return $hook;
+		}
+
+		$hook .= '{';
+		$open  = true;
+		$loop  = 0;
+
+		while ( isset( $tokens[ $index + $loop + 1 ] ) ) {
+			++$loop;
+			$next = $tokens[ $index + $loop ];
+			$next = trim( trim( is_string( $next ) ? $next : $next[1], '"' ), "'" );
+
+			if ( in_array( $next, array( '.', '{', '}', '"', "'", ' ', '' ), true ) ) {
+				continue;
+			}
+
+			if ( in_array( $next, array( ',', ';', ')' ), true ) ) {
+				if ( $open ) {
+					$hook .= '}';
+				}
+				break;
+			}
+
+			if ( '_' === substr( $next, 0, 1 ) ) {
+				$next = '}' . $next;
+				$open = false;
+			}
+
+			if ( '_' === substr( $next, -1 ) ) {
+				$next .= '{';
+				$open  = true;
+			}
+
+			$hook .= $next;
+		}
+
+		return $hook;
+	}
+
+	/**
+	 * Link to the line in ApiGen 7's source page, e.g. source-lib.includes.functions.html#43.
+	 *
+	 * @param string $path Path relative to the plugin folder.
+	 * @param int    $line Line number.
+	 *
+	 * @return string Relative URL.
+	 *
+	 * @since 3.6.2
+	 */
+	public function source_url( $path, $line ) {
+		return 'source-' . str_replace( '/', '.', substr( $path, 0, -4 ) ) . '.html#' . $line;
 	}
 }
 
-EPL_HookFinder::process_hooks();
+$epl_plugin_dir = dirname( __DIR__ );
+$epl_output_dir = isset( $argv[1] ) ? rtrim( $argv[1], '/' ) : $epl_plugin_dir . '/epl-apidocs';
+$epl_tree_page  = $epl_output_dir . '/tree.html';
+
+if ( ! file_exists( $epl_tree_page ) ) {
+	fwrite( STDERR, "No $epl_tree_page: run apigen first.\n" );
+	exit( 1 );
+}
+
+$epl_finder = new EPL_Hook_Finder( $epl_plugin_dir );
+$epl_total  = 0;
+
+ob_start();
+
+echo "<h1>Action and Filter Hook Reference</h1>\n";
+
+foreach ( $epl_finder->get_file_groups() as $epl_heading => $epl_files ) {
+	$epl_hooks = $epl_finder->find_hooks( $epl_files );
+
+	if ( ! $epl_hooks ) {
+		continue;
+	}
+
+	$epl_total += count( $epl_hooks );
+
+	echo '<table class="table epl-hooks-table">' . "\n";
+	echo '<tr><th class="table-heading" colspan="3">' . htmlspecialchars( $epl_heading ) . "</th></tr>\n";
+
+	foreach ( $epl_hooks as $epl_hook => $epl_details ) {
+		$epl_file_names = array_unique( array_map( 'basename', $epl_details['files'] ) );
+
+		printf(
+			'<tr id="%1$s"><td class="table-cell"><code><a href="%2$s">%3$s</a></code></td><td class="table-cell table-shrink">%4$s</td><td class="table-cell">%5$s</td></tr>' . "\n",
+			htmlspecialchars( $epl_hook ),
+			htmlspecialchars( $epl_finder->source_url( $epl_details['path'], $epl_details['line'] ) ),
+			htmlspecialchars( $epl_hook ),
+			htmlspecialchars( $epl_details['type'] ),
+			htmlspecialchars( implode( ', ', $epl_file_names ) )
+		);
+	}
+
+	echo "</table>\n";
+}
+
+$epl_content = ob_get_clean();
+
+// Wrap the list in ApiGen's own page: everything outside the tree page's content area.
+$epl_page = file_get_contents( $epl_tree_page );
+$epl_page = preg_replace( '#(<div class="layout-content">).*?(\s*</div>\s*<div class="layout-footer">)#s', '$1' . "\n" . str_replace( '$', '\$', $epl_content ) . '$2', $epl_page, 1 );
+$epl_page = preg_replace( '#<title>Tree#', '<title>Action and Filter Hook Reference', $epl_page, 1 );
+$epl_page = str_replace( '<li class="active">', '<li>', $epl_page );
+$epl_page = str_replace( '<li class="epl-hooks">', '<li class="epl-hooks active">', $epl_page );
+
+file_put_contents( $epl_output_dir . '/hook-docs.html', $epl_page );
+
+echo "hook-docs.html: $epl_total hooks.\n";

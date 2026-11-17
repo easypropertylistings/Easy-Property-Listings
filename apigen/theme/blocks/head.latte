@@ -1,0 +1,15 @@
+{varType ApiGen\Index\Index $index}
+{varType ApiGen\Renderer\Latte\Template\ConfigParameters $config}
+{varType ApiGen\Renderer\Latte\Template\LayoutParameters $layout}
+
+{* EPL: Google Analytics 4, the ID the old apigen.neon had (its old ga.js snippet never worked with a G- ID). *}
+{define head}
+	<link rel="stylesheet" href="{assetUrl('epl.css')}">
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-P47N8PC940"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){ dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-P47N8PC940');
+	</script>
+{/define}
