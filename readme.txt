@@ -442,7 +442,7 @@ Discover [What's New](https://easypropertylistings.com.au/whats-new/?utm_source=
 == Upgrade Notice ==
 
 = 3.6.1 =
-Under offer listings show only the Under Offer label by default again, as before 3.6, because NSW paused its new price advertising rules. To show the price, see Settings > Labels > Under Offer Price Display.
+Under offer listings show only the Under Offer label again, as before 3.6, because NSW paused its new price advertising rules. Updating switches the setting back to hide once, even if it was on in 3.6. To show the price, see Settings > Labels > Under Offer Price Display.
 
 = 3.6 =
 Under offer listings now keep their price visible ("Under Offer | $360,000 - $390,000"), as NSW underquoting rules require from 17 November 2026. To hide it, see Settings > Labels > Under Offer Price Display. Card images are now 600x400: regenerate thumbnails for older images.

@@ -210,6 +210,7 @@ add_action( 'admin_init', 'epl_after_install' );
  * Runs just after plugin installation
  *
  * @since 1.0
+ * @since 3.6.1 Adds the 3.6.1 step: sites that had Under Offer Price Display on from 3.6 go back to hiding the price once, as NSW paused its underquoting rules.
  * @return void
  */
 function epl_plugin_updates() {
@@ -263,6 +264,10 @@ function epl_plugin_updates() {
 		include EPL_PATH_UPDATES . 'epl-3.3.php';
 		flush_rewrite_rules();
 		update_option( 'epl_version', '3.3' );
+	}
+	if ( version_compare( $current_version, '3.6.1', '<' ) ) {
+		include EPL_PATH_UPDATES . 'epl-3.6.1.php';
+		update_option( 'epl_version', '3.6.1' );
 	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
