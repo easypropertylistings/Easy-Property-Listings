@@ -1,0 +1,26 @@
+{templateType ApiGen\Renderer\Latte\Template\IndexTemplate}
+{import '../blocks/@index.latte'}
+
+{* EPL: home page lists classes and functions directly (core has no PHP namespaces; Elementor's are only referenced). *}
+{embed layout}
+	{block content}
+		{var $globalNamespace = $index->namespace[''] ?? null}
+		<h1>{$config->title}</h1>
+
+		<p class="epl-intro">Every class and function in Easy Property Listings core, with the version each was added or changed in. See also the <a href="{=indexUrl()|replace:'index.html','hook-docs.html'}">action and filter hook reference</a>.</p>
+
+		{embed elementSummary}
+			{block elementSummaryContent}
+				{if count(array_filter($index->namespace, fn($n) => $n->primary && $n->name->full !== '')) > 0}
+					{include elementSummaryGroup, heading: 'Namespaces', elements: $index->namespace, showDescription: false, onlyPrimary: true}
+				{/if}
+				{if $globalNamespace}
+					{include elementSummaryGroup, heading: 'Classes', elements: $globalNamespace->class, onlyPrimary: $globalNamespace->primary}
+					{include elementSummaryGroup, heading: 'Interfaces', elements: $globalNamespace->interface, onlyPrimary: $globalNamespace->primary}
+					{include elementSummaryGroup, heading: 'Traits', elements: $globalNamespace->trait, onlyPrimary: $globalNamespace->primary}
+					{include elementSummaryGroup, heading: 'Functions', elements: $globalNamespace->function, onlyPrimary: $globalNamespace->primary}
+				{/if}
+			{/block}
+		{/embed}
+	{/block}
+{/embed}

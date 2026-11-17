@@ -1,0 +1,26 @@
+{varType ApiGen\Index\Index $index}
+{varType ApiGen\Renderer\Latte\Template\ConfigParameters $config}
+{varType ApiGen\Renderer\Latte\Template\LayoutParameters $layout}
+
+{* EPL: core has no PHP namespaces, so list classes and functions on every page, not a lone "none" namespace. *}
+{define menu}
+	{var $menuNamespace = $layout->activeNamespace ?? ($index->namespace[''] ?? null)}
+	<div class="menu">
+		<a class="epl-brand" href="{indexUrl()}">easy<b>property</b>listings<span>{$config->title|replace:'Easy Property Listings ',''}</span></a>
+		{if count(array_filter($index->namespace, fn($n) => $n->primary && $n->name->full !== '')) > 0 && isset($index->namespace[''])}
+			<div class="menu-section">
+				<h3>Namespaces</h3>
+				{include menuGroup, namespace: $index->namespace['']}
+			</div>
+		{/if}
+
+		{if $menuNamespace}
+			{include menuElements, elements: $menuNamespace->class, heading: 'Classes', onlyPrimary: $menuNamespace->primary}
+			{include menuElements, elements: $menuNamespace->interface, heading: 'Interfaces', onlyPrimary: $menuNamespace->primary}
+			{include menuElements, elements: $menuNamespace->trait, heading: 'Traits', onlyPrimary: $menuNamespace->primary}
+			{include menuElements, elements: $menuNamespace->enum, heading: 'Enums', onlyPrimary: $menuNamespace->primary}
+			{include menuElements, elements: $menuNamespace->exception, heading: 'Exceptions', onlyPrimary: $menuNamespace->primary}
+			{include menuElements, elements: $menuNamespace->function, heading: 'Functions', onlyPrimary: $menuNamespace->primary}
+		{/if}
+	</div>
+{/define}

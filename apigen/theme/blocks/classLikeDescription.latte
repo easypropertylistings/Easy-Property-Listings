@@ -1,0 +1,27 @@
+{varType ApiGen\Index\Index $index}
+{varType ApiGen\Renderer\Latte\Template\ConfigParameters $config}
+{varType ApiGen\Renderer\Latte\Template\LayoutParameters $layout}
+
+{* EPL: also used for function pages, so the @since list shows for classes and functions. *}
+{define classLikeDescription, $classLike}
+	{if $classLike->description}
+		<div class="classLikeDescription">
+			{include description, $classLike->description}
+		</div>
+	{/if}
+	{include sinceList, $classLike}
+{/define}
+
+{* EPL: every @since line, oldest first, as written in the docblock. *}
+{define sinceList, $element}
+	<table class="table epl-since" n:ifset="$element->tags['since']">
+		<tr><th class="table-heading" colspan="2">Since</th></tr>
+		{foreach $element->tags['since'] as $tag}
+			{var $parts = preg_split('/\s+/', trim((string) $tag), 2)}
+			<tr>
+				<td class="table-cell table-shrink"><code class="nowrap">{$parts[0]}</code></td>
+				<td class="table-cell">{$parts[1] ?? ''}</td>
+			</tr>
+		{/foreach}
+	</table>
+{/define}

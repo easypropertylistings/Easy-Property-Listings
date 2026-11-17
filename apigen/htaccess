@@ -1,0 +1,15 @@
+# EPL code reference: send links to the old ApiGen 2 pages (before 3.6.2) to the new ones.
+RewriteEngine On
+RewriteBase /
+
+# Classes: class-EPL_Author.html is now EPL_Author.html. Two classes changed case.
+RewriteRule ^class-EPL_LISTING_ELEMENTS\.html$ EPL_Listing_Elements.html [R=301,L]
+RewriteRule ^class-epl_pagination_Call\.html$ EPL_Pagination_Call.html [R=301,L]
+RewriteRule ^class-(.+)\.html$ $1.html [R=301,L]
+
+# Old per-element source pages go to the element's page, which links to its source.
+RewriteRule ^source-class-(.+)\.html$ $1.html [R=301,L]
+RewriteRule ^source-function-(.+)\.html$ function-$1.html [R=301,L]
+
+# Package and todo pages no longer exist.
+RewriteRule ^(package|annotation-group)-.*\.html$ index.html [R=301,L]
