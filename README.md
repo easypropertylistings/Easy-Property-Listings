@@ -41,6 +41,7 @@ There are various ways you can contribute:
 = 3.6.2 November 17, 2026 =
 
 -   Tweak: The code reference at [docs.easypropertylistings.com.au](https://docs.easypropertylistings.com.au/) is now built with ApiGen 7. It covers the Elementor widgets and every action and filter hook, shows the version each function was added or changed in, and old links still work.
+-   Security: Listing search now cleans every search value it receives, including ones read straight from the web address. Thanks Peter Wilfahrt.
 
 = 3.6.1 November 17, 2026 =
 

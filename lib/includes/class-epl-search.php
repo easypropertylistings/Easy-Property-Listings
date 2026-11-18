@@ -187,12 +187,13 @@ class EPL_SEARCH {
 	 * Sanitize whole GET & POST array, insures security from XSS
 	 *
 	 * @since 3.5.0 replaced depricated code for sanitization.
+	 * @since 3.6.2 Search data passed in (or $_REQUEST, which epl_search() passes when given none) is now sanitized too. Before, it skipped sanitize_recursive() and reached the query raw. Reported by Peter Wilfahrt.
 	 */
 	protected function sanitize_data() {
 
 		$this->get_data = $this->sanitize_recursive( $_GET );
 		if ( ! empty( $this->data ) ) {
-			$this->get_data = $this->data;
+			$this->get_data = $this->sanitize_recursive( $this->data );
 		}
 		$this->get_data  = apply_filters( 'epl_search_get_data', $this->get_data );
 		$this->post_data = $this->sanitize_recursive( $_POST );
