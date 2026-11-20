@@ -42,9 +42,10 @@ function get_epl_image_sizes() {
 
 /**
  * Register image sizes for the admin list of property
- * and a hard cropped 600x400 px image for use in archives and widgets
+ * and a hard cropped medium image (epl-image-medium-crop) for use in archives and widgets
  *
  * @since 1.0
+ * @since 3.6 epl-image-medium-crop is 600x400, was 300x200. Sizes come from get_epl_image_sizes().
  */
 function epl_image_sizes() {
 
